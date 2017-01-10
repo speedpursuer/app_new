@@ -1,0 +1,23 @@
+{
+  "name": "LKBadgeView",
+  "version": "1.2.0",
+  "summary": "Badge view",
+  "description": "Badge View",
+  "homepage": "https://github.com/lakesoft/LKBadgeView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Hiroshi Hashiguchi": "xcatsan@mac.com"
+  },
+  "source": {
+    "git": "https://github.com/lakesoft/LKBadgeView.git",
+    "tag": "1.2.0"
+  },
+  "platforms": {
+    "ios": "6.0"
+  },
+  "requires_arc": true,
+  "source_files": "Classes/*"
+}
