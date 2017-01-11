@@ -12,7 +12,7 @@
 #import "CBLService.h"
 
 @interface PlayersTableViewController ()
-@property NSMutableArray *players;
+@property NSArray *players;
 @end
 
 @implementation PlayersTableViewController
@@ -37,34 +37,8 @@
 	
 	self.title = @"球星动作";
 	
-	self.players = [NSMutableArray new];
-	
 	CBLService *service = [CBLService sharedManager];
-	NSArray *list = [service allPlayers];
-	
-	UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
-	
-	for (Player *player in list) {
-		NSInteger sect = [theCollation sectionForObject:player collationStringSelector:@selector(name)];
-		player.sectionNumber = sect;
-	}
-	
-	NSInteger highSection = [[theCollation sectionTitles] count];
-	NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
-	for (int i = 0; i < highSection; i++) {
-		NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
-		[sectionArrays addObject:sectionArray];
-	}
-	
-	for (Player *player in list) {
-		[(NSMutableArray *)[sectionArrays objectAtIndex:player.sectionNumber] addObject:player];
-	}
-	
-	for (NSMutableArray *sectionArray in sectionArrays) {
-		NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray
-											collationStringSelector:@selector(name)];
-		[self.players addObject:sortedSection];
-	}
+	_players = service.players;	
 }
 
 #pragma mark - Table view data source

@@ -63,7 +63,8 @@
 //	[factory registerClass:[Favorite class] forDocumentType:@"favorite"];
 //	[factory registerClass:[AlbumSeq class] forDocumentType:@"albumSeq"];
 	[self initContentDB];
-//	[self allNews];
+	[self allNews];
+	[self indexedPlayers];
 	[self loadFavorite];
 	[self loadAlbumSeq];
 	[self loadSynced];
@@ -124,7 +125,7 @@
 	_contentDatabase = database;
 }
 
-- (NSArray *)allNews {
+- (void)allNews {
 	CBLQuery* query = [self queryAllContent];
 	query.startKey = @"news_\uffff";
 	query.endKey   = @"news_";
@@ -136,12 +137,43 @@
 	for (CBLQueryRow* row in result) {
 		[allNews addObject:[News modelForDocument:row.document]];
 	}
-	return [allNews copy];
+	_news = [allNews copy];
 }
 
 - (CBLQuery *)queryAllContent {
 	CBLQuery* query = [self.contentDatabase createAllDocumentsQuery];
 	return query;
+}
+
+- (void)indexedPlayers {
+	NSMutableArray *players = [NSMutableArray new];
+	
+	NSArray *list = [self allPlayers];
+	
+	UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
+	
+	for (Player *player in list) {
+		NSInteger sect = [theCollation sectionForObject:player collationStringSelector:@selector(name)];
+		player.sectionNumber = sect;
+	}
+	
+	NSInteger highSection = [[theCollation sectionTitles] count];
+	NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
+	for (int i = 0; i < highSection; i++) {
+		NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
+		[sectionArrays addObject:sectionArray];
+	}
+	
+	for (Player *player in list) {
+		[(NSMutableArray *)[sectionArrays objectAtIndex:player.sectionNumber] addObject:player];
+	}
+	
+	for (NSMutableArray *sectionArray in sectionArrays) {
+		NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray
+											collationStringSelector:@selector(name)];
+		[players addObject:sortedSection];
+	}
+	_players = [players copy];
 }
 
 - (NSArray *)allPlayers {

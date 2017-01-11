@@ -12,6 +12,7 @@
 #import "ArticleEntity.h"
 #import "NewsTableViewCell.h"
 #import "ClipController.h"
+//#import <BOZPongRefreshControl/BOZPongRefreshControl.h>
 
 
 @interface NewsTableViewController ()
@@ -22,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self setupRefresher];
 	[self setupTitle];
 	[self allNews];
     
@@ -37,19 +39,42 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	NSIndexPath *selection = [self.tableView indexPathForSelectedRow];
-	if (selection) {
-		[self.tableView deselectRowAtIndexPath:selection animated:YES];
-	}
+#pragma mark - Init data
+
+- (void)setupRefresher {
+	
+	[self.refreshControl addTarget:self action:@selector(syncData) forControlEvents:UIControlEventValueChanged];
+
+
+	
+//	self.refreshControl = [[UIRefreshControl alloc] init];
+//	self.refreshControl.tintColor = [UIColor whiteColor];
+//	self.refreshControl.backgroundColor = [UIColor purpleColor];
+//	self.refreshControl.tintColor = [UIColor whiteColor];
+//	self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
+//	[self.refreshControl addTarget:self action:@selector(syncData) forControlEvents:UIControlEventValueChanged];
 }
 
-#pragma mark - Init data
+- (void)syncData {
+	if (self.refreshControl) {
+		
+		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"MMM d, h:mm a"];
+		NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+		NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+																	forKey:NSForegroundColorAttributeName];
+		NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+		self.refreshControl.attributedTitle = attributedTitle;
+		
+		[self.refreshControl endRefreshing];
+	}
+//	[self.refreshControl endRefreshing];
+//	[self performSelector:@selector(complete) withObject:nil afterDelay:2];
+}
 
 - (void)allNews {
 	CBLService *service = [CBLService sharedManager];
-	_newsList = [service allNews];
+	_newsList = service.news;
 }
 
 - (void)setupTitle {
@@ -75,6 +100,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	ClipController *vc = [ClipController new];
 	News *news = _newsList[indexPath.row];
 	vc.header = news.name;

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CBLService.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	[self loadService];
 	return YES;
 }
 
@@ -44,6 +46,11 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Custom Init
+- (void)loadService {
+	[CBLService sharedManager];
 }
 
 @end

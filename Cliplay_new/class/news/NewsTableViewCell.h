@@ -11,7 +11,7 @@
 
 @interface NewsTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet YYAnimatedImageView *thumb;
+@property (weak, nonatomic) IBOutlet UIImageView *thumb;
 @property (weak, nonatomic) IBOutlet UILabel *shortDesc;
 @property (weak, nonatomic) IBOutlet UILabel *longDesc;
 

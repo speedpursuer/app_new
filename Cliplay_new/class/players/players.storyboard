@@ -24,7 +24,7 @@
                                     <frame key="frameInset" width="375" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dor-R8-eif" customClass="NZCircularImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dor-R8-eif" customClass="RoundUIImageView">
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Dor-R8-eif" secondAttribute="height" multiplier="1:1" id="RAt-YM-pcu"/>
                                                 <constraint firstAttribute="height" constant="50" id="VvE-tN-aW9"/>
@@ -49,6 +49,7 @@
                                 <connections>
                                     <outlet property="name" destination="0CR-yg-pCG" id="W1Y-DI-KFh"/>
                                     <outlet property="thumb" destination="Dor-R8-eif" id="sms-dz-gHf"/>
+                                    <segue destination="HhQ-LT-dn6" kind="show" id="EOj-mm-ySp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -61,6 +62,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2mm-UB-WPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-183.19999999999999" y="108.39580209895054"/>
+        </scene>
+        <!--Moves Table View Controller-->
+        <scene sceneID="xSQ-u4-WXC">
+            <objects>
+                <tableViewController id="HhQ-LT-dn6" customClass="MovesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="tAa-V0-AkG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="moves" id="15o-9y-El8" customClass="MovesTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="15o-9y-El8" id="HAh-D4-cxN">
+                                    <frame key="frameInset" width="375" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nYv-rw-ejA">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="0wg-1U-xCN"/>
+                                                <constraint firstAttribute="height" constant="50" id="1N7-e4-ops"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDb-oM-oQs">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="150" id="RrZ-bn-M70"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="nYv-rw-ejA" firstAttribute="centerY" secondItem="HAh-D4-cxN" secondAttribute="centerY" id="63M-yl-n1g"/>
+                                        <constraint firstItem="nDb-oM-oQs" firstAttribute="centerY" secondItem="HAh-D4-cxN" secondAttribute="centerY" id="9JP-Uq-KOP"/>
+                                        <constraint firstItem="nDb-oM-oQs" firstAttribute="leading" secondItem="nYv-rw-ejA" secondAttribute="trailing" constant="15" id="Dd2-vM-tMy"/>
+                                        <constraint firstItem="nYv-rw-ejA" firstAttribute="leading" secondItem="HAh-D4-cxN" secondAttribute="leadingMargin" id="GcP-2B-d2t"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="name" destination="nDb-oM-oQs" id="xiI-VY-rwt"/>
+                                    <outlet property="thumb" destination="nYv-rw-ejA" id="kGm-he-tZx"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HhQ-LT-dn6" id="sgm-Po-Hys"/>
+                            <outlet property="delegate" destination="HhQ-LT-dn6" id="eWc-tM-g9p"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="KbR-pf-2t8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="edA-0t-ogi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1812" y="107.49625187406298"/>
         </scene>
     </scenes>
 </document>

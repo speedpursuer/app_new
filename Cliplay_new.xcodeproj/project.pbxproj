@@ -11,6 +11,9 @@
 		761EB5671E24E7520086D990 /* PlayersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB5651E24E7520086D990 /* PlayersTableViewController.m */; };
 		761EB5691E24E75E0086D990 /* players.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 761EB5681E24E75E0086D990 /* players.storyboard */; };
 		761EB56C1E24F6520086D990 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB56B1E24F6520086D990 /* Player.m */; };
+		761EB56F1E2634240086D990 /* MovesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB56E1E2634240086D990 /* MovesTableViewController.m */; };
+		761EB5721E263C2F0086D990 /* MovesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB5711E263C2F0086D990 /* MovesTableViewCell.m */; };
+		761EB57B1E2662490086D990 /* RoundUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB57A1E2662490086D990 /* RoundUIImageView.m */; };
 		7653DA571E2264820057D178 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA561E2264810057D178 /* main.m */; };
 		7653DA5A1E2264820057D178 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA591E2264820057D178 /* AppDelegate.m */; };
 		7653DA631E2264820057D178 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7653DA611E2264820057D178 /* Main.storyboard */; };
@@ -101,6 +104,12 @@
 		761EB5681E24E75E0086D990 /* players.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = players.storyboard; path = class/players/players.storyboard; sourceTree = "<group>"; };
 		761EB56A1E24F6520086D990 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = class/service/cbl/Player.h; sourceTree = "<group>"; };
 		761EB56B1E24F6520086D990 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = class/service/cbl/Player.m; sourceTree = "<group>"; };
+		761EB56D1E2634240086D990 /* MovesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovesTableViewController.h; path = class/players/MovesTableViewController.h; sourceTree = "<group>"; };
+		761EB56E1E2634240086D990 /* MovesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovesTableViewController.m; path = class/players/MovesTableViewController.m; sourceTree = "<group>"; };
+		761EB5701E263C2F0086D990 /* MovesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovesTableViewCell.h; path = class/players/MovesTableViewCell.h; sourceTree = "<group>"; };
+		761EB5711E263C2F0086D990 /* MovesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovesTableViewCell.m; path = class/players/MovesTableViewCell.m; sourceTree = "<group>"; };
+		761EB5791E2662490086D990 /* RoundUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundUIImageView.h; path = class/players/RoundUIImageView.h; sourceTree = "<group>"; };
+		761EB57A1E2662490086D990 /* RoundUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundUIImageView.m; path = class/players/RoundUIImageView.m; sourceTree = "<group>"; };
 		7653DA521E2264810057D178 /* Cliplay_new.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cliplay_new.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7653DA561E2264810057D178 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7653DA581E2264820057D178 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -288,6 +297,8 @@
 			children = (
 				761EB5661E24E7520086D990 /* PlayersTableViewController.h */,
 				761EB5651E24E7520086D990 /* PlayersTableViewController.m */,
+				761EB56D1E2634240086D990 /* MovesTableViewController.h */,
+				761EB56E1E2634240086D990 /* MovesTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -297,6 +308,10 @@
 			children = (
 				761EB5621E24E7450086D990 /* PlayersTableViewCell.h */,
 				761EB5631E24E7450086D990 /* PlayersTableViewCell.m */,
+				761EB5701E263C2F0086D990 /* MovesTableViewCell.h */,
+				761EB5711E263C2F0086D990 /* MovesTableViewCell.m */,
+				761EB5791E2662490086D990 /* RoundUIImageView.h */,
+				761EB57A1E2662490086D990 /* RoundUIImageView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -781,6 +796,7 @@
 				7653DB201E2336AC0057D178 /* UIView+YYAdd.m in Sources */,
 				7653DAD91E2331B40057D178 /* ClipCell.m in Sources */,
 				7653DA9A1E23243E0057D178 /* CBLBaseModelConflict.m in Sources */,
+				761EB56F1E2634240086D990 /* MovesTableViewController.m in Sources */,
 				7653DB1D1E2336AC0057D178 /* Reachability.m in Sources */,
 				7653DB2E1E233A460057D178 /* MyLBAdapter.m in Sources */,
 				761EB5671E24E7520086D990 /* PlayersTableViewController.m in Sources */,
@@ -796,9 +812,11 @@
 				7653DACD1E2330960057D178 /* AlbumInfoViewController.m in Sources */,
 				7653DB561E233C580057D178 /* AppSettings+Cliplay.m in Sources */,
 				7653DA9C1E23243E0057D178 /* Album.m in Sources */,
+				761EB5721E263C2F0086D990 /* MovesTableViewCell.m in Sources */,
 				7653DAE01E2333070057D178 /* MyLBService.m in Sources */,
 				7653DB621E233EF40057D178 /* EBShadedView.m in Sources */,
 				7653DB791E23826D0057D178 /* News.m in Sources */,
+				761EB57B1E2662490086D990 /* RoundUIImageView.m in Sources */,
 				7653DB411E233A960057D178 /* RECommonFunctions.m in Sources */,
 				761EB5641E24E7450086D990 /* PlayersTableViewCell.m in Sources */,
 				7653DB421E233A960057D178 /* DEComposeTextView.m in Sources */,

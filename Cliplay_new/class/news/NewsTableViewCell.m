@@ -16,12 +16,6 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (void)setCellData:(NSString *)url name:(NSString *)name desc:(NSString *)desc {
 	self.shortDesc.text = name;
 	self.longDesc.text = desc;

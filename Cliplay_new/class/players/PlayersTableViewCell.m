@@ -11,7 +11,7 @@
 @implementation PlayersTableViewCell
 
 - (void)awakeFromNib {
-    [super awakeFromNib];	
+    [super awakeFromNib];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,19 +22,7 @@
 
 - (void)setCellData:(NSString *)name avatar:(NSString *)avatar {
 	self.name.text = name;
-	[self.thumb setImageWithResizeURL:avatar
-				 usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//	self.thumb.yy_imageURL = [NSURL URLWithString:avatar];
-	
-//	__weak typeof(self) _self = self;
-//	[self.thumb yy_setImageWithURL:[NSURL URLWithString:avatar]
-//					   placeholder:nil
-//						   options:YYWebImageOptionProgressive
-//						  progress:nil
-//						 transform:nil
-//						completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
-//						}
-//	];
+	self.thumb.yy_imageURL = [NSURL URLWithString:avatar];
 }
 
 @end

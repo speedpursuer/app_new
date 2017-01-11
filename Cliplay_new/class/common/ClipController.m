@@ -20,7 +20,8 @@
 #import "AlbumInfoViewController.h"
 #import <STPopup/STPopup.h>
 #import "CBLService.h"
-#import <JDFPeekaboo/JDFPeekabooCoordinator.h>
+//#import <JDFPeekaboo/JDFPeekabooCoordinator.h>
+#import <TLYShyNavBar/TLYShyNavBarManager.h>
 
 
 #define cellMargin 10
@@ -50,7 +51,7 @@
 @property NSInteger currIndex;
 @property BOOL isScrollingDown;
 @property BOOL hasWifi;
-@property (nonatomic, strong) JDFPeekabooCoordinator *scrollCoordinator;
+//@property (nonatomic, strong) JDFPeekabooCoordinator *scrollCoordinator;
 @property (nonatomic, weak) UISearchBar *searchBar;
 @property NSString *searchKeywords;
 @property BOOL playStopped;
@@ -99,7 +100,7 @@
 	
 	[self registerReusableCell];
 	
-	[self setUpScrollCoordinator];
+//	[self setUpScrollCoordinator];
 	
 	[self addInfoIcon];
 	
@@ -115,11 +116,13 @@
 }
 
 - (void)setupTableView {
-	CGRect tableViewFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+	CGRect tableViewFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 	self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStylePlain];
 	[self.view addSubview:self.tableView];
+	self.tableView.contentInset = UIEdgeInsetsMake(64,0,0,0);
 	[self.tableView setDelegate:self];
 	[self.tableView setDataSource:self];
+	self.shyNavBarManager.scrollView = self.tableView;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -144,7 +147,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
-	[self.scrollCoordinator disable];
+//	[self.scrollCoordinator disable];
 	if(![self isVisible]){
 		[self stopPlayingAllImages];
 		if(![self presentedViewController]){
@@ -157,7 +160,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	[self.scrollCoordinator enable];
+//	[self.scrollCoordinator enable];
 }
 
 - (BOOL)hidesBottomBarWhenPushed {
@@ -332,11 +335,11 @@
 }
 
 #pragma mark - Initialization
-- (void)setUpScrollCoordinator {
-	self.scrollCoordinator = [[JDFPeekabooCoordinator alloc] init];
-	self.scrollCoordinator.scrollView = self.tableView;
-	self.scrollCoordinator.topView = self.navigationController.navigationBar;
-}
+//- (void)setUpScrollCoordinator {
+//	self.scrollCoordinator = [[JDFPeekabooCoordinator alloc] init];
+//	self.scrollCoordinator.scrollView = self.tableView;
+//	self.scrollCoordinator.topView = self.navigationController.navigationBar;
+//}
 
 -(void)registerReusableCell {
 	
@@ -445,7 +448,7 @@
 	}else {
 		button = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(showRatioActionsheet)];
 	}
-//	button.tintColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
+	button.tintColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
 	self.navigationItem.rightBarButtonItem = button;
 }
 
@@ -533,6 +536,22 @@
 }
 
 #pragma mark - (TableView Delegate)
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	if (data.count > 0) {
+		return 1;
+	} else {
+		UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+		messageLabel.text = @"无内容显示";
+		messageLabel.textColor = [UIColor blackColor];
+		messageLabel.numberOfLines = 0;
+		messageLabel.textAlignment = NSTextAlignmentCenter;
+		messageLabel.font = [UIFont systemFontOfSize:20];
+		[messageLabel sizeToFit];
+		self.tableView.backgroundView = messageLabel;
+		return 0;
+	}
+}
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
 	return NO;

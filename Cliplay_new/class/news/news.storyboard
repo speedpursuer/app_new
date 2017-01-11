@@ -24,7 +24,7 @@
                                     <frame key="frameInset" width="375" height="87"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eV7-ZK-GCv" customClass="YYAnimatedImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eV7-ZK-GCv">
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="eV7-ZK-GCv" secondAttribute="height" multiplier="1:1" id="IAy-Li-3m9"/>
                                                 <constraint firstAttribute="width" constant="70" id="jSm-wu-tQm"/>
@@ -68,10 +68,15 @@
                             <outlet property="delegate" destination="LQH-Bg-y2x" id="Us7-bD-9X3"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="Aws-Us-oCg"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="6qH-kj-heA">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0k-bn-YUv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311.19999999999999" y="39.130434782608695"/>
+            <point key="canvasLocation" x="628" y="39.130434782608695"/>
         </scene>
     </scenes>
 </document>

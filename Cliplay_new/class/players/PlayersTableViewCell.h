@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <YYWebImage/YYWebImage.h>
-#import <NZCircularImageView/NZCircularImageView.h>
+#import "RoundUIImageView.h"
 
 @interface PlayersTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet NZCircularImageView *thumb;
+@property (weak, nonatomic) IBOutlet RoundUIImageView *thumb;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 - (void)setCellData:(NSString *)name avatar:(NSString *)avatar;
 @end

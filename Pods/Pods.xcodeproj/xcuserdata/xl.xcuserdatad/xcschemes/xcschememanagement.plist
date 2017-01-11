@@ -29,11 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JDFPeekaboo.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>JDStatusBarNotification.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -64,17 +59,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>NZCircularImageView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Cliplay_new.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -84,12 +69,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TTTAttributedLabel.xcscheme</key>
+		<key>TLYShyNavBar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>UIActivityIndicator-for-SDWebImage.xcscheme</key>
+		<key>TTTAttributedLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -132,27 +117,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>136C2534E068693211FA049AAC1F43FD</key>
+		<key>2CA96B42391D809FA724D1460D0068D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1B189C01785455C6DE36E58A43D04FF5</key>
+		<key>37FFEEA0ED4DC0405E9D1E176AC6CB39</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>25128AD823D6A50F1A6DF8622BA3F916</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2C7060F0C61809DBCDCB2A32EA915053</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3BD3FBC7DE913BF6A99F621E782CC80A</key>
+		<key>40BC4816AF7E5BCB6B78453E8FCBACBF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,7 +137,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>52484A8BA97AA37926B68025C87CD5D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>611A56531AE8BFDB2320359150B8A900</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>623168DE51AD85E0831BED62F2162DF2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -177,7 +162,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79F9352A1E614BF9D4A10ACBB0169BE6</key>
+		<key>77E162C4AF0588E65D9C2B90CB8C2031</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -187,12 +172,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D81D1875957454CF5B0FFE272CC7010</key>
+		<key>8ACCFB0ECE27BB4E38F44AF9131EC0DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9001E7D5D5D9A31C0DBD7B1F74746EC4</key>
+		<key>95CB257D70BC0489D32078F73B7E0102</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -217,22 +202,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C8D9F0CC3781FD5684806A47BFF78600</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E0C5BCD6D2478905286DCFC8F091C312</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E14D569B24E6C5A4B643F3DB8E10CC59</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E34F247DE271C823E5B4D13A0BB3C5D9</key>
+		<key>D46EA64CA51CF690AB16BAC0B48E6CAE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

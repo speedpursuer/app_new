@@ -26,12 +26,13 @@
 @property (strong, nonatomic, readonly) CBLDatabase *contentDatabase;
 @property (strong, nonatomic, readonly) Favorite *favorite;
 @property (strong, nonatomic, readonly) AlbumSeq *albumSeq;
+@property (strong, nonatomic, readonly) NSArray *news;
+@property (strong, nonatomic, readonly) NSArray *players;
 + (id)sharedManager;
 
 
 #pragma mark - Content
-- (NSArray *)allNews;
-- (NSArray *)allPlayers;
+
 #pragma mark - Album
 - (Album *)creatAlubmWithTitle:(NSString*)title;
 - (BOOL)deleteAlbum:(Album *)album;

@@ -9,6 +9,7 @@
         <!--Cliplay Tab Bar View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
                 <tabBarController id="49e-Tb-3d3" customClass="CliplayTabBarViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
@@ -22,13 +23,13 @@
                         <segue destination="5F9-iJ-MIa" kind="relationship" relationship="viewControllers" id="Rqt-o1-9Il"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-506" y="521"/>
         </scene>
         <!--First-->
         <scene sceneID="rZq-zC-Ahd">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aef-W0-Y2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Wi-hd-QxJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="First" id="acW-dT-cKf"/>
                     <toolbarItems/>
@@ -38,13 +39,13 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Aef-W0-Y2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
         <!--Second-->
         <scene sceneID="utB-OW-Yy8">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L0B-bh-ThF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C7N-lY-SB2" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Second" id="cPa-gy-q4n"/>
                     <toolbarItems/>
@@ -54,13 +55,13 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L0B-bh-ThF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="401"/>
         </scene>
         <!--Third-->
         <scene sceneID="J6j-Zk-R52">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L78-bb-SEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5F9-iJ-MIa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Third" id="KhR-lv-Ru2"/>
                     <toolbarItems/>
@@ -70,7 +71,6 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L78-bb-SEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="1107"/>
         </scene>
