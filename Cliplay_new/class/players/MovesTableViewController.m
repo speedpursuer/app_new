@@ -77,6 +77,7 @@
 	Post *post = [[CBLService sharedManager] clipsForPlayer:_player withMove:move];
 	vc.header = [NSString stringWithFormat:@"%@ - %@", _player.name, move.move_name];
 	vc.post = post;
+	self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

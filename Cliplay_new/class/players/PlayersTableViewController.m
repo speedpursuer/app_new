@@ -80,7 +80,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	Player *player = self.players[indexPath.section][indexPath.row];
-	PlayerViewController *vc = [[PlayerViewController alloc] initWithPlayer:player];	
+	PlayerViewController *vc = [[PlayerViewController alloc] initWithPlayer:player];
+	self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

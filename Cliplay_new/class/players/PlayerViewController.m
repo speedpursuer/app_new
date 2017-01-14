@@ -37,7 +37,7 @@
 	if (self) {
 		self.segmentMiniTopInset = 64;
 		self.headerHeight = 200;
-		//		self.freezenHeaderWhenReachMaxHeaderHeight = NO;
+//		self.freezenHeaderWhenReachMaxHeaderHeight = YES;
 		self.player = player;
 	}
 	

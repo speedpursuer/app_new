@@ -82,6 +82,7 @@
 	vc.header = news.name;
 	vc.summary = news.summary;
 	vc.post = news;
+	self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
