@@ -10,6 +10,7 @@
 #import "PlayersTableViewCell.h"
 #import "Player.h"
 #import "CBLService.h"
+#import "PlayerViewController.h"
 
 @interface PlayersTableViewController ()
 @property NSArray *players;
@@ -34,8 +35,8 @@
 }
 
 - (void)configureIndex {
-	
 	self.title = @"球星动作";
+	self.tableView.sectionIndexColor = CLIPLAY_COLOR;
 	
 	CBLService *service = [CBLService sharedManager];
 	_players = service.players;	
@@ -75,6 +76,14 @@
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
 	return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	Player *player = self.players[indexPath.section][indexPath.row];
+	PlayerViewController *vc = [[PlayerViewController alloc] initWithPlayer:player];	
+	[self.navigationController pushViewController:vc animated:YES];
+}
+
 
 /*
 // Override to support conditional editing of the table view.

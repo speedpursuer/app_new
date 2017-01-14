@@ -7,7 +7,7 @@
 //
 
 #import "ClipPlayController.h"
-#import <YYWebImage/YYWebImage.h>
+#import "CacheManager.h"
 #import "UIView+YYAdd.h"
 #import "YYImageExampleHelper.h"
 #import <sys/sysctl.h>
@@ -187,8 +187,8 @@
 		
 		_heartButton = [[DOFavoriteButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 44,[UIApplication sharedApplication].statusBarFrame.size.height, 44, 44) image:[UIImage imageNamed:@"heart"] selected: false];
 		
-		_heartButton.imageColorOn = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
-		_heartButton.circleColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
+		_heartButton.imageColorOn = CLIPLAY_COLOR;
+		_heartButton.circleColor = CLIPLAY_COLOR;
 		_heartButton.lineColor = [UIColor colorWithRed:245.0 / 255.0 green:54.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
 		
 		[_heartButton addTarget:self action:@selector(tappedButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -258,7 +258,7 @@
 //							   kFRDLivelyButtonHighlightedColor: [UIColor lightGrayColor],
 //							   kFRDLivelyButtonColor: [UIColor colorWithRed:68.0 / 255.0 green:68.0 / 255.0 blue:68.0 / 255.0 alpha:1.0]
 //							   }];
-	self.view.backgroundColor = [UIColor blackColor];
+//	self.view.backgroundColor = [UIColor blackColor];
 	[self showBar];
 }
 
@@ -271,7 +271,7 @@
 //							   kFRDLivelyButtonHighlightedColor: [UIColor colorWithRed:230.0 / 255.0 green:230.0 / 255.0 blue:230.0 / 255.0 alpha:1.0],
 //							   kFRDLivelyButtonColor: [UIColor whiteColor]
 //							   }];
-	self.view.backgroundColor = [UIColor blackColor];
+//	self.view.backgroundColor = [UIColor blackColor];
 	[self hideBar];
 }
 
@@ -310,17 +310,6 @@
 								forKey:@"orientation"];
 }
 
-- (void)destroy {
-	[_closeButton removeFromSuperview];
-	[_progressBar removeFromSuperview];
-	[_heartButton removeFromSuperview];
-	[imageView removeFromSuperview];
-	_closeButton = nil;
-	_progressBar = nil;
-	_heartButton = nil;
-	imageView = nil;
-}
-
 - (void)showBar {
 	[[[self navigationController] navigationBar] setHidden:NO];
 	hideBar = false;
@@ -341,5 +330,9 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
 	return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
 }
+
+//- (BOOL)prefersStatusBarHidden {
+//	return YES;
+//}
 
 @end

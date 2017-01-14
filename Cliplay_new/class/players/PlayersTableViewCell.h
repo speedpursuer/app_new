@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <YYWebImage/YYWebImage.h>
+#import "CacheManager.h"
 #import "RoundUIImageView.h"
 
 @interface PlayersTableViewCell : UITableViewCell

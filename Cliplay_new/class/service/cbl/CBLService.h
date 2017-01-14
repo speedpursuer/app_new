@@ -13,6 +13,8 @@
 #import "AlbumSeq.h"
 #import "News.h"
 #import "Player.h"
+#import "Move.h"
+#import "NewsTableViewController.h"
 
 #define kDBName @"cliplay"
 #define kStorageType kCBLForestDBStorage
@@ -28,11 +30,15 @@
 @property (strong, nonatomic, readonly) AlbumSeq *albumSeq;
 @property (strong, nonatomic, readonly) NSArray *news;
 @property (strong, nonatomic, readonly) NSArray *players;
+@property (weak) NewsTableViewController *delegate;
 + (id)sharedManager;
 
 
 #pragma mark - Content
-
+- (NSArray *)movesForPlayer:(Player *)player;
+- (Post *)clipsForPlayer:(Player*) player withMove:(Move *)move;
+- (NSArray *)newsForPlayer:(Player*) player;
+- (void)syncStartWithDelegate:(NewsTableViewController *)delegate;
 #pragma mark - Album
 - (Album *)creatAlubmWithTitle:(NSString*)title;
 - (BOOL)deleteAlbum:(Album *)album;

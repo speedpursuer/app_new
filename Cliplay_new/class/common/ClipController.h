@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CNPPopupController.h"
-#import <YYWebImage/YYWebImage.h>
+#import "CacheManager.h"
 #import "EBCommentsViewDelegate.h"
 #import "DOFavoriteButton.h"
 #import "MyLBDelegate.h"
@@ -25,12 +25,12 @@ typedef NS_ENUM(NSInteger, clipActionType) {
 };
 
 //@interface ClipController : UITableViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, CNPPopupControllerDelegate>
-@interface ClipController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, CNPPopupControllerDelegate,UITableViewDelegate, UITableViewDataSource>
+@interface ClipController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, CNPPopupControllerDelegate,UITableViewDelegate, UITableViewDataSource, DownloadDelegate>
 
 @property (nonatomic, strong) NSArray *articleDicts;
 @property (nonatomic, strong) NSArray *articleURLs;
 @property (nonatomic, strong) Album *album;
-@property (nonatomic, strong) News *news;
+@property (nonatomic, strong) Post *post;
 @property (nonatomic, strong) NSString *header;
 @property (nonatomic, strong) NSString *summary;
 @property (nonatomic, assign) BOOL showInfo;
@@ -55,5 +55,7 @@ typedef NS_ENUM(NSInteger, clipActionType) {
 - (void)helloFromCell:(UITableViewCell *)cell;
 #pragma mark - Callback for comment view
 - (void)fetchPostComments:(BOOL)isRefresh;
-- (void)closeCommentView;
+- (void)clipDescCallbackWithDesc:(NSString *)desc;
+- (void)albumInfoCallbackWithName:(NSString *)name withDesc:(NSString *)desc;
+//- (void)closeCommentView;
 @end

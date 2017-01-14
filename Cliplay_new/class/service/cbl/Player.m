@@ -9,6 +9,6 @@
 #import "Player.h"
 
 @implementation Player
-@dynamic name, avatar;
-@synthesize sectionNumber;
+@dynamic name, avatar, player_image, news;
+@synthesize sectionNumber, lastName;
 @end

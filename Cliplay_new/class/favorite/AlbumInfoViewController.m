@@ -48,6 +48,14 @@
 
 #pragma mark - Navigation
 
+- (IBAction)goBack:(id)sender {
+	[self.view endEditing:YES];
+	if(sender == self.saveButton) {
+		[_delegate albumInfoCallbackWithName:_nameTextView.text withDesc:_descTextView.text];
+	}
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

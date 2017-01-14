@@ -7,7 +7,7 @@
 //
 
 #import "AlbumAddClipDescViewController.h"
-#import <YYWebImage/YYWebImage.h>
+#import "CacheManager.h"
 
 @interface AlbumAddClipDescViewController ()
 @property (weak, nonatomic) IBOutlet YYAnimatedImageView *thumb;
@@ -49,6 +49,13 @@
 	[_thumb yy_setImageWithURL:[NSURL URLWithString:_url] placeholder:nil];
 }
 
+- (IBAction)goBack:(id)sender {
+	[self.view endEditing:YES];
+	if(sender == self.saveButton) {
+		[_delegate clipDescCallbackWithDesc:_desc.text];
+	}
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - Navigation
 

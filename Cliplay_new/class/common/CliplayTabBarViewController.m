@@ -54,7 +54,7 @@
 	FAKIonIcons *favorite = [FAKIonIcons androidFavoriteOutlineIconWithSize:30];
 	[tabBarItem3 setImage:[favorite imageWithSize:size]];
 	
-	[[UITabBar appearance] setTintColor:[UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0]];
+	[[UITabBar appearance] setTintColor:CLIPLAY_COLOR];
 }
 
 //- (void)configureNewsCtr {

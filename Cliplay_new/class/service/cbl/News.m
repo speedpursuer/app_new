@@ -9,9 +9,10 @@
 #import "News.h"
 
 @implementation News
-@dynamic name, image, desc, summary, thumb;
+@dynamic name, desc, thumb;
+//@dynamic name, image, desc, summary, thumb;
 
-+(Class)imageItemClass {
-	return [ArticleEntity class];
-}
+//+(Class)imageItemClass {
+//	return [ArticleEntity class];
+//}
 @end

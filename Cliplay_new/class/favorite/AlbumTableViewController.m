@@ -34,14 +34,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self setNavBar];
 	[self setup];
 	[_service syncFromRemote];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-//	[self resetNavBar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,16 +47,6 @@
 	NSIndexPath *selection = [self.tableView indexPathForSelectedRow];
 	if (selection) {
 		[self.tableView deselectRowAtIndexPath:selection animated:YES];
-	}
-}
-
-- (void)setNavBar {
-	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-}
-
-- (void)resetNavBar {
-	if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
-		[self.navigationController setNavigationBarHidden:YES];
 	}
 }
 
@@ -87,11 +75,7 @@
 											   object:nil];
 	[self setupThumbs];
 	[self setupTitle];
-//	NSArray *buttons = self.navigationItem.rightBarButtonItems;
-//	NSMutableArray *newButtons = [NSMutableArray arrayWithArray:buttons];
-//	self.editButtonItem.tintColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
-//	[newButtons insertObject:self.editButtonItem atIndex:1];
-//	self.navigationItem.rightBarButtonItems = [newButtons copy];
+//	self.navigationItem.rightBarButtonItem.tintColor = CLIPLAY_COLOR;
 }
 
 - (void)setupTitle {
@@ -174,7 +158,7 @@
 	
 	view.titleLabelAttributedText = title;
 	
-	view.tintColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
+	view.tintColor = CLIPLAY_COLOR;
 	
 	_progressView = view;
 }
@@ -222,16 +206,14 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 - (void)toggleEditMode{
 	UIBarButtonItem *item = nil;
 	if (self.tableView.editing) {
-//		[self.tableView setEditing:NO];
 		[self setEditing:NO];
 		item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showActionSheet:)];
 	}
 	else {
-//		[self.tableView setEditing:YES];
 		[self setEditing:YES];
 		item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(toggleEditMode)];
 	}
-//	item.tintColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
+//	item.tintColor = CLIPLAY_COLOR;
 	self.navigationItem.rightBarButtonItem = item;
 }
 

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <YYWebImage/YYWebImage.h>
+#import "CacheManager.h"
 
 @interface MovesTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *thumb;
 @property (weak, nonatomic) IBOutlet UILabel *name;
-- (void)setData:(NSString *)name thumb:(NSString *)url;
+@property (weak, nonatomic) IBOutlet UILabel *desc;
+- (void)setData:(NSString *)name desc:(NSString *)desc thumb:(NSString *)url;
 @end

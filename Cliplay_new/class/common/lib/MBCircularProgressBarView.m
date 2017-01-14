@@ -45,8 +45,8 @@
     [self setValue:0.f];
     [self setMaxValue:100.f];
     [self setProgressRotationAngle:0.f];
-    [self setProgressStrokeColor:[UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0]];
-    [self setProgressColor:[UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0]];
+    [self setProgressStrokeColor:CLIPLAY_COLOR];
+    [self setProgressColor:CLIPLAY_COLOR];
     [self setProgressCapType:kCGLineCapRound];
     [self setEmptyLineColor:[UIColor lightGrayColor]];
     [self setFontColor:[UIColor darkGrayColor]];

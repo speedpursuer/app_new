@@ -17,6 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	[self setupTheme];
 	[self loadService];
 	return YES;
 }
@@ -51,6 +52,15 @@
 #pragma mark - Custom Init
 - (void)loadService {
 	[CBLService sharedManager];
+}
+
+- (void)setupTheme {
+	[[UINavigationBar appearance] setTintColor: [UIColor whiteColor]];
+	[[UINavigationBar appearance] setBarTintColor:CLIPLAY_COLOR_NAV];
+	[[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+	[[UINavigationBar appearance] setTranslucent:YES];
+	//Segment control
+	[[UISegmentedControl appearance] setTintColor:CLIPLAY_COLOR];
 }
 
 @end

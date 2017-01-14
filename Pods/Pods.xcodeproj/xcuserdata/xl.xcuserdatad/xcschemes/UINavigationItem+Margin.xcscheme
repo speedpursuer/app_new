@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '37FFEEA0ED4DC0405E9D1E176AC6CB39'
+               BlueprintIdentifier = '6D425182FBEE57F08008FB0607A22467'
                BlueprintName = 'UINavigationItem+Margin'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libUINavigationItem+Margin.a'>

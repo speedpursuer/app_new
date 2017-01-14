@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PlayerBanner">
+            <rect key="frame" x="0.0" y="0.0" width="341" height="260"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xh1-zf-8NM"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Inv-dI-P4A">
+                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="xh1-zf-8NM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="45z-Et-rEN"/>
+                <constraint firstAttribute="bottom" secondItem="Inv-dI-P4A" secondAttribute="bottom" constant="20" id="I0J-OB-4AE"/>
+                <constraint firstAttribute="trailing" secondItem="xh1-zf-8NM" secondAttribute="trailing" id="fLv-p4-QZm"/>
+                <constraint firstItem="xh1-zf-8NM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pmD-gp-sLZ"/>
+                <constraint firstItem="Inv-dI-P4A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="r99-72-UFj"/>
+                <constraint firstAttribute="bottom" secondItem="xh1-zf-8NM" secondAttribute="bottom" id="yF4-xW-33P"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="xh1-zf-8NM" id="ktB-y8-FyR"/>
+                <outlet property="playerName" destination="Inv-dI-P4A" id="KT9-5d-sjq"/>
+            </connections>
+        </view>
+    </objects>
+</document>

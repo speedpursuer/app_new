@@ -12,6 +12,7 @@
 #import "ArticleEntity.h"
 #import "NewsTableViewCell.h"
 #import "ClipController.h"
+#import "CBLService.h"
 //#import <BOZPongRefreshControl/BOZPongRefreshControl.h>
 
 
@@ -26,12 +27,6 @@
 	[self setupRefresher];
 	[self setupTitle];
 	[self allNews];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,34 +37,15 @@
 #pragma mark - Init data
 
 - (void)setupRefresher {
-	
-	[self.refreshControl addTarget:self action:@selector(syncData) forControlEvents:UIControlEventValueChanged];
-
-
-	
-//	self.refreshControl = [[UIRefreshControl alloc] init];
-//	self.refreshControl.tintColor = [UIColor whiteColor];
-//	self.refreshControl.backgroundColor = [UIColor purpleColor];
-//	self.refreshControl.tintColor = [UIColor whiteColor];
-//	self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-//	[self.refreshControl addTarget:self action:@selector(syncData) forControlEvents:UIControlEventValueChanged];
+	[self.refreshControl addTarget:self action:@selector(syncStart) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)syncData {
-	if (self.refreshControl) {
-		
-		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-		[formatter setDateFormat:@"MMM d, h:mm a"];
-		NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
-		NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
-																	forKey:NSForegroundColorAttributeName];
-		NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
-		self.refreshControl.attributedTitle = attributedTitle;
-		
-		[self.refreshControl endRefreshing];
-	}
-//	[self.refreshControl endRefreshing];
-//	[self performSelector:@selector(complete) withObject:nil afterDelay:2];
+- (void)syncStart {
+	[[CBLService sharedManager] syncStartWithDelegate:self];
+}
+
+- (void)syncEnd {
+	[self.refreshControl endRefreshing];
 }
 
 - (void)allNews {
@@ -105,7 +81,7 @@
 	News *news = _newsList[indexPath.row];
 	vc.header = news.name;
 	vc.summary = news.summary;
-	vc.news = news;
+	vc.post = news;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

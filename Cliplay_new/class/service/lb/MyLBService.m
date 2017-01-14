@@ -377,7 +377,7 @@ static NSInteger const pageSize = 11;
 	
 	view.titleLabelAttributedText = title;
 	
-	view.tintColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
+	view.tintColor = CLIPLAY_COLOR;
 	
 	return view;
 }

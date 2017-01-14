@@ -14,6 +14,19 @@
 		761EB56F1E2634240086D990 /* MovesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB56E1E2634240086D990 /* MovesTableViewController.m */; };
 		761EB5721E263C2F0086D990 /* MovesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB5711E263C2F0086D990 /* MovesTableViewCell.m */; };
 		761EB57B1E2662490086D990 /* RoundUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB57A1E2662490086D990 /* RoundUIImageView.m */; };
+		761EB57F1E2717160086D990 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB57E1E2717160086D990 /* CacheManager.m */; };
+		762681971E27A89200B535E8 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681961E27A89200B535E8 /* PlayerViewController.m */; };
+		762681A11E28CB8400B535E8 /* Move.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681A01E28CB8400B535E8 /* Move.m */; };
+		762681A61E28F7CA00B535E8 /* blank.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 762681A51E28F7CA00B535E8 /* blank.jpg */; };
+		762681A91E28FE6600B535E8 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681A81E28FE6600B535E8 /* Post.m */; };
+		762681AC1E2903EC00B535E8 /* PostTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681AB1E2903EC00B535E8 /* PostTableViewController.m */; };
+		762681B11E2A1A2400B535E8 /* PlayerBanner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762681B01E2A1A2400B535E8 /* PlayerBanner.xib */; };
+		762681B41E2A1A5500B535E8 /* PlayerBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681B31E2A1A5500B535E8 /* PlayerBanner.m */; };
+		762681BE1E2A25C100B535E8 /* ARSegmentPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681B81E2A25C000B535E8 /* ARSegmentPageController.m */; };
+		762681BF1E2A25C100B535E8 /* ARSegmentPageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681BB1E2A25C100B535E8 /* ARSegmentPageHeader.m */; };
+		762681C01E2A25C100B535E8 /* ARSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681BD1E2A25C100B535E8 /* ARSegmentView.m */; };
+		762681C21E2A40ED00B535E8 /* NoContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762681C11E2A40ED00B535E8 /* NoContent.xib */; };
+		762681C51E2A43B300B535E8 /* NoContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681C41E2A43B300B535E8 /* NoContent.m */; };
 		7653DA571E2264820057D178 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA561E2264810057D178 /* main.m */; };
 		7653DA5A1E2264820057D178 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA591E2264820057D178 /* AppDelegate.m */; };
 		7653DA631E2264820057D178 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7653DA611E2264820057D178 /* Main.storyboard */; };
@@ -83,6 +96,8 @@
 		7653DB7F1E238E8E0057D178 /* NewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB7E1E238E8E0057D178 /* NewsTableViewController.m */; };
 		7653DB871E23A4AE0057D178 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB861E23A4AE0057D178 /* NewsTableViewCell.m */; };
 		7653DB891E23B79A0057D178 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7653DB881E23B79A0057D178 /* heart@2x.png */; };
+		76FE94D41E2793B6006A1B31 /* common in Resources */ = {isa = PBXBuildFile; fileRef = 76FE94D11E2793B6006A1B31 /* common */; };
+		76FE94D81E2794AE006A1B31 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */; };
 		C532DFA5CB9D196A6662A61E /* libPods-Cliplay_new.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9A1EF7DF9BB2D15285E8B1 /* libPods-Cliplay_new.a */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +125,31 @@
 		761EB5711E263C2F0086D990 /* MovesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovesTableViewCell.m; path = class/players/MovesTableViewCell.m; sourceTree = "<group>"; };
 		761EB5791E2662490086D990 /* RoundUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundUIImageView.h; path = class/players/RoundUIImageView.h; sourceTree = "<group>"; };
 		761EB57A1E2662490086D990 /* RoundUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundUIImageView.m; path = class/players/RoundUIImageView.m; sourceTree = "<group>"; };
+		761EB57D1E2717160086D990 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CacheManager.h; path = class/service/cache/CacheManager.h; sourceTree = "<group>"; };
+		761EB57E1E2717160086D990 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CacheManager.m; path = class/service/cache/CacheManager.m; sourceTree = "<group>"; };
+		762681951E27A89200B535E8 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerViewController.h; path = class/players/PlayerViewController.h; sourceTree = "<group>"; };
+		762681961E27A89200B535E8 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerViewController.m; path = class/players/PlayerViewController.m; sourceTree = "<group>"; };
+		7626819F1E28CB8400B535E8 /* Move.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Move.h; path = class/service/cbl/Move.h; sourceTree = "<group>"; };
+		762681A01E28CB8400B535E8 /* Move.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Move.m; path = class/service/cbl/Move.m; sourceTree = "<group>"; };
+		762681A51E28F7CA00B535E8 /* blank.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blank.jpg; path = Cliplay_new/Resources/blank.jpg; sourceTree = "<group>"; };
+		762681A71E28FE6600B535E8 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Post.h; path = class/service/cbl/Post.h; sourceTree = "<group>"; };
+		762681A81E28FE6600B535E8 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = class/service/cbl/Post.m; sourceTree = "<group>"; };
+		762681AA1E2903EC00B535E8 /* PostTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostTableViewController.h; path = class/players/PostTableViewController.h; sourceTree = "<group>"; };
+		762681AB1E2903EC00B535E8 /* PostTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostTableViewController.m; path = class/players/PostTableViewController.m; sourceTree = "<group>"; };
+		762681B01E2A1A2400B535E8 /* PlayerBanner.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlayerBanner.xib; path = class/players/PlayerBanner.xib; sourceTree = "<group>"; };
+		762681B21E2A1A5500B535E8 /* PlayerBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerBanner.h; path = class/players/PlayerBanner.h; sourceTree = "<group>"; };
+		762681B31E2A1A5500B535E8 /* PlayerBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerBanner.m; path = class/players/PlayerBanner.m; sourceTree = "<group>"; };
+		762681B61E2A25C000B535E8 /* ARSegmentControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARSegmentControllerDelegate.h; path = class/common/lib/ARSegmentPageController/ARSegmentControllerDelegate.h; sourceTree = "<group>"; };
+		762681B71E2A25C000B535E8 /* ARSegmentPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARSegmentPageController.h; path = class/common/lib/ARSegmentPageController/ARSegmentPageController.h; sourceTree = "<group>"; };
+		762681B81E2A25C000B535E8 /* ARSegmentPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARSegmentPageController.m; path = class/common/lib/ARSegmentPageController/ARSegmentPageController.m; sourceTree = "<group>"; };
+		762681B91E2A25C100B535E8 /* ARSegmentPageControllerHeaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARSegmentPageControllerHeaderProtocol.h; path = class/common/lib/ARSegmentPageController/ARSegmentPageControllerHeaderProtocol.h; sourceTree = "<group>"; };
+		762681BA1E2A25C100B535E8 /* ARSegmentPageHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARSegmentPageHeader.h; path = class/common/lib/ARSegmentPageController/ARSegmentPageHeader.h; sourceTree = "<group>"; };
+		762681BB1E2A25C100B535E8 /* ARSegmentPageHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARSegmentPageHeader.m; path = class/common/lib/ARSegmentPageController/ARSegmentPageHeader.m; sourceTree = "<group>"; };
+		762681BC1E2A25C100B535E8 /* ARSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARSegmentView.h; path = class/common/lib/ARSegmentPageController/ARSegmentView.h; sourceTree = "<group>"; };
+		762681BD1E2A25C100B535E8 /* ARSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARSegmentView.m; path = class/common/lib/ARSegmentPageController/ARSegmentView.m; sourceTree = "<group>"; };
+		762681C11E2A40ED00B535E8 /* NoContent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoContent.xib; path = class/common/NoContent.xib; sourceTree = "<group>"; };
+		762681C31E2A43B300B535E8 /* NoContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoContent.h; path = class/common/NoContent.h; sourceTree = "<group>"; };
+		762681C41E2A43B300B535E8 /* NoContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoContent.m; path = class/common/NoContent.m; sourceTree = "<group>"; };
 		7653DA521E2264810057D178 /* Cliplay_new.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cliplay_new.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7653DA561E2264810057D178 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7653DA581E2264820057D178 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -147,8 +187,6 @@
 		7653DAB01E232AAE0057D178 /* libCBLForestDBStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCBLForestDBStorage.a; path = frameworks/libCBLForestDBStorage.a; sourceTree = "<group>"; };
 		7653DAB61E232B6D0057D178 /* ArticleEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticleEntity.h; path = class/common/ArticleEntity.h; sourceTree = "<group>"; };
 		7653DAB71E232B6D0057D178 /* ArticleEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleEntity.m; path = class/common/ArticleEntity.m; sourceTree = "<group>"; };
-		7653DABA1E232C9A0057D178 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = class/common/Reachability.h; sourceTree = "<group>"; };
-		7653DABB1E232C9A0057D178 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = class/common/Reachability.m; sourceTree = "<group>"; };
 		7653DABD1E232D900057D178 /* favorite.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = favorite.storyboard; path = class/favorite/favorite.storyboard; sourceTree = "<group>"; };
 		7653DAC01E2330960057D178 /* AlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumTableViewController.m; path = class/favorite/AlbumTableViewController.m; sourceTree = "<group>"; };
 		7653DAC11E2330960057D178 /* AlbumSelectBottomSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumSelectBottomSheetViewController.m; path = class/favorite/AlbumSelectBottomSheetViewController.m; sourceTree = "<group>"; };
@@ -239,6 +277,10 @@
 		7653DB851E23A4AE0057D178 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsTableViewCell.h; path = class/news/NewsTableViewCell.h; sourceTree = "<group>"; };
 		7653DB861E23A4AE0057D178 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsTableViewCell.m; path = class/news/NewsTableViewCell.m; sourceTree = "<group>"; };
 		7653DB881E23B79A0057D178 /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heart@2x.png"; path = "Cliplay_new/Resources/heart@2x.png"; sourceTree = "<group>"; };
+		76FE94D01E2766E4006A1B31 /* Cliplay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cliplay-Prefix.pch"; sourceTree = "<group>"; };
+		76FE94D11E2793B6006A1B31 /* common */ = {isa = PBXFileReference; lastKnownFileType = folder; name = common; path = class/common; sourceTree = "<group>"; };
+		76FE94D61E2794AE006A1B31 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "class/common/lib/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "class/common/lib/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		DC9A1EF7DF9BB2D15285E8B1 /* libPods-Cliplay_new.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cliplay_new.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB17A460F08C8F8D0D37DEA /* Pods-Cliplay_new.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cliplay_new.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cliplay_new/Pods-Cliplay_new.release.xcconfig"; sourceTree = "<group>"; };
 		F69D0D46FAAF270ADC00F89C /* Pods-Cliplay_new.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cliplay_new.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cliplay_new/Pods-Cliplay_new.debug.xcconfig"; sourceTree = "<group>"; };
@@ -285,7 +327,6 @@
 		761EB5571E24E4F50086D990 /* Players */ = {
 			isa = PBXGroup;
 			children = (
-				761EB5681E24E75E0086D990 /* players.storyboard */,
 				761EB55E1E24E6F10086D990 /* View */,
 				761EB5581E24E5020086D990 /* Controller */,
 			);
@@ -297,8 +338,12 @@
 			children = (
 				761EB5661E24E7520086D990 /* PlayersTableViewController.h */,
 				761EB5651E24E7520086D990 /* PlayersTableViewController.m */,
+				762681951E27A89200B535E8 /* PlayerViewController.h */,
+				762681961E27A89200B535E8 /* PlayerViewController.m */,
 				761EB56D1E2634240086D990 /* MovesTableViewController.h */,
 				761EB56E1E2634240086D990 /* MovesTableViewController.m */,
+				762681AA1E2903EC00B535E8 /* PostTableViewController.h */,
+				762681AB1E2903EC00B535E8 /* PostTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -306,14 +351,52 @@
 		761EB55E1E24E6F10086D990 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				761EB5681E24E75E0086D990 /* players.storyboard */,
 				761EB5621E24E7450086D990 /* PlayersTableViewCell.h */,
 				761EB5631E24E7450086D990 /* PlayersTableViewCell.m */,
 				761EB5701E263C2F0086D990 /* MovesTableViewCell.h */,
 				761EB5711E263C2F0086D990 /* MovesTableViewCell.m */,
 				761EB5791E2662490086D990 /* RoundUIImageView.h */,
 				761EB57A1E2662490086D990 /* RoundUIImageView.m */,
+				762681B01E2A1A2400B535E8 /* PlayerBanner.xib */,
+				762681B21E2A1A5500B535E8 /* PlayerBanner.h */,
+				762681B31E2A1A5500B535E8 /* PlayerBanner.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		761EB57C1E2716850086D990 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				761EB57D1E2717160086D990 /* CacheManager.h */,
+				761EB57E1E2717160086D990 /* CacheManager.m */,
+			);
+			name = Cache;
+			sourceTree = "<group>";
+		};
+		762681AF1E2A195F00B535E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7653DABD1E232D900057D178 /* favorite.storyboard */,
+				7653DAC71E2330960057D178 /* AlbumListTableViewCell.m */,
+				7653DAC81E2330960057D178 /* AlbumListTableViewCell.h */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		762681B51E2A25A700B535E8 /* ARSegmentPager */ = {
+			isa = PBXGroup;
+			children = (
+				762681B61E2A25C000B535E8 /* ARSegmentControllerDelegate.h */,
+				762681B71E2A25C000B535E8 /* ARSegmentPageController.h */,
+				762681B81E2A25C000B535E8 /* ARSegmentPageController.m */,
+				762681B91E2A25C100B535E8 /* ARSegmentPageControllerHeaderProtocol.h */,
+				762681BA1E2A25C100B535E8 /* ARSegmentPageHeader.h */,
+				762681BB1E2A25C100B535E8 /* ARSegmentPageHeader.m */,
+				762681BC1E2A25C100B535E8 /* ARSegmentView.h */,
+				762681BD1E2A25C100B535E8 /* ARSegmentView.m */,
+			);
+			name = ARSegmentPager;
 			sourceTree = "<group>";
 		};
 		7653DA491E2264810057D178 = {
@@ -360,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				7653DA561E2264810057D178 /* main.m */,
+				76FE94D01E2766E4006A1B31 /* Cliplay-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -376,7 +460,7 @@
 		7653DA7E1E231DF10057D178 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
-				7653DABD1E232D900057D178 /* favorite.storyboard */,
+				762681AF1E2A195F00B535E8 /* View */,
 				7653DA7F1E231E000057D178 /* Controller */,
 			);
 			name = Favorite;
@@ -385,8 +469,6 @@
 		7653DA7F1E231E000057D178 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7653DAC71E2330960057D178 /* AlbumListTableViewCell.m */,
-				7653DAC81E2330960057D178 /* AlbumListTableViewCell.h */,
 				7653DAC61E2330960057D178 /* AlbumTableViewController.h */,
 				7653DAC01E2330960057D178 /* AlbumTableViewController.m */,
 				7653DAC91E2330960057D178 /* AlbumSelectBottomSheetViewController.h */,
@@ -402,6 +484,7 @@
 		7653DA861E2324260057D178 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				761EB57C1E2716850086D990 /* Cache */,
 				7653DADD1E2332CC0057D178 /* LB */,
 				7653DA871E23242E0057D178 /* CBL */,
 			);
@@ -424,12 +507,16 @@
 				7653DA891E23243E0057D178 /* AlbumSeq.m */,
 				7653DA8F1E23243E0057D178 /* Album.h */,
 				7653DA8D1E23243E0057D178 /* Album.m */,
+				762681A71E28FE6600B535E8 /* Post.h */,
+				762681A81E28FE6600B535E8 /* Post.m */,
 				7653DB771E23826D0057D178 /* News.h */,
 				7653DB781E23826D0057D178 /* News.m */,
-				7653DA921E23243E0057D178 /* CBLService.h */,
-				7653DA881E23243E0057D178 /* CBLService.m */,
 				761EB56A1E24F6520086D990 /* Player.h */,
 				761EB56B1E24F6520086D990 /* Player.m */,
+				7626819F1E28CB8400B535E8 /* Move.h */,
+				762681A01E28CB8400B535E8 /* Move.m */,
+				7653DA921E23243E0057D178 /* CBLService.h */,
+				7653DA881E23243E0057D178 /* CBLService.m */,
 			);
 			name = CBL;
 			sourceTree = "<group>";
@@ -439,7 +526,6 @@
 			children = (
 				7653DAEA1E2335630057D178 /* Components */,
 				7653DAD31E2331520057D178 /* Lib */,
-				7653DAB91E232C8C0057D178 /* Class */,
 				7653DAD21E23312F0057D178 /* View */,
 				7653DABF1E2330760057D178 /* Controller */,
 				7653DAB51E232B5E0057D178 /* Model */,
@@ -454,15 +540,6 @@
 				7653DAB71E232B6D0057D178 /* ArticleEntity.m */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		7653DAB91E232C8C0057D178 /* Class */ = {
-			isa = PBXGroup;
-			children = (
-				7653DABA1E232C9A0057D178 /* Reachability.h */,
-				7653DABB1E232C9A0057D178 /* Reachability.m */,
-			);
-			name = Class;
 			sourceTree = "<group>";
 		};
 		7653DABF1E2330760057D178 /* Controller */ = {
@@ -483,6 +560,9 @@
 			children = (
 				7653DAD71E2331B40057D178 /* ClipCell.m */,
 				7653DAD81E2331B40057D178 /* ClipCell.h */,
+				762681C11E2A40ED00B535E8 /* NoContent.xib */,
+				762681C31E2A43B300B535E8 /* NoContent.h */,
+				762681C41E2A43B300B535E8 /* NoContent.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -490,6 +570,9 @@
 		7653DAD31E2331520057D178 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				762681B51E2A25A700B535E8 /* ARSegmentPager */,
+				76FE94D61E2794AE006A1B31 /* UIImage+ImageEffects.h */,
+				76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */,
 				7653DB721E2340CC0057D178 /* MBCircularProgressBarLayer.h */,
 				7653DB731E2340CC0057D178 /* MBCircularProgressBarLayer.m */,
 				7653DB6C1E2340160057D178 /* MBCircularProgressBarView.m */,
@@ -539,6 +622,7 @@
 		7653DAEA1E2335630057D178 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				76FE94D11E2793B6006A1B31 /* common */,
 				7653DAEB1E2335740057D178 /* Comment */,
 			);
 			name = Components;
@@ -582,7 +666,6 @@
 			children = (
 				7653DB841E23A4670057D178 /* View */,
 				7653DB801E238E950057D178 /* Controller */,
-				7653DB7B1E238D570057D178 /* news.storyboard */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -599,6 +682,7 @@
 		7653DB811E239FA60057D178 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				762681A51E28F7CA00B535E8 /* blank.jpg */,
 				7653DB881E23B79A0057D178 /* heart@2x.png */,
 			);
 			name = Resources;
@@ -607,6 +691,7 @@
 		7653DB841E23A4670057D178 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7653DB7B1E238D570057D178 /* news.storyboard */,
 				7653DB851E23A4AE0057D178 /* NewsTableViewCell.h */,
 				7653DB861E23A4AE0057D178 /* NewsTableViewCell.m */,
 			);
@@ -721,12 +806,16 @@
 			files = (
 				7653DA681E2264820057D178 /* LaunchScreen.storyboard in Resources */,
 				761EB5691E24E75E0086D990 /* players.storyboard in Resources */,
+				762681C21E2A40ED00B535E8 /* NoContent.xib in Resources */,
 				7653DB7C1E238D570057D178 /* news.storyboard in Resources */,
 				7653DA651E2264820057D178 /* Assets.xcassets in Resources */,
+				762681A61E28F7CA00B535E8 /* blank.jpg in Resources */,
 				7653DABE1E232D900057D178 /* favorite.storyboard in Resources */,
 				7653DB891E23B79A0057D178 /* heart@2x.png in Resources */,
 				7653DB761E237BD80057D178 /* cliplay_content.cblite2 in Resources */,
+				76FE94D41E2793B6006A1B31 /* common in Resources */,
 				7653DA631E2264820057D178 /* Main.storyboard in Resources */,
+				762681B11E2A1A2400B535E8 /* PlayerBanner.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +889,7 @@
 				7653DB1D1E2336AC0057D178 /* Reachability.m in Sources */,
 				7653DB2E1E233A460057D178 /* MyLBAdapter.m in Sources */,
 				761EB5671E24E7520086D990 /* PlayersTableViewController.m in Sources */,
+				762681BE1E2A25C100B535E8 /* ARSegmentPageController.m in Sources */,
 				7653DB741E2340CC0057D178 /* MBCircularProgressBarLayer.m in Sources */,
 				7653DB591E233E0C0057D178 /* EBCommentCell.m in Sources */,
 				7653DB471E233A960057D178 /* DEComposeRuledView.m in Sources */,
@@ -808,6 +898,7 @@
 				761EB56C1E24F6520086D990 /* Player.m in Sources */,
 				7653DB4D1E233B900057D178 /* AAShareBubbles.m in Sources */,
 				7653DAD61E2331A70057D178 /* ClipController.m in Sources */,
+				761EB57F1E2717160086D990 /* CacheManager.m in Sources */,
 				7653DA5A1E2264820057D178 /* AppDelegate.m in Sources */,
 				7653DACD1E2330960057D178 /* AlbumInfoViewController.m in Sources */,
 				7653DB561E233C580057D178 /* AppSettings+Cliplay.m in Sources */,
@@ -818,6 +909,7 @@
 				7653DB791E23826D0057D178 /* News.m in Sources */,
 				761EB57B1E2662490086D990 /* RoundUIImageView.m in Sources */,
 				7653DB411E233A960057D178 /* RECommonFunctions.m in Sources */,
+				762681A91E28FE6600B535E8 /* Post.m in Sources */,
 				761EB5641E24E7450086D990 /* PlayersTableViewCell.m in Sources */,
 				7653DB421E233A960057D178 /* DEComposeTextView.m in Sources */,
 				7653DB441E233A960057D178 /* REComposeViewController.m in Sources */,
@@ -834,21 +926,29 @@
 				7653DA9B1E23243E0057D178 /* Favorite.m in Sources */,
 				7653DAD11E2330BB0057D178 /* CliplayTabBarViewController.m in Sources */,
 				7653DB6B1E233FE30057D178 /* YYImageExampleHelper.m in Sources */,
+				762681B41E2A1A5500B535E8 /* PlayerBanner.m in Sources */,
 				7653DACC1E2330960057D178 /* AlbumAddClipDescViewController.m in Sources */,
 				7653DA571E2264820057D178 /* main.m in Sources */,
 				7653DAB81E232B6D0057D178 /* ArticleEntity.m in Sources */,
 				7653DB2B1E2339F10057D178 /* UIImageView+Placeholder.m in Sources */,
 				7653DB461E233A960057D178 /* ModelComment.m in Sources */,
+				762681C01E2A25C100B535E8 /* ARSegmentView.m in Sources */,
 				7653DA981E23243E0057D178 /* CBLService.m in Sources */,
+				762681BF1E2A25C100B535E8 /* ARSegmentPageHeader.m in Sources */,
+				762681AC1E2903EC00B535E8 /* PostTableViewController.m in Sources */,
 				7653DB1E1E2336AC0057D178 /* CALayer+YYAdd.m in Sources */,
 				7653DACB1E2330960057D178 /* AlbumSelectBottomSheetViewController.m in Sources */,
+				762681A11E28CB8400B535E8 /* Move.m in Sources */,
+				762681C51E2A43B300B535E8 /* NoContent.m in Sources */,
 				7653DB7F1E238E8E0057D178 /* NewsTableViewController.m in Sources */,
 				7653DB481E233A960057D178 /* REComposeBackgroundView.m in Sources */,
 				7653DB681E233FA00057D178 /* ClipPlayController.m in Sources */,
 				7653DB1C1E2336AC0057D178 /* DOFavoriteButton.m in Sources */,
+				76FE94D81E2794AE006A1B31 /* UIImage+ImageEffects.m in Sources */,
 				7653DB281E2339B40057D178 /* DRImagePlaceholderHelper.m in Sources */,
 				7653DB871E23A4AE0057D178 /* NewsTableViewCell.m in Sources */,
 				7653DB431E233A960057D178 /* EBCommentsViewController.m in Sources */,
+				762681971E27A89200B535E8 /* PlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -990,6 +1090,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cliplay_new/Cliplay-Prefix.pch";
 				INFOPLIST_FILE = Cliplay_new/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1012,6 +1114,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cliplay_new/Cliplay-Prefix.pch";
 				INFOPLIST_FILE = Cliplay_new/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

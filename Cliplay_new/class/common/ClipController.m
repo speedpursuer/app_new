@@ -7,7 +7,7 @@
 #import "ClipController.h"
 #import "ClipPlayController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-#import "Reachability.h"
+//#import "Reachability.h"
 #import "AppDelegate.h"
 #import "MyLBAdapter.h"
 #import "EBCommentsViewController.h"
@@ -46,16 +46,20 @@
 @property CGFloat correction;
 @property NSDictionary *collectionList;
 @property CGFloat cellHeight;
-@property YYWebImageManager *backgroudManager;
-@property YYWebImageManager *defaultManage;
+@property CacheManager *cacheManager;
+//@property (nonatomic, strong) YYWebImageManager *backgroudManager;
+//@property (nonatomic, weak) YYWebImageManager *defaultManage;
 @property NSInteger currIndex;
 @property BOOL isScrollingDown;
-@property BOOL hasWifi;
+//@property BOOL hasWifi;
 //@property (nonatomic, strong) JDFPeekabooCoordinator *scrollCoordinator;
 @property (nonatomic, weak) UISearchBar *searchBar;
 @property NSString *searchKeywords;
 @property BOOL playStopped;
 @property UITableView *tableView;
+@property NSArray *data;
+@property MyLBService *lbService;
+@property NSDictionary* commentList;
 //@property TLYShyNavBarManager *shyNavBarManager;
 //@property NSArray *filteredClips;
 //@property BOOL didAppear;
@@ -66,9 +70,8 @@
 @end
 
 @implementation ClipController {
-	NSMutableArray *data;
-	MyLBService *lbService;
-	NSDictionary* commentList;
+//	MyLBService *lbService;
+//	NSDictionary* commentList;
 //	NSString *shareText;
 }
 
@@ -76,7 +79,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	lbService = [MyLBService sharedManager];
+	_lbService = [MyLBService sharedManager];
 	_cblService = [CBLService sharedManager];
 	
 	_currIndex = 0;
@@ -92,7 +95,6 @@
 	
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	self.view.backgroundColor = [UIColor whiteColor];
-	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 	
 	[self setTitle: _header];
 	
@@ -101,6 +103,8 @@
 	[self registerReusableCell];
 	
 //	[self setUpScrollCoordinator];
+	
+	[self setupNavBarStyle];
 	
 	[self addInfoIcon];
 	
@@ -115,13 +119,23 @@
 	[self.tableView reloadData];
 }
 
+- (void)setupNavBarStyle {
+	[self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+	[self.navigationController.navigationBar setShadowImage:nil];
+//	[self.navigationController.navigationBar setBarTintColor:CLIPLAY_COLOR];
+}
+
 - (void)setupTableView {
 	CGRect tableViewFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 	self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStylePlain];
 	[self.view addSubview:self.tableView];
-	self.tableView.contentInset = UIEdgeInsetsMake(64,0,0,0);
 	[self.tableView setDelegate:self];
 	[self.tableView setDataSource:self];
+	[self setupNavAutoHide];
+}
+
+- (void)setupNavAutoHide {
+	self.tableView.contentInset = UIEdgeInsetsMake(64,0,0,0);
 	self.shyNavBarManager.scrollView = self.tableView;
 }
 
@@ -134,34 +148,25 @@
 	}	
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	if(_articleDicts) {
-		if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
-			// back button was pressed.  We know this is true because self is no longer
-			// in the navigation stack.
-//			[self.navigationController setNavigationBarHidden:YES];
-		}
-	}
-}
-
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 //	[self.scrollCoordinator disable];
 	if(![self isVisible]){
 		[self stopPlayingAllImages];
 		if(![self presentedViewController]){
-			[_backgroudManager.queue cancelAllOperations];
-			[_defaultManage.queue cancelAllOperations];
-			[[YYImageCache sharedCache].memoryCache removeAllObjects];
+			self.shyNavBarManager.scrollView = nil;
 		}
 	}
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-//	[self.scrollCoordinator enable];
+- (void)dealloc {
+	[_cacheManager stopGIFAllOprts];
 }
+
+//- (void)viewDidAppear:(BOOL)animated {
+//	[super viewDidAppear:animated];
+//	[self.scrollCoordinator enable];
+//}
 
 - (BOOL)hidesBottomBarWhenPushed {
 	return YES;
@@ -172,8 +177,8 @@
 	CGRect myFrame = CGRectMake(0, 20, screenWidth, 44.0f);
 	UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:myFrame];
 	
-	searchBar.backgroundColor = [UIColor lightGrayColor];
-	searchBar.barTintColor = [UIColor lightGrayColor];
+	searchBar.backgroundColor = CLIPLAY_COLOR;
+	searchBar.barTintColor = CLIPLAY_COLOR;
 	searchBar.delegate = self;
 	searchBar.showsCancelButton = YES;
 	searchBar.placeholder = @"搜索描述";
@@ -208,102 +213,23 @@
 
 #pragma mark - Download
 - (void)setupDownload {
-	_defaultManage = [YYWebImageManager sharedManager];
-	YYImageCache *cache = [YYImageCache sharedCache];
-	NSOperationQueue *queue = [NSOperationQueue new];
-	queue.maxConcurrentOperationCount = 1;
-	_backgroudManager = [[YYWebImageManager alloc] initWithCache:cache queue:queue];
-	
-	[self checkWifiConnection];
-	[self setDownloadLimit:YES];
-	
-	[self observeChanges];
+	_cacheManager = [CacheManager sharedManager];
+	_cacheManager.delegate = self;
 }
 
-- (void)checkWifiConnection {
-	Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
-	NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
-	if (networkStatus == ReachableViaWiFi) {
-		_hasWifi = YES;
-	}else{
-		_hasWifi = NO;
-	}
-}
-
--(void)setDownloadLimit:(BOOL)hasLimit {
-	if(hasLimit) {
-		_defaultManage.queue.maxConcurrentOperationCount = 1;
-	}else{
-		_defaultManage.queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
-	}
-}
-
-- (void)observeChanges {
-	[_defaultManage.queue addObserver:self forKeyPath:@"operationCount" options:0 context:nil];
-	[[NSNotificationCenter defaultCenter]
-	 addObserver:self
-	 selector:@selector(checkNetworkStatus:)
-	 name:kReachabilityChangedNotification
-	 object:nil];
-}
-
-- (void)checkNetworkStatus:(NSNotification*)note{
-	[self checkWifiConnection];
-}
-
-- (void)dealloc {
-	[_defaultManage.queue removeObserver:self forKeyPath:@"operationCount"];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
-					   context:(void *)context {
-	[self performBackgroundDownload:NO];
-}
-
-- (void)performBackgroundDownload:(BOOL)shouldStopCurrentBackgroundDownload{
-	if(_defaultManage.queue.operationCount > 0) {
-		[_backgroudManager.queue cancelAllOperations];
-	}else {
-		if(shouldStopCurrentBackgroundDownload) {
-			[_backgroudManager.queue cancelAllOperations];
-		}
-		if(_hasWifi) {
-			[self backgroudFetchImagesFromRow:_currIndex withDirection:_isScrollingDown];
-		}
-	}
-}
-
-- (void)backgroudFetchImagesFromRow:(NSInteger)row withDirection:(BOOL)scrollingDown{
-	
-	if(scrollingDown) {
-		for (int i = (int)row + 1; i < [data count]; i++) {
-			ArticleEntity *entity = (ArticleEntity *)data[i];
+- (void)handleGIFFetch {
+	if(_isScrollingDown) {
+		for (int i = (int)_currIndex + 1; i < [_data count]; i++) {
+			ArticleEntity *entity = (ArticleEntity *)_data[i];
 			if([entity.url length] != 0) {
-				NSURL *url = [NSURL URLWithString:entity.url];
-				BOOL cached = [[YYImageCache sharedCache] containsImageForKey:[url absoluteString]];
-				if(!cached){
-					[_backgroudManager requestImageWithURL:url
-												   options:YYWebImageOptionShowNetworkActivity
-												  progress:nil
-												 transform:nil
-												completion:nil];
-				}
+				[self.cacheManager requestGIFWithURL:entity.url];
 			}
 		}
 	}else {
-		for (int i = (int)row - 1; i >= 0; i--) {
-			ArticleEntity *entity = (ArticleEntity *)data[i];
+		for (int i = (int)_currIndex - 1; i >= 0; i--) {
+			ArticleEntity *entity = (ArticleEntity *)_data[i];
 			if([entity.url length] != 0) {
-				NSURL *url = [NSURL URLWithString:entity.url];
-				BOOL cached = [[YYImageCache sharedCache] containsImageForKey:[url absoluteString]];
-				if(!cached){
-					[_backgroudManager requestImageWithURL:url
-												   options:YYWebImageOptionShowNetworkActivity
-												  progress:nil
-												 transform:nil
-												completion:nil];
-				}
+				[self.cacheManager requestGIFWithURL:entity.url];
 			}
 		}
 	}
@@ -323,7 +249,7 @@
 	
 	if(currScrollingDown != _isScrollingDown) {
 		_isScrollingDown = currScrollingDown;
-		[self performBackgroundDownload:YES];
+		[_cacheManager performBackgroundDownload:YES];
 	}else{
 		_isScrollingDown = currScrollingDown;
 	}
@@ -354,8 +280,8 @@
 	NSMutableArray *entities = @[].mutableCopy;
 	if(_searchKeywords) {
 		[self converAlbumClips:_album.clips toData:entities withSearch:_searchKeywords];
-	}else if (_news) {
-		[self converAlbumClips:_news.image toData:entities withSearch:nil];
+	}else if (_post) {
+		[self converAlbumClips:_post.image toData:entities withSearch:nil];
 	}else if(_album) {
 		[self converAlbumClips:_album.clips toData:entities withSearch:nil];
 	}else if(_articleDicts) {
@@ -373,7 +299,7 @@
 		}
 	}
 	
-	data = [entities mutableCopy];
+	_data = [entities mutableCopy];
 }
 
 - (void)converAlbumClips:(NSArray *)clips toData:(NSMutableArray *)entities withSearch:(NSString *)keywords{
@@ -395,6 +321,10 @@
 }
 
 - (void)initHeader {
+	
+	if (_data.count == 0) {
+		return;
+	}
 	
 	UIView *header = [UIView new];
 	
@@ -448,7 +378,7 @@
 	}else {
 		button = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(showRatioActionsheet)];
 	}
-	button.tintColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
+//	button.tintColor = CLIPLAY_COLOR;
 	self.navigationItem.rightBarButtonItem = button;
 }
 
@@ -465,7 +395,7 @@
 	
 	NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"操作说明" attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:24], NSParagraphStyleAttributeName : paragraphStyle}];
 	
-	NSAttributedString *lineOne= [[NSAttributedString alloc] initWithString:@"点击图片进入滑屏慢放模式" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0], NSParagraphStyleAttributeName : paragraphStyle}];
+	NSAttributedString *lineOne= [[NSAttributedString alloc] initWithString:@"点击图片进入滑屏慢放模式" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : CLIPLAY_COLOR, NSParagraphStyleAttributeName : paragraphStyle}];
 	
 	NSAttributedString *lineTwo = [[NSAttributedString alloc] initWithString:@"点击播放/暂停，滑屏拖动播放" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSParagraphStyleAttributeName : paragraphStyle}];
 	
@@ -473,7 +403,7 @@
 	[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
 	[button setTitle:@"知道了" forState:UIControlStateNormal];
-	button.backgroundColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
+	button.backgroundColor = CLIPLAY_COLOR;
 	button.layer.cornerRadius = 4;
 	
 	UILabel *titleLabel = [[UILabel alloc] init];
@@ -538,12 +468,12 @@
 #pragma mark - (TableView Delegate)
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (data.count > 0) {
+	if (_data.count > 0) {
 		return 1;
 	} else {
 		UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
 		messageLabel.text = @"无内容显示";
-		messageLabel.textColor = [UIColor blackColor];
+		messageLabel.textColor = [UIColor lightGrayColor];
 		messageLabel.numberOfLines = 0;
 		messageLabel.textAlignment = NSTextAlignmentCenter;
 		messageLabel.font = [UIFont systemFontOfSize:20];
@@ -558,11 +488,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return data.count;
+	return _data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	ArticleEntity *entity = data[indexPath.row];
+	ArticleEntity *entity = _data[indexPath.row];
 	
 	if([entity.url length] == 0) {
 		TitleCell *cell = [tableView dequeueReusableCellWithIdentifier:TitleCellIdentifier];
@@ -579,18 +509,18 @@
 	cell.fd_enforceFrameLayout = YES; // Enable to use "-sizeThatFits:"
 	cell.delegate = self;
 	cell.cellHeight = _cellHeight;
-	[cell setCellData: data[indexPath.row] isForHeight:isForHeight];
+	[cell setCellData: _data[indexPath.row] isForHeight:isForHeight];
 }
 
 - (void)configureTitleCell:(TitleCell *)cell atIndexPath:(NSIndexPath *)indexPath isForHeight:(BOOL)isForHeight {
 	cell.fd_enforceFrameLayout = YES; // Enable to use "-sizeThatFits:"
-	[cell setCellData: data[indexPath.row] isForHeight:isForHeight];
+	[cell setCellData: _data[indexPath.row] isForHeight:isForHeight];
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-	ArticleEntity *entity = data[indexPath.row];
+	ArticleEntity *entity = _data[indexPath.row];
 	
 	if([entity.url length] == 0) {
 		return [tableView fd_heightForCellWithIdentifier:TitleCellIdentifier cacheByIndexPath:indexPath configuration:^(id cell) {
@@ -692,7 +622,7 @@
 }
 
 - (void)recordSlowPlayWithUrl:(NSString *)url {
-	[lbService recordSlowPlayWithClipID:url];
+	[_lbService recordSlowPlayWithClipID:url];
 }
 
 #pragma mark - Favorite
@@ -717,12 +647,12 @@
 	NSString *id_post = [self postID];
 	
 	if(self.articleURLs.count > 0) {
-		[lbService getCommentsSummaryByClipIDs:[_articleURLs copy] isRefresh:isRefresh success:^(NSArray *list) {
+		[_lbService getCommentsSummaryByClipIDs:[_articleURLs copy] isRefresh:isRefresh success:^(NSArray *list) {
 			[self generateCommentList:list];
 		} failure:^{
 		}];
 	}else if(id_post){
-		[lbService getCommentsSummaryByPostID:id_post isRefresh:isRefresh success:^(NSArray *list) {
+		[_lbService getCommentsSummaryByPostID:id_post isRefresh:isRefresh success:^(NSArray *list) {
 			[self generateCommentList:list];
 		} failure:^{
 		}];
@@ -737,7 +667,7 @@
 		[dict setObject:[comment objectForKey:@"comment_quantity"] forKey:[comment objectForKey:@"id_clip"]];
 	}
 	
-	commentList = [dict copy];
+	_commentList = [dict copy];
 	
 	[self updateCellQty];
 }
@@ -753,11 +683,11 @@
 }
 
 - (NSString *)getCommentQty:(NSString *)clipID {
-	if(commentList == nil) {
+	if(_commentList == nil) {
 		return nil;
 	}
 	
-	NSString *qty = [[commentList objectForKey:clipID] stringValue];
+	NSString *qty = [[_commentList objectForKey:clipID] stringValue];
 	return qty? qty: @"";
 }
 
@@ -765,19 +695,19 @@
 	EBCommentsViewController *clipCtr = [[EBCommentsViewController alloc] init];
 	[clipCtr setClipID:clipID];
 	[clipCtr setDelegate:self];
-	[self setDownloadLimit:NO];
+//	[self setDownloadLimit:NO];
 	clipCtr.modalPresentationStyle = UIModalPresentationOverFullScreen;
 	[self presentViewController:clipCtr animated:YES completion:nil];
 }
 
-- (void)closeCommentView {
-	[self setDownloadLimit:YES];
-}
+//- (void)closeCommentView {
+//	[self setDownloadLimit:YES];
+//}
 
 #pragma mark - Share
 
 - (void)shareClip:(NSURL *)clipID {
-	[lbService shareWithClipID:clipID];
+	[_lbService shareWithClipID:clipID];
 }
 
 #pragma mark - Album & Favorite
@@ -790,7 +720,9 @@
 	
 	[popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
 	
-	[STPopupNavigationBar appearance].tintColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
+	[[STPopupNavigationBar appearance] setTintColor: [UIColor whiteColor]];
+	[[STPopupNavigationBar appearance] setBarTintColor:CLIPLAY_COLOR];
+	[STPopupNavigationBar appearance].titleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor]};
 	
 	[popupController presentInViewController:self];
 }
@@ -823,7 +755,7 @@
 }
 
 - (NSString *)urlForSeletedClip {
-	ArticleEntity *entity = data[_indexOfSelectedClip];
+	ArticleEntity *entity = _data[_indexOfSelectedClip];
 	return entity.url;
 }
 
@@ -888,7 +820,7 @@
 }
 
 - (void)modifyClipDesc:(NSString *)newDesc {
-	NSInteger clipIndexInAlbum = ((ArticleEntity *)data[_indexOfSelectedClip]).tag;
+	NSInteger clipIndexInAlbum = ((ArticleEntity *)_data[_indexOfSelectedClip]).tag;
 	NSString *origDesc = ((ArticleEntity *)_album.clips[clipIndexInAlbum]).desc;
 	
 	//No need to change if not changed
@@ -902,7 +834,7 @@
 }
 
 - (void)deleteClip {
-	NSInteger clipIndexInAlbum = ((ArticleEntity *)data[_indexOfSelectedClip]).tag;
+	NSInteger clipIndexInAlbum = ((ArticleEntity *)_data[_indexOfSelectedClip]).tag;
 	if([_cblService deleteClipWithIndex:clipIndexInAlbum forAlbum:_album]) {
 		[self refreshScreen:YES];
 	}
@@ -913,19 +845,27 @@
 	
 	[ctr setUrl:[self urlForSeletedClip]];
 	ctr.currDesc = desc;
+	ctr.delegate = self;
 	ctr.modalPresentationStyle = UIModalPresentationCurrentContext;
 	
 	UINavigationController *navigationController =
 	[[UINavigationController alloc] initWithRootViewController:ctr];
-	navigationController.navigationBar.tintColor = [UIColor blackColor];
 	
 	[self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)clipDescCallbackWithDesc:(NSString *)desc{
+	if(_actionType == addToAlbum) {
+		[self saveClipToAlbumWithDesc:desc];
+	}else if(_actionType == modifyDesc) {
+		[self modifyClipDesc:desc];
+	}
 }
 
 - (void)prepareForDescModify {
 	NSString *curDesc = @"";
 	if(_indexOfSelectedClip != 0) {
-		ArticleEntity *entity = data[_indexOfSelectedClip - 1];
+		ArticleEntity *entity = _data[_indexOfSelectedClip - 1];
 		curDesc = entity.desc;
 	}
 	
@@ -959,12 +899,16 @@
 	ctr.modalPresentationStyle = UIModalPresentationCurrentContext;
 	ctr.name = _album.title;
 	ctr.desc = _album.desc;
+	ctr.delegate = self;
 	
 	UINavigationController *navigationController =
 	[[UINavigationController alloc] initWithRootViewController:ctr];
-	navigationController.navigationBar.tintColor = [UIColor blackColor];
 	
 	[self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)albumInfoCallbackWithName:(NSString *)name withDesc:(NSString *)desc{
+	[self updateAlbumInfoWithTitle:name withDesc:desc];
 }
 
 - (void)updateAlbumInfoWithTitle:(NSString *)title withDesc:(NSString *)desc {

@@ -1,0 +1,29 @@
+//
+//  cliplay_Prefix.pch
+//  Cliplay_new
+//
+//  Created by 邢磊 on 2017/1/12.
+//  Copyright © 2017年 邢磊. All rights reserved.
+//
+
+#ifndef cliplay_Prefix_pch
+#define cliplay_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* cliplay_Prefix_pch */
+
+#define CLIPLAY_COLOR [UIColor colorWithRed:0.98039 green:0.36078 blue:0.14902 alpha:1.0]
+
+#define CLIPLAY_COLOR_NAV [UIColor colorWithRed:1 green:0.25098 blue:0 alpha:1.0]
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#endif
+
+//#ifndef DEBUG
+//	#define NSLog(...);
+//#endif
+

@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KMNavigationBarTransition.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>LKBadgeView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -112,22 +117,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0525080274458A9F6CB236016239D7F7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>05865F5E30E604530FD2038C6605B8F9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>07C7237F082DE03E1354F50D963A3EEA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>12AC35F9C569FA2A4543EFEDD802D2C9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2CA96B42391D809FA724D1460D0068D4</key>
+		<key>157BF3072162EA90032EFB281C3C3E9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>37FFEEA0ED4DC0405E9D1E176AC6CB39</key>
+		<key>2E7B3B6CB5C4A96BE233C53043465FAF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>40BC4816AF7E5BCB6B78453E8FCBACBF</key>
+		<key>43FC44CFB002D4A1F6A1FD3594D8FFC2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,7 +157,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>52484A8BA97AA37926B68025C87CD5D0</key>
+		<key>4FADCC758A1AC3552104CEFC0AD929E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,7 +167,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>623168DE51AD85E0831BED62F2162DF2</key>
+		<key>6D425182FBEE57F08008FB0607A22467</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,22 +182,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77E162C4AF0588E65D9C2B90CB8C2031</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>8570A42CA7975311B4D2DDCB2303977B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8ACCFB0ECE27BB4E38F44AF9131EC0DF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>95CB257D70BC0489D32078F73B7E0102</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -202,7 +207,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D46EA64CA51CF690AB16BAC0B48E6CAE</key>
+		<key>DF5E4CB45FAF4E8E682A2C4BAB95588C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E6CE776385BB0801663D1244CCC062DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

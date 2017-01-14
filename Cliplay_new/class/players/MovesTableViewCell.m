@@ -21,9 +21,11 @@
     // Configure the view for the selected state
 }
 
-- (void)setData:(NSString *)name thumb:(NSString *)url {
-	self.name.text = name;	
-	self.thumb.yy_imageURL = [NSURL URLWithString:url];
+- (void)setData:(NSString *)name desc:(NSString *)desc thumb:(NSString *)url {
+	self.name.text = name;
+	self.desc.text = desc;
+	[self.thumb requestSImageWithURL:url];
+//	self.thumb.yy_imageURL = [NSURL URLWithString:url];
 }
 
 @end

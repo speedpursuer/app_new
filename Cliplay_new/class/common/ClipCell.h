@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <YYWebImage/YYWebImage.h>
+#import "CacheManager.h"
 #import "UIView+YYAdd.h"
 #import "CALayer+YYAdd.h"
 #import "UIGestureRecognizer+YYAdd.h"

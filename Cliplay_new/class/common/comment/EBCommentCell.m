@@ -12,7 +12,7 @@
 
 
 #import "EBCommentCell.h"
-#import <YYWebImage/YYWebImage.h>
+#import "CacheManager.h"
 
 @interface EBCommentCell()
 @property (strong, readwrite) UIImageView *authorAvatar;
@@ -154,7 +154,7 @@
     
     if([comment respondsToSelector:@selector(authorAvatarURL)]){
 //        [self.authorAvatar setImage:[comment authorAvatar]];
-		self.authorAvatar.yy_imageURL = [NSURL URLWithString:[comment authorAvatarURL]];
+		[self.authorAvatar requestSImageWithURL:[comment authorAvatarURL]];
         [self.authorAvatar.layer setMasksToBounds:YES];
         [self.authorAvatar.layer setRasterizationScale:[UIScreen mainScreen].scale];
         [self.authorAvatar.layer setShouldRasterize:YES];

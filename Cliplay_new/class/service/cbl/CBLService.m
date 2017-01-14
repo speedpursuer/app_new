@@ -7,7 +7,7 @@
 //
 
 #import "CBLService.h"
-#import <YYWebImage/YYWebImage.h>
+#import "CacheManager.h"
 #import "FCUUID.h"
 #import "MRProgress.h"
 #import "JDStatusBarNotification.h"
@@ -15,6 +15,7 @@
 
 //#define cbserverURL   @"http://localhost:4984/cliplay_user_data"
 #define cbserverURL @"http://121.40.197.226:8000/cliplay_user_data"
+#define cbContentServerURL @"http://121.40.197.226:8000/cliplay_prod_new"
 #define didSyncedFlag @"didSynced"
 #define kLocalFlag @"isFromLocal"
 
@@ -26,6 +27,8 @@
 @property (nonatomic) NSError *lastSyncError;
 @property MRProgressOverlayView *progressView;
 @property NSString *uuid;
+@property NSDictionary *moves;
+@property BOOL isSyncing;
 @end
 @implementation CBLService
 
@@ -56,14 +59,15 @@
 			NSLog(@"Cannot create database with an error : %@", [error description]);
 	}
 	
-//	[self enableLogging];
+	[self enableLogging];
 	
 //	CBLModelFactory* factory = _database.modelFactory;
 //	[factory registerClass:[Album class] forDocumentType:@"album"];
 //	[factory registerClass:[Favorite class] forDocumentType:@"favorite"];
 //	[factory registerClass:[AlbumSeq class] forDocumentType:@"albumSeq"];
 	[self initContentDB];
-	[self allNews];
+	[self loadNews];
+	[self loadMoves];
 	[self indexedPlayers];
 	[self loadFavorite];
 	[self loadAlbumSeq];
@@ -75,30 +79,11 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
 	NSString *applicationSupportDirectory = [paths firstObject];
 	NSLog(@"applicationSupportDirectory: '%@'", applicationSupportDirectory);
+	[self getSpecificContent];
 	
 	return self;
 }
 
-- (void)observeChanges {
-	[self.favorite addObserver:self forKeyPath:@"clips" options:0 context:nil];
-	[self.albumSeq addObserver:self forKeyPath:@"albumIDs" options:0 context:nil];
-}
-
-- (void)dealloc {
-	[self.favorite removeObserver:self forKeyPath:@"clips"];
-	[self.albumSeq removeObserver:self forKeyPath:@"albumIDs"];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
-					   context:(void *)context {
-	[self notifyChanges];
-}
-
-- (void)notifyChanges {
-	[[NSNotificationCenter defaultCenter] postNotificationName:kAlbumListChange object:nil];
-}
-
-#pragma mark - Content (News & move)
 - (void)initContentDB {
 	CBLDatabaseOptions *option = [[CBLDatabaseOptions alloc] init];
 	option.create = YES;
@@ -125,7 +110,83 @@
 	_contentDatabase = database;
 }
 
-- (void)allNews {
+- (void)observeChanges {
+	[self.favorite addObserver:self forKeyPath:@"clips" options:0 context:nil];
+	[self.albumSeq addObserver:self forKeyPath:@"albumIDs" options:0 context:nil];
+}
+
+- (void)dealloc {
+	[self.favorite removeObserver:self forKeyPath:@"clips"];
+	[self.albumSeq removeObserver:self forKeyPath:@"albumIDs"];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
+					   context:(void *)context {
+	[self notifyChanges];
+}
+
+- (void)notifyChanges {
+	[[NSNotificationCenter defaultCenter] postNotificationName:kAlbumListChange object:nil];
+}
+
+#pragma mark - Content (News & move)
+
+- (Post *)clipsForPlayer:(Player*) player withMove:(Move *)move {
+	NSString *postID = [NSString stringWithFormat:@"post_%@_%@", player.docID, move.docID];		
+	Post *post = [Post modelForDocument:[self contentDocumentWithDocID:postID]];
+	return post;
+}
+
+- (NSArray *)newsForPlayer:(Player*) player {
+	if(!player.news) {
+		return nil;
+	}
+	CBLQuery* query = [self queryAllContent];
+	query.keys = player.news;
+	query.descending = YES;
+	
+	NSError *error;
+	NSMutableArray *allNews = [NSMutableArray new];
+	CBLQueryEnumerator* result = [query run: &error];
+	for (CBLQueryRow* row in result) {
+		[allNews addObject:[News modelForDocument:row.document]];
+	}
+	return [allNews copy];
+}
+
+- (NSArray *)movesForPlayer:(Player *)player {
+	NSMutableArray *list = [NSMutableArray new];
+	NSDictionary* clip_moves = [player getValueOfProperty:@"clip_moves"];
+	NSDictionary *moveCopy = [_moves copy];
+	for(NSString *moveName in [clip_moves allKeys]) {
+		NSInteger clipCount = [[clip_moves valueForKey:moveName] integerValue];
+		if(clipCount > 0) {
+			Move *move = [moveCopy objectForKey:moveName];
+			move.count = clipCount;
+			[list addObject:move];
+		}
+	}
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"count"
+																   ascending:NO];
+	NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+	return [[list copy] sortedArrayUsingDescriptors:sortDescriptors];
+}
+
+- (void)loadMoves {
+	CBLQuery* query = [self queryAllContent];
+	query.startKey = @"move_";
+	query.endKey   = @"move_\uffff";
+	
+	NSError *error;
+	NSMutableDictionary *dict = [NSMutableDictionary new];
+	CBLQueryEnumerator* result = [query run: &error];
+	for (CBLQueryRow* row in result) {
+		[dict setObject:[Move modelForDocument:row.document] forKey:row.document.documentID];
+	}
+	_moves = [dict copy];
+}
+
+- (void)loadNews {
 	CBLQuery* query = [self queryAllContent];
 	query.startKey = @"news_\uffff";
 	query.endKey   = @"news_";
@@ -145,6 +206,10 @@
 	return query;
 }
 
+- (CBLDocument *)contentDocumentWithDocID:(NSString *)docID {
+	return self.contentDatabase[docID];
+}
+
 - (void)indexedPlayers {
 	NSMutableArray *players = [NSMutableArray new];
 	
@@ -153,7 +218,7 @@
 	UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
 	
 	for (Player *player in list) {
-		NSInteger sect = [theCollation sectionForObject:player collationStringSelector:@selector(name)];
+		NSInteger sect = [theCollation sectionForObject:player collationStringSelector:@selector(lastName)];
 		player.sectionNumber = sect;
 	}
 	
@@ -170,7 +235,7 @@
 	
 	for (NSMutableArray *sectionArray in sectionArrays) {
 		NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray
-											collationStringSelector:@selector(name)];
+											collationStringSelector:@selector(lastName)];
 		[players addObject:sortedSection];
 	}
 	_players = [players copy];
@@ -187,7 +252,10 @@
 	for (CBLQueryRow* row in result) {
 		NSInteger total = [[row.document propertyForKey:@"clip_total"] integerValue];
 		if(total > 0) {
-			[allPlayers addObject:[Player modelForDocument:row.document]];
+			Player *player = [Player modelForDocument:row.document];
+			NSArray *fullName = [player.name componentsSeparatedByString: @"·"];
+			player.lastName = fullName.count == 2? [fullName objectAtIndex: 1]: player.name;
+			[allPlayers addObject:player];
 		}
 	}
 	return [allPlayers copy];
@@ -450,6 +518,62 @@
 }
 
 #pragma mark - Sync
+
+- (void)syncStartWithDelegate:(NewsTableViewController *)delegate {
+	_delegate = delegate;
+	[self syncContentDBFromRemote];
+}
+
+- (void)syncContentDBFromRemote {
+	
+	if(_isSyncing) return;
+	
+	_isSyncing = YES;
+	
+	NSURL *syncUrl = [NSURL URLWithString:cbContentServerURL];
+	
+	_pull = [_contentDatabase createPullReplication:syncUrl];
+	
+	id<CBLAuthenticator> auth;
+	auth = [CBLAuthenticator basicAuthenticatorWithName: @"app_viewer"
+											   password: @"Cliplay1234"];
+	_pull.authenticator = auth;
+	
+	NSNotificationCenter *nctr = [NSNotificationCenter defaultCenter];
+	[nctr addObserver:self selector:@selector(contentReplicationProgress:)
+				 name:kCBLReplicationChangeNotification object:_pull];
+	
+	_lastSyncError = nil;
+	
+	[_pull start];
+}
+
+- (void)contentReplicationProgress:(NSNotification *)notification {
+	NSError* error = _pull.lastError;
+	if(error){
+		_lastSyncError = error;
+	}
+	
+	// If server not reechable, set error and stop pull
+	if(_pull.status == kCBLReplicationOffline) {
+		if(![self hasNetwork]) {
+			if(!_lastSyncError) {
+				_lastSyncError = [NSError errorWithDomain:@"Has no network" code:501 userInfo:nil];
+			}
+			[_pull stop];
+		}
+	}
+	if(_pull.status == kCBLReplicationStopped) {
+		if(_lastSyncError){
+			[JDStatusBarNotification showWithStatus:@"同步数据失败，请检查网络" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+		}else if(_pull.changesCount == _pull.completedChangesCount) {
+			[JDStatusBarNotification showWithStatus:@"已同步到最新数据" dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
+		}
+		_isSyncing = NO;
+		[_delegate syncEnd];
+	}
+}
+
 - (void)syncToRemote {
 	
 	if(!_isSynced) return;
@@ -577,7 +701,7 @@
 	
 	view.titleLabelAttributedText = title;
 	
-	view.tintColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
+	view.tintColor = CLIPLAY_COLOR;
 	
 	_progressView = view;
 }
@@ -678,7 +802,7 @@
 }
 
 - (UIImage *)getThumb:(NSString *)url{
-	return [[YYImageCache sharedCache] getImageForKey:[[YYWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:url]]];
+	return [[CacheManager sharedManager] cachedGIFWith:url];
 }
 
 - (void)performBlock:(void(^)())block afterDelay:(NSTimeInterval)delay {
@@ -716,4 +840,11 @@
 		NSLog(@"isFromLocal = %@",isFromLocal);
 	}
 }
+
+- (void)getSpecificContent{
+	NSString *docID = @"player_kobe_bryant";
+	CBLDocument* document = [self contentDocumentWithDocID:docID];
+	NSLog(@"data = %@", [document propertyForKey:@"player_image"]);
+}
+
 @end

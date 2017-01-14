@@ -22,7 +22,8 @@
 
 - (void)setCellData:(NSString *)name avatar:(NSString *)avatar {
 	self.name.text = name;
-	self.thumb.yy_imageURL = [NSURL URLWithString:avatar];
+	[self.thumb requestSImageWithURL:avatar];
+//	self.thumb.yy_imageURL = [NSURL URLWithString:avatar];
 }
 
 @end

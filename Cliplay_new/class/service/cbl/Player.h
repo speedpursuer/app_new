@@ -12,4 +12,7 @@
 @property NSString *name;
 @property NSString *avatar;
 @property NSInteger sectionNumber;
+@property NSString *player_image;
+@property NSArray *news;
+@property NSString *lastName;
 @end

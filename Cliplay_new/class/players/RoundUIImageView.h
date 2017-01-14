@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RoundUIImageView : UIImageView
-
+- (id)initWithFrame:(CGRect)frame;
 @end

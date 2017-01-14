@@ -141,8 +141,8 @@
 
 - (DOFavoriteButton *)createFlashButtonWithImage:(UIImage *)image{
 	DOFavoriteButton *button = [[DOFavoriteButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40) image:image selected: false];
-	button.imageColorOn = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
-	button.circleColor = [UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
+	button.imageColorOn = CLIPLAY_COLOR;
+	button.circleColor = CLIPLAY_COLOR;
 	button.lineColor = [UIColor colorWithRed:245.0 / 255.0 green:54.0 / 255.0 blue:0.0 / 255.0 alpha:1.0];
 	return button;
 }
@@ -366,7 +366,7 @@
 	if(!_downLoaded) {
 		return;
 	}
-	[_webImageView.layer setBorderColor: [[UIColor colorWithRed:255.0 / 255.0 green:64.0 / 255.0 blue:0.0 / 255.0 alpha:1.0] CGColor]];
+	[_webImageView.layer setBorderColor: [CLIPLAY_COLOR CGColor]];
 	[_webImageView.layer setBorderWidth: 3.0];
 	[_webImageView.layer setCornerRadius: 5.0];
 }

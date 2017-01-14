@@ -19,7 +19,8 @@
 - (void)setCellData:(NSString *)url name:(NSString *)name desc:(NSString *)desc {
 	self.shortDesc.text = name;
 	self.longDesc.text = desc;
-	self.thumb.yy_imageURL = [NSURL URLWithString:url];
+	[self.thumb requestSImageWithURL:url];
+//	self.thumb.yy_imageURL = [NSURL URLWithString:url];
 //	[self.thumb yy_setImageWithURL:[NSURL URLWithString:url] options:YYWebImageOptionProgressiveBlur |YYWebImageOptionSetImageWithFadeAnimation];
 }
 

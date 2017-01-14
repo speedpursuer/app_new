@@ -8,6 +8,13 @@
 
 #import "MovesTableViewController.h"
 #import "MovesTableViewCell.h"
+#import <TLYShyNavBar/TLYShyNavBarManager.h>
+#import "RoundUIImageView.h"
+#import "CacheManager.h"
+#import "ClipController.h"
+#import "Move.h"
+#import "CBLService.h"
+
 
 @interface MovesTableViewController ()
 @property NSArray *moves;
@@ -17,14 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self setupRefresher];
 	[self loadMoves];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,57 +32,54 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)hidesBottomBarWhenPushed {
-	return YES;
+-(NSString *)segmentTitle {
+	return @"动作";
 }
 
-- (void)setupRefresher {
-	self.refreshControl = [[UIRefreshControl alloc] init];
-	//	self.refreshControl.tintColor = [UIColor whiteColor];
-	self.refreshControl.backgroundColor = [UIColor purpleColor];
-	self.refreshControl.tintColor = [UIColor whiteColor];
-	self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"下拉刷新"];
-	[self.refreshControl addTarget:self action:@selector(syncData) forControlEvents:UIControlEventValueChanged];
-}
-
-- (void)syncData {
-	[self.refreshControl endRefreshing];
-}
-
-- (void)loadMoves {
-	_moves = @[
-				@{
-					@"name": @"投篮",
-					@"image": @"https://img.alicdn.com/imgextra/i4/18348931/TB2XfvfkpXXXXXkXXXXXXXXXXXX_!!18348931.png"
-				},
-				@{
-					@"name": @"传球",
-					@"image": @"https://img.alicdn.com/imgextra/i2/18348931/TB2z9iHkpXXXXcbXpXXXXXXXXXX_!!18348931.png"
-				}
-			 ];
+-(void)loadMoves {
+	_moves = [[CBLService sharedManager] movesForPlayer:_player];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+	if (_moves.count > 0) {
+		return 1;
+	} else {
+		UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+		messageLabel.text = @"无内容显示";
+		messageLabel.textColor = [UIColor lightGrayColor];
+		messageLabel.numberOfLines = 0;
+		messageLabel.textAlignment = NSTextAlignmentCenter;
+		messageLabel.font = [UIFont systemFontOfSize:20];
+		[messageLabel sizeToFit];
+		self.tableView.backgroundView = messageLabel;
+		self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+		return 0;
+	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _moves.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MovesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"moves" forIndexPath:indexPath];
-	
-	NSDictionary *dict = _moves[indexPath.row];
-	NSString *name = [dict valueForKey:@"name"];
-	NSString *image = [dict valueForKey:@"image"];
-	[cell setData:name thumb:image];
-	
+	Move *move = _moves[indexPath.row];
+	[cell setData:move.move_name desc:move.desc thumb:move.image];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	Move *move = _moves[indexPath.row];
+	ClipController *vc = [ClipController new];
+	Post *post = [[CBLService sharedManager] clipsForPlayer:_player withMove:move];
+	vc.header = [NSString stringWithFormat:@"%@ - %@", _player.name, move.move_name];
+	vc.post = post;
+	[self.navigationController pushViewController:vc animated:YES];
+}
+
 
 
 /*
