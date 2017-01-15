@@ -27,7 +27,6 @@
 
 @end
 @implementation ClipPlayController {
-	YYAnimatedImageView *imageView;
 	BOOL download;
 	BOOL iniFavorite;
 	BOOL hideBar;
@@ -48,7 +47,7 @@
 
 - (void)loadImage: (NSString *)url {
 	
-	imageView = [YYAnimatedImageView new];
+	_imageView = [YYAnimatedImageView new];
 	
 	_loaded = false;
 	download = false;
@@ -56,9 +55,9 @@
 	//	imageView.height = self.view.size.height - self.navigationController.navigationBar.frame.size.height - [UIApplication sharedApplication].statusBarFrame.size.height;
 	
 	//imageView.size = self.view.size;
-	imageView.clipsToBounds = YES;
-	imageView.contentMode = UIViewContentModeScaleAspectFit;
-	imageView.backgroundColor = [UIColor blackColor];
+	_imageView.clipsToBounds = YES;
+	_imageView.contentMode = UIViewContentModeScaleAspectFit;
+	_imageView.backgroundColor = [UIColor blackColor];
 	
 	//	_progressBar = [[MBCircularProgressBarView alloc] initWithFrame:CGRectMake((imageView.width-100)/2, (imageView.height-100)/2, 100, 100)];
 	
@@ -76,7 +75,7 @@
 								   userInfo:nil
 									repeats:NO];
 	
-	[imageView yy_setImageWithURL:[NSURL URLWithString:url]
+	[_imageView yy_setImageWithURL:[NSURL URLWithString:url]
 					  placeholder:nil
 						  options:YYWebImageOptionProgressiveBlur | YYWebImageOptionSetImageWithFadeAnimation | YYWebImageOptionShowNetworkActivity
 						 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
@@ -120,11 +119,11 @@
 					   }
 	 ];
 	
-	[self.view addSubview:imageView];
+	[self.view addSubview:_imageView];
 	[self.view addSubview:_progressBar];
 	
-	[YYImageExampleHelper addTapControlToAnimatedImageView:imageView];
-	[YYImageExampleHelper addPanControlToAnimatedImageView:imageView];
+	[YYImageExampleHelper addTapControlToAnimatedImageView:_imageView];
+//	[YYImageExampleHelper addPanControlToAnimatedImageView:_imageView];
 }
 
 - (void)addTapControlToAnimatedImageView:(YYAnimatedImageView *)view {
@@ -152,18 +151,18 @@
 		CGFloat imageViewWidth = self.view.bounds.size.height * imageWidthToHeight;
 		CGFloat left = (self.view.bounds.size.width - imageViewWidth) / 2;
 		CGRect frame = CGRectMake(left, 0.0f, imageViewWidth, self.view.bounds.size.height);
-		imageView.frame = frame;
+		_imageView.frame = frame;
 		
 	}else {
 		
 		if(self.interfaceOrientation == UIInterfaceOrientationPortrait) {
 			CGRect frame = CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, self.view.bounds.size.height);
-			imageView.frame = frame;
+			_imageView.frame = frame;
 		}else {
 			CGFloat imageViewHeight = self.view.bounds.size.width / imageWidthToHeight;
 			CGFloat top = (self.view.bounds.size.height - imageViewHeight) / 2;
 			CGRect frame = CGRectMake(0.0f, top, self.view.bounds.size.width, imageViewHeight);
-			imageView.frame = frame;
+			_imageView.frame = frame;
 		}
 	}
 }
@@ -208,7 +207,7 @@
 }
 
 - (void)cancelAction{
-	[imageView yy_cancelCurrentImageRequest];
+	[_imageView yy_cancelCurrentImageRequest];
 	
 	[[UIDevice currentDevice] setValue:
 	 [NSNumber numberWithInteger: UIInterfaceOrientationPortrait]
@@ -249,6 +248,7 @@
 }
 
 - (void)setPortaitMode {
+	_isInLandscapeMode = NO;
 	_heartButton.imageColorOff = [UIColor colorWithRed:136.0 / 255.0 green:153.0 / 255.0 blue:166.0 / 255.0 alpha:1.0];
 	[_progressBar setEmptyLineColor:[UIColor lightGrayColor]];
 	[_progressBar setFontColor:[UIColor darkGrayColor]];
@@ -263,6 +263,7 @@
 }
 
 - (void)setLandscapeMode {
+	_isInLandscapeMode = YES;
 	_heartButton.imageColorOff = [UIColor whiteColor];
 	[_progressBar setEmptyLineColor:[UIColor whiteColor]];
 	[_progressBar setFontColor:[UIColor whiteColor]];
@@ -329,6 +330,10 @@
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
 	return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle {
+	return UIStatusBarStyleLightContent;
 }
 
 //- (BOOL)prefersStatusBarHidden {

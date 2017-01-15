@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, clipActionType) {
 };
 
 //@interface ClipController : UITableViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, CNPPopupControllerDelegate>
-@interface ClipController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, CNPPopupControllerDelegate,UITableViewDelegate, UITableViewDataSource, DownloadDelegate>
+@interface ClipController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, CNPPopupControllerDelegate,UITableViewDelegate, UITableViewDataSource, DownloadDelegate, UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) NSArray *articleDicts;
 @property (nonatomic, strong) NSArray *articleURLs;
@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, clipActionType) {
 - (void)setFavoriate:(NSString *)url;
 - (void)unsetFavoriate:(NSString *)url;
 - (BOOL)isFavoriate:(NSString *)url;
-- (void)recordSlowPlayWithUrl:(NSString *)url;
+- (void)slowPlayWithURL:(NSString *)url;
 - (void)formActionForCell:(UITableViewCell *)cell withActionType:(clipActionType)type;
 - (BOOL)isCollected:(NSString *)url;
 - (void)helloFromCell:(UITableViewCell *)cell;

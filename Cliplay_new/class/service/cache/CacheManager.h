@@ -18,12 +18,12 @@
 + (id)sharedManager;
 - (void)stopGIFAllOprts;
 - (void)requestGIFWithURL:(NSString *)url;
-- (void)performBackgroundDownload:(BOOL)shouldStopCurrentBackgroundDownload;
+- (void)performBackgroundDownload;
 - (UIImage *)cachedGIFWith:(NSString *)url;
+- (UIImage *)createImageWithColor: (UIColor *) color;
 @end
 
 @interface UIImageView (CliplayCache)
 - (void)requestSImageWithURL:(NSString *)url;
-- (void)requestSImageWithURL:(NSString *)url withPlaceholder:(UIImage *)image;
 - (void)requestSImageWithURL:(NSString *)url withPlaceholder:(UIImage *)image completion:(YYWebImageCompletionBlock)completion;
 @end

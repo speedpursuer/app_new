@@ -27,6 +27,12 @@
 	[self setupRefresher];
 	[self setupTitle];
 	[self allNews];
+	[self hideBackButtonText];
+	[self addObserver];
+}
+
+- (void)hideBackButtonText {
+	self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,6 +63,21 @@
 	self.title = @"最新信息";
 }
 
+- (void)addObserver {
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(reload)
+												 name:kContentUpdate
+											   object:nil];
+}
+
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kContentUpdate object:nil];
+}
+
+- (void)reload {
+	[self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -81,8 +102,7 @@
 	News *news = _newsList[indexPath.row];
 	vc.header = news.name;
 	vc.summary = news.summary;
-	vc.post = news;
-	self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+	vc.post = news;	
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

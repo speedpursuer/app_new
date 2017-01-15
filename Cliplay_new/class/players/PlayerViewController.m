@@ -48,7 +48,6 @@
 {
 	if (_header == nil) {
 		_header = [[[NSBundle mainBundle] loadNibNamed:@"PlayerBanner" owner:nil options:nil] lastObject];
-		_header.backgroundColor = [UIColor redColor];
 	}
 	return _header;
 }
@@ -138,10 +137,10 @@
 - (void)setupNavBarStyle {
 	[self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
 	[self.navigationController.navigationBar setShadowImage:[self createImageWithColor:[UIColor clearColor]]];
+	self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
--(UIImage *)createImageWithColor: (UIColor *) color
-{
+-(UIImage *)createImageWithColor: (UIColor *) color {
 	CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
 	UIGraphicsBeginImageContext(rect.size);
 	CGContextRef context = UIGraphicsGetCurrentContext();

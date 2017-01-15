@@ -120,7 +120,7 @@
 }
 
 - (void)loadCloseButton {
-	_closeButton = [[FRDLivelyButton alloc] initWithFrame:CGRectMake(6,16,36,28)];
+	_closeButton = [[FRDLivelyButton alloc] initWithFrame:CGRectMake(6,30,36,28)];
 	[_closeButton setStyle:kFRDLivelyButtonStyleClose animated:NO];
 	[_closeButton addTarget:self action:@selector(closeCommentsView) forControlEvents:UIControlEventTouchUpInside];
 	[_closeButton setOptions:@{ kFRDLivelyButtonLineWidth: @(2.0f),

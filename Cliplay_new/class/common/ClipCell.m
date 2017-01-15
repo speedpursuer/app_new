@@ -206,20 +206,8 @@
 }
 
 - (void)showClipView:(NSString*)url{
-	
 	ClipController* tc = [self getViewCtr];
-	
-	ClipPlayController *clipCtr = [ClipPlayController new];
-	
-	clipCtr.clipURL = url;
-	clipCtr.favorite = TRUE;
-	clipCtr.showLike = FALSE;
-	clipCtr.standalone = false;
-	
-	clipCtr.modalPresentationStyle = UIModalPresentationCurrentContext;
-	clipCtr.delegate = tc;
-	
-	[tc presentViewController:clipCtr animated:YES completion:nil];
+	[tc slowPlayWithURL:url];
 }
 
 - (void)setCellData:(ArticleEntity*) entity isForHeight:(BOOL)isForHeight {

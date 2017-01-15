@@ -20,6 +20,7 @@
 #define kStorageType kCBLForestDBStorage
 #define kDidSynced @"didSynced"
 #define kAlbumListChange @"albumModified"
+#define kContentUpdate @"contentUpdated"
 #define kContentDBName @"cliplay_content"
 #define kDBFileType @"cblite2"
 

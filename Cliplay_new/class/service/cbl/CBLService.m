@@ -15,7 +15,7 @@
 
 //#define cbserverURL   @"http://localhost:4984/cliplay_user_data"
 #define cbserverURL @"http://121.40.197.226:8000/cliplay_user_data"
-#define cbContentServerURL @"http://121.40.197.226:8000/cliplay_prod_new"
+#define cbContentServerURL @"http://121.40.197.226:8000/cliplay_staging"
 #define didSyncedFlag @"didSynced"
 #define kLocalFlag @"isFromLocal"
 
@@ -59,16 +59,14 @@
 			NSLog(@"Cannot create database with an error : %@", [error description]);
 	}
 	
-	[self enableLogging];
+//	[self enableLogging];
 	
 //	CBLModelFactory* factory = _database.modelFactory;
 //	[factory registerClass:[Album class] forDocumentType:@"album"];
 //	[factory registerClass:[Favorite class] forDocumentType:@"favorite"];
 //	[factory registerClass:[AlbumSeq class] forDocumentType:@"albumSeq"];
 	[self initContentDB];
-	[self loadNews];
-	[self loadMoves];
-	[self indexedPlayers];
+	[self loadContent];
 	[self loadFavorite];
 	[self loadAlbumSeq];
 	[self loadSynced];
@@ -110,6 +108,12 @@
 	_contentDatabase = database;
 }
 
+- (void)loadContent {
+	[self loadNews];
+	[self loadMoves];
+	[self indexedPlayers];
+}
+
 - (void)observeChanges {
 	[self.favorite addObserver:self forKeyPath:@"clips" options:0 context:nil];
 	[self.albumSeq addObserver:self forKeyPath:@"albumIDs" options:0 context:nil];
@@ -122,10 +126,10 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
 					   context:(void *)context {
-	[self notifyChanges];
+	[self notifyAlbumChanges];
 }
 
-- (void)notifyChanges {
+- (void)notifyAlbumChanges {
 	[[NSNotificationCenter defaultCenter] postNotificationName:kAlbumListChange object:nil];
 }
 
@@ -279,6 +283,11 @@
 	return query;
 }
 
+- (void)notifyContentUpdate {
+	[self loadContent];
+	[[NSNotificationCenter defaultCenter] postNotificationName:kContentUpdate object:nil];
+}
+
 #pragma mark - Album
 
 - (Album*)creatAlubmWithTitle:(NSString*)title {
@@ -286,7 +295,7 @@
 	NSError *error;
 	if ([album save:&error]) {
 		[_albumSeq addAlbumID:[album docID]];
-		[self notifyChanges];
+		[self notifyAlbumChanges];
 		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:@"已新建\"%@\"", album.title] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
 		return album;
 	}else {
@@ -301,7 +310,7 @@
 	NSString *albumID = [album docID];
 	if ([album deleteDocument:&error]){
 		[_albumSeq deleteAlbumID:albumID];
-		[self notifyChanges];
+		[self notifyAlbumChanges];
 		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:@"已删除\"%@\"", albumName] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
 		return YES;
 	}else{
@@ -369,7 +378,7 @@
 	
 	NSError* error;
 	if ([album save: &error]) {
-		[self notifyChanges];
+		[self notifyAlbumChanges];
 		[JDStatusBarNotification showWithStatus:@"动图删除成功" dismissAfter:1.2 styleName:JDStatusBarStyleSuccess];
 		return YES;
 	}else {
@@ -387,7 +396,7 @@
 	
 	NSError* error;
 	if ([album save: &error]) {
-		[self notifyChanges];
+		[self notifyAlbumChanges];
 		[JDStatusBarNotification showWithStatus:@"信息修改成功" dismissAfter:1.2 styleName:JDStatusBarStyleSuccess];
 		return YES;
 	}else {
@@ -567,7 +576,9 @@
 		if(_lastSyncError){
 			[JDStatusBarNotification showWithStatus:@"同步数据失败，请检查网络" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
 		}else if(_pull.changesCount == _pull.completedChangesCount) {
-			[JDStatusBarNotification showWithStatus:@"已同步到最新数据" dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
+			if(_pull.completedChangesCount > 0) {
+				[self notifyContentUpdate];
+			}
 		}
 		_isSyncing = NO;
 		[_delegate syncEnd];
@@ -684,7 +695,7 @@
 	if ([doc putProperties: @{@"synced": @true} error: &error]) {
 		_isSynced = YES;
 	}
-	[self notifyChanges];
+	[self notifyAlbumChanges];
 }
 
 //- (BOOL)didSyced {
@@ -783,7 +794,7 @@
 	
 	NSError* error;
 	if ([album save: &error]) {
-		[self notifyChanges];
+		[self notifyAlbumChanges];
 		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:@"已加入\"%@\"", album.title] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
 		return YES;
 	}else {

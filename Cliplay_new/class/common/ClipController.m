@@ -22,6 +22,10 @@
 #import "CBLService.h"
 //#import <JDFPeekaboo/JDFPeekabooCoordinator.h>
 #import <TLYShyNavBar/TLYShyNavBarManager.h>
+#import "DismissAnimation.h"
+#import "PresentedAnimation.h"
+#import "SwipeUpInteractiveTransition.h"
+
 
 
 #define cellMargin 10
@@ -60,6 +64,7 @@
 @property NSArray *data;
 @property MyLBService *lbService;
 @property NSDictionary* commentList;
+@property (nonatomic, strong) SwipeUpInteractiveTransition *interactiveTransition;
 //@property TLYShyNavBarManager *shyNavBarManager;
 //@property NSArray *filteredClips;
 //@property BOOL didAppear;
@@ -82,8 +87,7 @@
 	_lbService = [MyLBService sharedManager];
 	_cblService = [CBLService sharedManager];
 	
-	_currIndex = 0;
-	_correction = 0;
+	[self initValues];
 	
 	[self setupDownload];
 	
@@ -117,6 +121,12 @@
 	[self initHeader];
 	
 	[self.tableView reloadData];
+}
+
+- (void)initValues {
+	_currIndex = 0;
+	_correction = 0;
+	_isScrollingDown = YES;
 }
 
 - (void)setupNavBarStyle {
@@ -239,7 +249,7 @@
 	
 	BOOL currScrollingDown;
 	
-	if(row > _currIndex) {
+	if(row >= _currIndex) {
 		currScrollingDown = YES;
 	}else {
 		currScrollingDown = NO;
@@ -249,7 +259,7 @@
 	
 	if(currScrollingDown != _isScrollingDown) {
 		_isScrollingDown = currScrollingDown;
-		[_cacheManager performBackgroundDownload:YES];
+		[_cacheManager performBackgroundDownload];
 	}else{
 		_isScrollingDown = currScrollingDown;
 	}
@@ -619,10 +629,6 @@
 			if(_cell.webImageView.isAnimating) [_cell.webImageView stopAnimating];
 		}
 	}
-}
-
-- (void)recordSlowPlayWithUrl:(NSString *)url {
-	[_lbService recordSlowPlayWithClipID:url];
 }
 
 #pragma mark - Favorite
@@ -1087,4 +1093,38 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 	dispatch_after(popTime, dispatch_get_main_queue(), block);
 }
 
+#pragma mark - Animation
+- (void)slowPlayWithURL:(NSString *)url {
+	[self recordSlowPlayWithUrl:url];
+	
+	ClipPlayController *clipCtr = [ClipPlayController new];
+	
+	clipCtr.clipURL = url;
+	clipCtr.favorite = TRUE;
+	clipCtr.showLike = FALSE;
+	clipCtr.standalone = false;
+	
+	clipCtr.modalPresentationStyle = UIModalPresentationCurrentContext;
+	clipCtr.delegate = self;
+	_interactiveTransition = [[SwipeUpInteractiveTransition alloc]init:clipCtr];
+	clipCtr.transitioningDelegate = self;
+	
+	[self presentViewController:clipCtr animated:YES completion:nil];
+}
+
+- (void)recordSlowPlayWithUrl:(NSString *)url {
+	[_lbService recordSlowPlayWithClipID:url];
+}
+
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+	return [[PresentedAnimation alloc]init];
+}
+
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+	return [[DismissAnimation alloc]init];
+}
+
+-(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+	return (self.interactiveTransition.isInteracting ? self.interactiveTransition : nil);
+}
 @end

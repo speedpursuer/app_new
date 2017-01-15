@@ -17,7 +17,7 @@
 #import "EBShadedView.h"
 #import "UIView+YYAdd.h"
 
-#define topMargin 55
+#define topMargin 65
 
 @interface EBCommentsView ()
 @property (weak, readwrite) EBCommentsTableView *tableView;

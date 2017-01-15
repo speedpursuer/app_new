@@ -13,11 +13,13 @@
 @property YYWebImageManager *backgroundManager;
 @property YYWebImageManager *foregroundManager;
 @property YYWebImageManager *sImageManager;
-@property BOOL hasWifi;
+@property Reachability *networkReachability;
+@property UIImage *defaultPlaceholder;
 - (void)requestSImageWithURL:(NSString *)url forImageView:(UIImageView *)imageView;
 @end
 
 @implementation CacheManager
+dispatch_semaphore_t _lock;
 
 + (id)sharedManager {
 	static CacheManager *sharedMyManager = nil;
@@ -31,9 +33,12 @@
 - (instancetype)init {
 	if (self = [super init]) {
 		[self setup];
+		_lock = dispatch_semaphore_create(1);
 	}
 	return self;
 }
+
+#pragma mark - Initial Setup
 
 - (void)setup {
 	_foregroundManager = [YYWebImageManager sharedManager];
@@ -48,14 +53,11 @@
 	NSOperationQueue *queue = [NSOperationQueue new];
 	_sImageManager = [[YYWebImageManager alloc] initWithCache:sImageCache queue:queue];
 	
-//	[self cleanup];
-	
 	[self observeChanges];
-}
-
-- (void)cleanup {
-	[[YYImageCache sharedCache].diskCache removeAllObjects];
-	[_sImageManager.cache.diskCache removeAllObjects];
+	
+	_defaultPlaceholder = [self createImageWithColor:[UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1]];
+	
+	[self cleanup];
 }
 
 - (YYImageCache *)sImageCache {
@@ -63,17 +65,55 @@
 															   NSUserDomainMask, YES) firstObject];
 	cachePath = [cachePath stringByAppendingPathComponent:@"com.lee.cliplay"];
 	cachePath = [cachePath stringByAppendingPathComponent:@"sImages"];
-	
 	return [[YYImageCache alloc] initWithPath:cachePath];
 }
 
-- (NSInteger)foregroundOprtsCount {
-	return _foregroundManager.queue.operationCount;
+#pragma mark - Auto background download
+
+- (void)observeChanges {
+	[_foregroundManager.queue addObserver:self forKeyPath:@"operationCount" options:0 context:nil];
+	[self configReachability];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
+					   context:(void *)context {
+	[self performBackgroundDownload];
+}
+
+- (void)performBackgroundDownload {
+	dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
+	if(_foregroundManager.queue.operationCount > 0) {
+		[self cancelBackgroundOprts];
+	}else {
+		[self cancelBackgroundOprts];
+		if([self hasWifi]) {
+			[_delegate handleGIFFetch];
+		}
+	}
+	dispatch_semaphore_signal(_lock);
+}
+
+- (void)cancelBackgroundOprts {
+	if(_backgroundManager.queue.operationCount >0) {
+		[_backgroundManager.queue cancelAllOperations];
+	}
+}
+
+#pragma mark - Cleanup
+
+- (void)dealloc {
+	[_foregroundManager.queue removeObserver:self forKeyPath:@"operationCount"];
+	[[NSNotificationCenter defaultCenter] removeObserver:self
+													name:kReachabilityChangedNotification
+												  object:nil];
+	[self stopGIFAllOprts];
+	[_sImageManager.queue cancelAllOperations];
 }
 
 - (void)stopGIFAllOprts {
 	[self cancelGIFOperations];
 	[[YYImageCache sharedCache].memoryCache removeAllObjects];
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)cancelGIFOperations {
@@ -81,19 +121,13 @@
 	[_backgroundManager.queue cancelAllOperations];
 }
 
-- (void)performBackgroundDownload:(BOOL)shouldStopCurrentBackgroundDownload {
-	if(_foregroundManager.queue.operationCount > 0) {
-		[_backgroundManager.queue cancelAllOperations];
-	}else {
-		if(shouldStopCurrentBackgroundDownload) {
-			[_backgroundManager.queue cancelAllOperations];
-		}
-		if(_hasWifi) {
-			[_delegate handleGIFFetch];
-		}
-	}
+//For test
+- (void)cleanup {
+	[[YYImageCache sharedCache].diskCache removeAllObjects];
+	[_sImageManager.cache.diskCache removeAllObjects];
 }
 
+#pragma mark - Request remote/cached image
 - (void)requestGIFWithURL:(NSString *)url {
 	if(![[YYImageCache sharedCache] containsImageForKey:url]){
 		[_backgroundManager requestImageWithURL:[NSURL URLWithString:url]
@@ -106,8 +140,8 @@
 
 - (void)requestSImageWithURL:(NSString *)url forImageView:(UIImageView *)imageView{
 	 [imageView yy_setImageWithURL:[NSURL URLWithString: url]
-					   placeholder:nil
-						   options:kNilOptions
+					   placeholder:_defaultPlaceholder
+						   options:YYWebImageOptionProgressiveBlur
 						   manager:_sImageManager
 						  progress:nil
 						 transform:nil
@@ -137,45 +171,47 @@
 	 ];
 }
 
-- (void)observeChanges {
-	[self checkWifiConnection];
-	
-	[_foregroundManager.queue addObserver:self forKeyPath:@"operationCount" options:0 context:nil];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(checkNetworkStatus:)
-												 name:kReachabilityChangedNotification
-											   object:nil];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
-					   context:(void *)context {	
-	[self performBackgroundDownload:NO];
-}
-
-- (void)checkNetworkStatus:(NSNotification*)note{
-	[self checkWifiConnection];
-}
-
-- (void)checkWifiConnection {
-	Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
-	NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
-	if (networkStatus == ReachableViaWiFi) {
-		_hasWifi = YES;
-	}else{
-		_hasWifi = NO;
-	}
-}
-
 - (UIImage *)cachedGIFWith:(NSString *)url {
 	return [[YYImageCache sharedCache] getImageForKey:[[YYWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:url]]];
 }
 
-- (void)dealloc {
-	[_foregroundManager.queue removeObserver:self forKeyPath:@"operationCount"];
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
-	[self stopGIFAllOprts];
-	[_sImageManager.queue cancelAllOperations];
+#pragma mark - Helper
+
+-(UIImage *)createImageWithColor: (UIColor *) color {
+	CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+	UIGraphicsBeginImageContext(rect.size);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextSetFillColorWithColor(context, [color CGColor]);
+	CGContextFillRect(context, rect);
+	
+	UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return theImage;
+}
+
+- (void)performBlock:(void(^)())block afterDelay:(NSTimeInterval)delay {
+	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
+	dispatch_after(popTime, dispatch_get_main_queue(), block);
+}
+
+#pragma mark - Reachability
+- (void)configReachability {
+	_networkReachability = [Reachability reachabilityForInternetConnection];
+	_networkReachability.reachableOnWWAN = NO;
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(reachabilityChanged)
+												 name:kReachabilityChangedNotification
+											   object:nil];
+	
+	[_networkReachability startNotifier];
+}
+
+- (void)reachabilityChanged {
+	[self performBackgroundDownload];
+}
+
+- (BOOL)hasWifi {
+	return [_networkReachability currentReachabilityStatus] == ReachableViaWiFi? YES: NO;
 }
 
 @end
@@ -183,10 +219,6 @@
 @implementation UIImageView (CliplayCache)
 - (void)requestSImageWithURL:(NSString *)url {
 	[[CacheManager sharedManager] requestSImageWithURL:url forImageView:self];
-}
-
-- (void)requestSImageWithURL:(NSString *)url withPlaceholder:(UIImage *)image {
-	[[CacheManager sharedManager] requestSImageWithURL:url forImageView:self withPlaceholder:image];
 }
 
 - (void)requestSImageWithURL:(NSString *)url withPlaceholder:(UIImage *)image completion:(YYWebImageCompletionBlock)completion{

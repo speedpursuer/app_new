@@ -27,6 +27,9 @@
 		762681C01E2A25C100B535E8 /* ARSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681BD1E2A25C100B535E8 /* ARSegmentView.m */; };
 		762681C21E2A40ED00B535E8 /* NoContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762681C11E2A40ED00B535E8 /* NoContent.xib */; };
 		762681C51E2A43B300B535E8 /* NoContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681C41E2A43B300B535E8 /* NoContent.m */; };
+		762681CD1E2A4CFF00B535E8 /* DismissAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681C81E2A4CFF00B535E8 /* DismissAnimation.m */; };
+		762681CE1E2A4CFF00B535E8 /* PresentedAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681CA1E2A4CFF00B535E8 /* PresentedAnimation.m */; };
+		762681CF1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681CC1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m */; };
 		7653DA571E2264820057D178 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA561E2264810057D178 /* main.m */; };
 		7653DA5A1E2264820057D178 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA591E2264820057D178 /* AppDelegate.m */; };
 		7653DA631E2264820057D178 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7653DA611E2264820057D178 /* Main.storyboard */; };
@@ -96,7 +99,6 @@
 		7653DB7F1E238E8E0057D178 /* NewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB7E1E238E8E0057D178 /* NewsTableViewController.m */; };
 		7653DB871E23A4AE0057D178 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB861E23A4AE0057D178 /* NewsTableViewCell.m */; };
 		7653DB891E23B79A0057D178 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7653DB881E23B79A0057D178 /* heart@2x.png */; };
-		76FE94D41E2793B6006A1B31 /* common in Resources */ = {isa = PBXBuildFile; fileRef = 76FE94D11E2793B6006A1B31 /* common */; };
 		76FE94D81E2794AE006A1B31 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */; };
 		C532DFA5CB9D196A6662A61E /* libPods-Cliplay_new.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9A1EF7DF9BB2D15285E8B1 /* libPods-Cliplay_new.a */; };
 /* End PBXBuildFile section */
@@ -150,6 +152,12 @@
 		762681C11E2A40ED00B535E8 /* NoContent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NoContent.xib; path = class/common/NoContent.xib; sourceTree = "<group>"; };
 		762681C31E2A43B300B535E8 /* NoContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoContent.h; path = class/common/NoContent.h; sourceTree = "<group>"; };
 		762681C41E2A43B300B535E8 /* NoContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoContent.m; path = class/common/NoContent.m; sourceTree = "<group>"; };
+		762681C71E2A4CFF00B535E8 /* DismissAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DismissAnimation.h; path = class/common/lib/Animation/DismissAnimation.h; sourceTree = "<group>"; };
+		762681C81E2A4CFF00B535E8 /* DismissAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DismissAnimation.m; path = class/common/lib/Animation/DismissAnimation.m; sourceTree = "<group>"; };
+		762681C91E2A4CFF00B535E8 /* PresentedAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PresentedAnimation.h; path = class/common/lib/Animation/PresentedAnimation.h; sourceTree = "<group>"; };
+		762681CA1E2A4CFF00B535E8 /* PresentedAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PresentedAnimation.m; path = class/common/lib/Animation/PresentedAnimation.m; sourceTree = "<group>"; };
+		762681CB1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwipeUpInteractiveTransition.h; path = class/common/lib/Animation/SwipeUpInteractiveTransition.h; sourceTree = "<group>"; };
+		762681CC1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SwipeUpInteractiveTransition.m; path = class/common/lib/Animation/SwipeUpInteractiveTransition.m; sourceTree = "<group>"; };
 		7653DA521E2264810057D178 /* Cliplay_new.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cliplay_new.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7653DA561E2264810057D178 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7653DA581E2264820057D178 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -278,7 +286,6 @@
 		7653DB861E23A4AE0057D178 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsTableViewCell.m; path = class/news/NewsTableViewCell.m; sourceTree = "<group>"; };
 		7653DB881E23B79A0057D178 /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heart@2x.png"; path = "Cliplay_new/Resources/heart@2x.png"; sourceTree = "<group>"; };
 		76FE94D01E2766E4006A1B31 /* Cliplay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cliplay-Prefix.pch"; sourceTree = "<group>"; };
-		76FE94D11E2793B6006A1B31 /* common */ = {isa = PBXFileReference; lastKnownFileType = folder; name = common; path = class/common; sourceTree = "<group>"; };
 		76FE94D61E2794AE006A1B31 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "class/common/lib/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "class/common/lib/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		DC9A1EF7DF9BB2D15285E8B1 /* libPods-Cliplay_new.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cliplay_new.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -397,6 +404,19 @@
 				762681BD1E2A25C100B535E8 /* ARSegmentView.m */,
 			);
 			name = ARSegmentPager;
+			sourceTree = "<group>";
+		};
+		762681C61E2A4CC800B535E8 /* Swipe DIsmiss */ = {
+			isa = PBXGroup;
+			children = (
+				762681C71E2A4CFF00B535E8 /* DismissAnimation.h */,
+				762681C81E2A4CFF00B535E8 /* DismissAnimation.m */,
+				762681C91E2A4CFF00B535E8 /* PresentedAnimation.h */,
+				762681CA1E2A4CFF00B535E8 /* PresentedAnimation.m */,
+				762681CB1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.h */,
+				762681CC1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m */,
+			);
+			name = "Swipe DIsmiss";
 			sourceTree = "<group>";
 		};
 		7653DA491E2264810057D178 = {
@@ -570,6 +590,7 @@
 		7653DAD31E2331520057D178 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				762681C61E2A4CC800B535E8 /* Swipe DIsmiss */,
 				762681B51E2A25A700B535E8 /* ARSegmentPager */,
 				76FE94D61E2794AE006A1B31 /* UIImage+ImageEffects.h */,
 				76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */,
@@ -622,7 +643,6 @@
 		7653DAEA1E2335630057D178 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				76FE94D11E2793B6006A1B31 /* common */,
 				7653DAEB1E2335740057D178 /* Comment */,
 			);
 			name = Components;
@@ -633,10 +653,10 @@
 			children = (
 				7653DB601E233EF40057D178 /* EBShadedView.m */,
 				7653DB611E233EF40057D178 /* EBShadedView.h */,
-				7653DB5A1E233EA70057D178 /* EBCommentsView.m */,
-				7653DB5B1E233EA70057D178 /* EBCommentsTableView.m */,
 				7653DB5C1E233EA70057D178 /* EBCommentsTableView.h */,
+				7653DB5B1E233EA70057D178 /* EBCommentsTableView.m */,
 				7653DB5D1E233EA70057D178 /* EBCommentsView.h */,
+				7653DB5A1E233EA70057D178 /* EBCommentsView.m */,
 				7653DB571E233E0C0057D178 /* EBCommentCell.m */,
 				7653DB581E233E0C0057D178 /* EBCommentCell.h */,
 				7653DB2F1E233A960057D178 /* RECommonFunctions.m */,
@@ -813,7 +833,6 @@
 				7653DABE1E232D900057D178 /* favorite.storyboard in Resources */,
 				7653DB891E23B79A0057D178 /* heart@2x.png in Resources */,
 				7653DB761E237BD80057D178 /* cliplay_content.cblite2 in Resources */,
-				76FE94D41E2793B6006A1B31 /* common in Resources */,
 				7653DA631E2264820057D178 /* Main.storyboard in Resources */,
 				762681B11E2A1A2400B535E8 /* PlayerBanner.xib in Resources */,
 			);
@@ -894,10 +913,12 @@
 				7653DB591E233E0C0057D178 /* EBCommentCell.m in Sources */,
 				7653DB471E233A960057D178 /* DEComposeRuledView.m in Sources */,
 				7653DA9D1E23243E0057D178 /* CBLBaseModel.m in Sources */,
+				762681CF1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m in Sources */,
 				7653DB531E233C1F0057D178 /* User.m in Sources */,
 				761EB56C1E24F6520086D990 /* Player.m in Sources */,
 				7653DB4D1E233B900057D178 /* AAShareBubbles.m in Sources */,
 				7653DAD61E2331A70057D178 /* ClipController.m in Sources */,
+				762681CE1E2A4CFF00B535E8 /* PresentedAnimation.m in Sources */,
 				761EB57F1E2717160086D990 /* CacheManager.m in Sources */,
 				7653DA5A1E2264820057D178 /* AppDelegate.m in Sources */,
 				7653DACD1E2330960057D178 /* AlbumInfoViewController.m in Sources */,
@@ -908,6 +929,7 @@
 				7653DB621E233EF40057D178 /* EBShadedView.m in Sources */,
 				7653DB791E23826D0057D178 /* News.m in Sources */,
 				761EB57B1E2662490086D990 /* RoundUIImageView.m in Sources */,
+				762681CD1E2A4CFF00B535E8 /* DismissAnimation.m in Sources */,
 				7653DB411E233A960057D178 /* RECommonFunctions.m in Sources */,
 				762681A91E28FE6600B535E8 /* Post.m in Sources */,
 				761EB5641E24E7450086D990 /* PlayersTableViewCell.m in Sources */,

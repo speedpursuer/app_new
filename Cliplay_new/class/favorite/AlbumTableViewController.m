@@ -75,11 +75,15 @@
 											   object:nil];
 	[self setupThumbs];
 	[self setupTitle];
-//	self.navigationItem.rightBarButtonItem.tintColor = CLIPLAY_COLOR;
+	[self hideBackButtonText];
 }
 
 - (void)setupTitle {
 	self.title = @"我的收藏";
+}
+
+- (void)hideBackButtonText {
+	self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 #pragma mark - Observers
@@ -176,10 +180,6 @@
 	}
 }
 
-- (void)hideBackButtonText {
-	self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-}
-
 #pragma mark - Action Sheet for album operations
 - (IBAction)showActionSheet:(id)sender {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
@@ -238,7 +238,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 		vc.fetchMode = true;
 //		vc.header = @"单图下载";
 		vc.articleURLs = @[url];
-		[self hideBackButtonText];
 		[self.navigationController pushViewController:vc animated:YES];
 	}else {
 		MyLBService *service = [MyLBService sharedManager];
@@ -250,7 +249,6 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 				vc.fetchMode = true;
 //				vc.header = title? title: @"多图下载";
 				vc.articleURLs = images;
-				[self hideBackButtonText];
 				[self.navigationController pushViewController:vc animated:YES];
 			}else{
 				[self showAlertMessage:@"此页面无法获取动图：" withMessage:url];
@@ -387,7 +385,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 		vc.album = album;
 		vc.summary = album.desc;
 	}
-	[self hideBackButtonText];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
