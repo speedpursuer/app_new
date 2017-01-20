@@ -10,7 +10,7 @@
 #import <YYWebImage/YYWebImage.h>
 
 @protocol DownloadDelegate <NSObject>
-- (void)handleGIFFetch;
+- (void)handleBackgroundDownload;
 @end
 
 @interface CacheManager : NSObject
@@ -21,6 +21,10 @@
 - (void)performBackgroundDownload;
 - (UIImage *)cachedGIFWith:(NSString *)url;
 - (UIImage *)createImageWithColor: (UIColor *) color;
+- (NSInteger)totalCached;
+- (int)getCacheLimit;
+- (void)setCacheLimit:(int)limit;
+- (void)deleteAllCache;
 @end
 
 @interface UIImageView (CliplayCache)

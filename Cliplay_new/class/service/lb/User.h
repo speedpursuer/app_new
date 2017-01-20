@@ -6,9 +6,9 @@
 //
 //
 
-#import "AppSettings+Cliplay.h"
+#import "CliplayBaseSettings.h"
 
-@interface User : AppSettings
+@interface User : CliplayBaseSettings
 @property (nonatomic, copy) NSString *commentName;
 @property (nonatomic, copy) NSString *commentAvatar;
 @property (nonatomic, copy) NSString *commentAccountID;

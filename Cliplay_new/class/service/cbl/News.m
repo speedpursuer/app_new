@@ -10,9 +10,4 @@
 
 @implementation News
 @dynamic name, desc, thumb;
-//@dynamic name, image, desc, summary, thumb;
-
-//+(Class)imageItemClass {
-//	return [ArticleEntity class];
-//}
 @end

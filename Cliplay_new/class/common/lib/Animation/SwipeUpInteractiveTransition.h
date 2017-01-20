@@ -14,6 +14,7 @@
 @property (nonatomic, strong) ClipPlayController *vc;
 @property (nonatomic, assign) BOOL isInteracting;
 @property (nonatomic, assign) BOOL shouldComplete;
+@property (nonatomic, assign) BOOL previousIsPlaying;
 
 - (instancetype)init:(UIViewController *)vc;
 @end

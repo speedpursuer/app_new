@@ -8,7 +8,7 @@
 
 #import "CBLBaseModel.h"
 
-@interface Post : CBLBaseModel
+@interface Post : CBLBaseModel <Content>
 @property NSArray *image;
 @property NSString *summary;
 @end

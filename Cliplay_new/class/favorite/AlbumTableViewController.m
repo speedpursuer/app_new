@@ -8,12 +8,10 @@
 
 #import "AlbumTableViewController.h"
 #import "AlbumListTableViewCell.h"
-#import "Album.h"
-#import "ClipController.h"
-#import "CBLService.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
-#import "MyLBService.h"
 #import "MRProgress.h"
+#import "CacheSettingViewController.h"
+#import "AutoRotateNavController.h"
 
 #define kFavoriteTitle "我的最爱"
 
@@ -36,18 +34,6 @@
     [super viewDidLoad];
 	[self setup];
 	[_service syncFromRemote];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	NSIndexPath *selection = [self.tableView indexPathForSelectedRow];
-	if (selection) {
-		[self.tableView deselectRowAtIndexPath:selection animated:YES];
-	}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -186,7 +172,7 @@
 															 delegate:self
 													cancelButtonTitle:@"取消"
 											   destructiveButtonTitle:nil
-													otherButtonTitles:@"新建收藏夹", @"整理收藏夹", @"从链接获取动图", nil];
+													otherButtonTitles:@"新建收藏夹", @"整理收藏夹", @"从链接获取", @"管理缓存区", nil];
 	[actionSheet showInView:self.view];
 }
 
@@ -201,6 +187,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 			break;
 		case 2:
 			[self fetchClips];
+			break;
+		case 3:
+			[self showCachePage];
 			break;
 		default:
 			break;
@@ -240,7 +229,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 		vc.articleURLs = @[url];
 		[self.navigationController pushViewController:vc animated:YES];
 	}else {
-		MyLBService *service = [MyLBService sharedManager];
+		LBService *service = [LBService sharedManager];
 		[self showProgress];
 		[service fetchClipsFromURL:url success:^(NSArray *images, NSString *title) {
 			[self hideProgress];
@@ -259,6 +248,19 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 			[self showAlertMessage:@"获得动图失败" withMessage:@"请检查网络后重试"];
 		}];
 	}
+}
+
+#pragma mark - Cache Settings 
+- (void)showCachePage {
+	CacheSettingViewController *ctr = [[UIStoryboard storyboardWithName:@"favorite" bundle:nil] instantiateViewControllerWithIdentifier:@"cacheSettings"];
+	
+	ctr.modalPresentationStyle = UIModalPresentationCurrentContext;
+	
+	AutoRotateNavController *navigationController =
+	[[AutoRotateNavController alloc] initWithRootViewController:ctr];
+	
+	[self presentViewController:navigationController animated:YES completion:nil];
+
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -372,7 +374,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	ClipController *vc = [ClipController new];
 	if(indexPath.section == 0) {
 //		Favorite *favorite = _service.favorite;

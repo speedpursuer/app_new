@@ -7,12 +7,9 @@
 //
 
 #import "CBLBaseModel.h"
-#import "Post.h"
 
 @interface News : Post
 @property NSString *name;
 @property NSString *desc;
 @property NSString *thumb;
-//@property NSArray *image;
-//@property NSString *summary;
 @end

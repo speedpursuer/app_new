@@ -8,9 +8,6 @@
 
 #import "PostTableViewController.h"
 #import "NewsTableViewCell.h"
-#import "News.h"
-#import "CBLService.h"
-#import "ClipController.h"
 #import "NoContent.h"
 
 @interface PostTableViewController ()
@@ -84,7 +81,7 @@
 	ClipController *vc = [ClipController new];
 	vc.header = news.name;
 	vc.summary = news.summary;
-	vc.post = news;
+	vc.content = news;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

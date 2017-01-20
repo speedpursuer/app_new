@@ -24,6 +24,7 @@
 @property (nonatomic, strong) FRDLivelyButton *closeButton;
 @property (nonatomic, assign) BOOL loaded;
 @property (nonatomic, assign) CGSize imageSize;
+//@property BOOL dismissed;
 
 @end
 @implementation ClipPlayController {
@@ -44,6 +45,19 @@
 	
 	hideBar = FALSE;
 }
+
+//- (void)viewDidDisappear:(BOOL)animated {
+//	[super viewDidDisappear:animated];
+//	_dismissed = YES;
+//	[UIViewController attemptRotationToDeviceOrientation];
+//}
+
+//- (void)viewWillDisappear:(BOOL)animated {
+//	[super viewWillDisappear:animated];
+//	_dismissed = YES;
+//	[UIViewController attemptRotationToDeviceOrientation];
+//}
+
 
 - (void)loadImage: (NSString *)url {
 	
@@ -132,7 +146,7 @@
 	__weak typeof(self) _self = self;
 	
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id sender) {
-		[_self cancelAction];
+		[_self exitSlowPlay];
 	}];
 	
 	tap.numberOfTapsRequired = 2;
@@ -173,7 +187,7 @@
 	
 	_closeButton = [[FRDLivelyButton alloc] initWithFrame:CGRectMake(6,[UIApplication sharedApplication].statusBarFrame.size.height+6,36,28)];
 	[_closeButton setStyle:kFRDLivelyButtonStyleClose animated:NO];
-	[_closeButton addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
+	[_closeButton addTarget:self action:@selector(exitSlowPlay) forControlEvents:UIControlEventTouchUpInside];
 	[_closeButton setOptions:@{
 							   kFRDLivelyButtonLineWidth: @(2.0f),
 							   kFRDLivelyButtonHighlightedColor: [UIColor colorWithRed:230.0 / 255.0 green:230.0 / 255.0 blue:230.0 / 255.0 alpha:1.0],
@@ -206,16 +220,16 @@
 	}
 }
 
-- (void)cancelAction{
+- (void)exitSlowPlay{
+	[self prepareToExit];
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)prepareToExit {
 	[_imageView yy_cancelCurrentImageRequest];
-	
 	[[UIDevice currentDevice] setValue:
 	 [NSNumber numberWithInteger: UIInterfaceOrientationPortrait]
 								forKey:@"orientation"];
-	
-	if(_standalone) [[YYImageCache sharedCache].memoryCache removeAllObjects];
-	
-	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showProgress{
@@ -323,14 +337,7 @@
 	[self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
 }
 
-#pragma mark - Screen rotate
-- (BOOL)shouldAutorotate {
-	return YES;
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-	return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskLandscape;
-}
+#pragma mark - Status bar
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
 	return UIStatusBarStyleLightContent;

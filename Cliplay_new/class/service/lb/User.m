@@ -9,15 +9,12 @@
 #import "User.h"
 
 @implementation User
-- (instancetype)init {
-	if (self = [super init]) {
-		_commentAccountID = @"";
-		_commentName = @"";
-		_commentAvatar = @"";
-		_shareAccountID = @"";
-		_shareWBRefreshToken = @"";
-		_shareWBAccessToken = @"";
-	}
-	return self;
+- (void)initValue {
+	_commentAccountID = @"";
+	_commentName = @"";
+	_commentAvatar = @"";
+	_shareAccountID = @"";
+	_shareWBRefreshToken = @"";
+	_shareWBAccessToken = @"";
 }
 @end

@@ -14,7 +14,6 @@
 #import <UIKit/UIKit.h>
 #import <JTTableViewController.h>
 #import "EBCommentsViewDelegate.h"
-#import "ClipController.h"
 #import "MyLBDelegate.h"
 
 #define COMMENT_CHART_LIMIT       140

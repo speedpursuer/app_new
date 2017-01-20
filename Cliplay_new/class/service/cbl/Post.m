@@ -7,11 +7,16 @@
 //
 
 #import "Post.h"
-#import "ArticleEntity.h"
 
 @implementation Post
 @dynamic image, summary;
 +(Class)imageItemClass {
-	return [ArticleEntity class];
+	return [ImageEntity class];
+}
+-(NSArray *)images {
+	return self.image;
+}
+-(NSString *)headline {
+	return self.summary;
 }
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "ARSegmentPageController.h"
-#import "Player.h"
 
 @interface PlayerViewController : ARSegmentPageController
 @property Player *player;

@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760937FD1E30AC5200ECBB3D /* AAShareBubbles.m in Sources */ = {isa = PBXBuildFile; fileRef = 760937FB1E30AC5200ECBB3D /* AAShareBubbles.m */; };
+		760937FE1E30AC5200ECBB3D /* AAShareBubbles.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 760937FC1E30AC5200ECBB3D /* AAShareBubbles.bundle */; };
+		760938031E30B39500ECBB3D /* PushService.m in Sources */ = {isa = PBXBuildFile; fileRef = 760938021E30B39400ECBB3D /* PushService.m */; };
+		760938051E30C5A800ECBB3D /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 760938041E30C5A800ECBB3D /* libBPush.a */; };
+		760938091E30C5D800ECBB3D /* BPushCerResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 760938081E30C5D800ECBB3D /* BPushCerResource.bundle */; };
+		7609380F1E30DDC300ECBB3D /* PushFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 7609380E1E30DDC300ECBB3D /* PushFeed.m */; };
+		760938121E30E70800ECBB3D /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 760938111E30E70800ECBB3D /* UIViewController+Utils.m */; };
+		760938161E30F13300ECBB3D /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 760938151E30F13300ECBB3D /* Helper.m */; };
+		7609381A1E31AB4400ECBB3D /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 760938191E31AB4400ECBB3D /* Configuration.m */; };
+		7609381D1E31B09C00ECBB3D /* CliplayBaseSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7609381C1E31B09C00ECBB3D /* CliplayBaseSettings.m */; };
+		761701441E2CFA4F00C6F692 /* TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 761701431E2CFA4F00C6F692 /* TitleView.xib */; };
 		761EB5641E24E7450086D990 /* PlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB5631E24E7450086D990 /* PlayersTableViewCell.m */; };
 		761EB5671E24E7520086D990 /* PlayersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB5651E24E7520086D990 /* PlayersTableViewController.m */; };
 		761EB5691E24E75E0086D990 /* players.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 761EB5681E24E75E0086D990 /* players.storyboard */; };
@@ -30,6 +41,8 @@
 		762681CD1E2A4CFF00B535E8 /* DismissAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681C81E2A4CFF00B535E8 /* DismissAnimation.m */; };
 		762681CE1E2A4CFF00B535E8 /* PresentedAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681CA1E2A4CFF00B535E8 /* PresentedAnimation.m */; };
 		762681CF1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 762681CC1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m */; };
+		76335EDA1E2E37C500664761 /* CacheSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76335ED91E2E37C500664761 /* CacheSettingViewController.m */; };
+		7649E42A1E2F91C8006E91C4 /* AutoRotateNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7649E4291E2F91C8006E91C4 /* AutoRotateNavController.m */; };
 		7653DA571E2264820057D178 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA561E2264810057D178 /* main.m */; };
 		7653DA5A1E2264820057D178 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA591E2264820057D178 /* AppDelegate.m */; };
 		7653DA631E2264820057D178 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7653DA611E2264820057D178 /* Main.storyboard */; };
@@ -50,9 +63,8 @@
 		7653DAA91E2329C60057D178 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7653DAA81E2329C60057D178 /* libsqlite3.tbd */; };
 		7653DAAB1E2329DF0057D178 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7653DAAA1E2329DF0057D178 /* libz.tbd */; };
 		7653DAAD1E2329EF0057D178 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7653DAAC1E2329EF0057D178 /* libc++.tbd */; };
-		7653DAB21E232AAE0057D178 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7653DAAF1E232AAE0057D178 /* libBPush.a */; };
 		7653DAB31E232AAE0057D178 /* libCBLForestDBStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7653DAB01E232AAE0057D178 /* libCBLForestDBStorage.a */; };
-		7653DAB81E232B6D0057D178 /* ArticleEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DAB71E232B6D0057D178 /* ArticleEntity.m */; };
+		7653DAB81E232B6D0057D178 /* ImageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DAB71E232B6D0057D178 /* ImageEntity.m */; };
 		7653DABE1E232D900057D178 /* favorite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7653DABD1E232D900057D178 /* favorite.storyboard */; };
 		7653DACA1E2330960057D178 /* AlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DAC01E2330960057D178 /* AlbumTableViewController.m */; };
 		7653DACB1E2330960057D178 /* AlbumSelectBottomSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DAC11E2330960057D178 /* AlbumSelectBottomSheetViewController.m */; };
@@ -62,7 +74,7 @@
 		7653DAD11E2330BB0057D178 /* CliplayTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DACF1E2330BB0057D178 /* CliplayTabBarViewController.m */; };
 		7653DAD61E2331A70057D178 /* ClipController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DAD41E2331A70057D178 /* ClipController.m */; };
 		7653DAD91E2331B40057D178 /* ClipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DAD71E2331B40057D178 /* ClipCell.m */; };
-		7653DAE01E2333070057D178 /* MyLBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DADF1E2333070057D178 /* MyLBService.m */; };
+		7653DAE01E2333070057D178 /* LBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DADF1E2333070057D178 /* LBService.m */; };
 		7653DB1C1E2336AC0057D178 /* DOFavoriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB121E2336AC0057D178 /* DOFavoriteButton.m */; };
 		7653DB1D1E2336AC0057D178 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB151E2336AC0057D178 /* Reachability.m */; };
 		7653DB1E1E2336AC0057D178 /* CALayer+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB171E2336AC0057D178 /* CALayer+YYAdd.m */; };
@@ -80,7 +92,6 @@
 		7653DB471E233A960057D178 /* DEComposeRuledView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB3E1E233A960057D178 /* DEComposeRuledView.m */; };
 		7653DB481E233A960057D178 /* REComposeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB401E233A960057D178 /* REComposeBackgroundView.m */; };
 		7653DB4A1E233B4E0057D178 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7653DB491E233B4E0057D178 /* TencentOpenAPI.framework */; };
-		7653DB4D1E233B900057D178 /* AAShareBubbles.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB4C1E233B900057D178 /* AAShareBubbles.m */; };
 		7653DB501E233BD80057D178 /* MySTPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB4E1E233BD80057D178 /* MySTPopupController.m */; };
 		7653DB531E233C1F0057D178 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB521E233C1F0057D178 /* User.m */; };
 		7653DB561E233C580057D178 /* AppSettings+Cliplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB551E233C580057D178 /* AppSettings+Cliplay.m */; };
@@ -114,6 +125,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		760937FA1E30AC5200ECBB3D /* AAShareBubbles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAShareBubbles.h; path = class/common/lib/AAShareBubbles/AAShareBubbles.h; sourceTree = "<group>"; };
+		760937FB1E30AC5200ECBB3D /* AAShareBubbles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAShareBubbles.m; path = class/common/lib/AAShareBubbles/AAShareBubbles.m; sourceTree = "<group>"; };
+		760937FC1E30AC5200ECBB3D /* AAShareBubbles.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AAShareBubbles.bundle; path = class/common/lib/AAShareBubbles/AAShareBubbles.bundle; sourceTree = "<group>"; };
+		760938011E30B39400ECBB3D /* PushService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PushService.h; path = class/service/push/PushService.h; sourceTree = "<group>"; };
+		760938021E30B39400ECBB3D /* PushService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PushService.m; path = class/service/push/PushService.m; sourceTree = "<group>"; };
+		760938041E30C5A800ECBB3D /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBPush.a; path = frameworks/push/libBPush.a; sourceTree = "<group>"; };
+		760938071E30C5D800ECBB3D /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BPush.h; path = frameworks/push/BPush.h; sourceTree = SOURCE_ROOT; };
+		760938081E30C5D800ECBB3D /* BPushCerResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = BPushCerResource.bundle; path = frameworks/push/BPushCerResource.bundle; sourceTree = SOURCE_ROOT; };
+		7609380A1E30DD6900ECBB3D /* Content.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Content.h; path = class/common/Content.h; sourceTree = "<group>"; };
+		7609380D1E30DDC300ECBB3D /* PushFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PushFeed.h; path = class/common/PushFeed.h; sourceTree = "<group>"; };
+		7609380E1E30DDC300ECBB3D /* PushFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PushFeed.m; path = class/common/PushFeed.m; sourceTree = "<group>"; };
+		760938101E30E70800ECBB3D /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Utils.h"; path = "class/common/UIViewController+Utils.h"; sourceTree = "<group>"; };
+		760938111E30E70800ECBB3D /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Utils.m"; path = "class/common/UIViewController+Utils.m"; sourceTree = "<group>"; };
+		760938141E30F13300ECBB3D /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Helper.h; path = class/common/Helper.h; sourceTree = "<group>"; };
+		760938151E30F13300ECBB3D /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helper.m; path = class/common/Helper.m; sourceTree = "<group>"; };
+		760938181E31AB4400ECBB3D /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = class/common/Configuration.h; sourceTree = "<group>"; };
+		760938191E31AB4400ECBB3D /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Configuration.m; path = class/common/Configuration.m; sourceTree = "<group>"; };
+		7609381B1E31B09C00ECBB3D /* CliplayBaseSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CliplayBaseSettings.h; path = class/common/CliplayBaseSettings.h; sourceTree = "<group>"; };
+		7609381C1E31B09C00ECBB3D /* CliplayBaseSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CliplayBaseSettings.m; path = class/common/CliplayBaseSettings.m; sourceTree = "<group>"; };
+		761701431E2CFA4F00C6F692 /* TitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TitleView.xib; path = class/favorite/TitleView.xib; sourceTree = "<group>"; };
 		761EB5621E24E7450086D990 /* PlayersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayersTableViewCell.h; path = class/players/PlayersTableViewCell.h; sourceTree = "<group>"; };
 		761EB5631E24E7450086D990 /* PlayersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayersTableViewCell.m; path = class/players/PlayersTableViewCell.m; sourceTree = "<group>"; };
 		761EB5651E24E7520086D990 /* PlayersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayersTableViewController.m; path = class/players/PlayersTableViewController.m; sourceTree = "<group>"; };
@@ -158,6 +189,11 @@
 		762681CA1E2A4CFF00B535E8 /* PresentedAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PresentedAnimation.m; path = class/common/lib/Animation/PresentedAnimation.m; sourceTree = "<group>"; };
 		762681CB1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwipeUpInteractiveTransition.h; path = class/common/lib/Animation/SwipeUpInteractiveTransition.h; sourceTree = "<group>"; };
 		762681CC1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SwipeUpInteractiveTransition.m; path = class/common/lib/Animation/SwipeUpInteractiveTransition.m; sourceTree = "<group>"; };
+		76335ED81E2E37C500664761 /* CacheSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CacheSettingViewController.h; path = class/common/CacheSettingViewController.h; sourceTree = "<group>"; };
+		76335ED91E2E37C500664761 /* CacheSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CacheSettingViewController.m; path = class/common/CacheSettingViewController.m; sourceTree = "<group>"; };
+		7641188B1E30A0F200F6844B /* Cliplay_new.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cliplay_new.entitlements; sourceTree = "<group>"; };
+		7649E4281E2F91C8006E91C4 /* AutoRotateNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoRotateNavController.h; path = class/common/AutoRotateNavController.h; sourceTree = "<group>"; };
+		7649E4291E2F91C8006E91C4 /* AutoRotateNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoRotateNavController.m; path = class/common/AutoRotateNavController.m; sourceTree = "<group>"; };
 		7653DA521E2264810057D178 /* Cliplay_new.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cliplay_new.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7653DA561E2264810057D178 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7653DA581E2264820057D178 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -193,8 +229,8 @@
 		7653DAAE1E232AAE0057D178 /* LoopBack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LoopBack.framework; path = frameworks/LoopBack.framework; sourceTree = "<group>"; };
 		7653DAAF1E232AAE0057D178 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBPush.a; path = frameworks/libBPush.a; sourceTree = "<group>"; };
 		7653DAB01E232AAE0057D178 /* libCBLForestDBStorage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCBLForestDBStorage.a; path = frameworks/libCBLForestDBStorage.a; sourceTree = "<group>"; };
-		7653DAB61E232B6D0057D178 /* ArticleEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticleEntity.h; path = class/common/ArticleEntity.h; sourceTree = "<group>"; };
-		7653DAB71E232B6D0057D178 /* ArticleEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleEntity.m; path = class/common/ArticleEntity.m; sourceTree = "<group>"; };
+		7653DAB61E232B6D0057D178 /* ImageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageEntity.h; path = class/common/ImageEntity.h; sourceTree = "<group>"; };
+		7653DAB71E232B6D0057D178 /* ImageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageEntity.m; path = class/common/ImageEntity.m; sourceTree = "<group>"; };
 		7653DABD1E232D900057D178 /* favorite.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = favorite.storyboard; path = class/favorite/favorite.storyboard; sourceTree = "<group>"; };
 		7653DAC01E2330960057D178 /* AlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumTableViewController.m; path = class/favorite/AlbumTableViewController.m; sourceTree = "<group>"; };
 		7653DAC11E2330960057D178 /* AlbumSelectBottomSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumSelectBottomSheetViewController.m; path = class/favorite/AlbumSelectBottomSheetViewController.m; sourceTree = "<group>"; };
@@ -212,8 +248,8 @@
 		7653DAD51E2331A70057D178 /* ClipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClipController.h; path = class/common/ClipController.h; sourceTree = "<group>"; };
 		7653DAD71E2331B40057D178 /* ClipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClipCell.m; path = class/common/ClipCell.m; sourceTree = "<group>"; };
 		7653DAD81E2331B40057D178 /* ClipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClipCell.h; path = class/common/ClipCell.h; sourceTree = "<group>"; };
-		7653DADE1E2333070057D178 /* MyLBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLBService.h; path = class/service/lb/MyLBService.h; sourceTree = "<group>"; };
-		7653DADF1E2333070057D178 /* MyLBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLBService.m; path = class/service/lb/MyLBService.m; sourceTree = "<group>"; };
+		7653DADE1E2333070057D178 /* LBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBService.h; path = class/service/lb/LBService.h; sourceTree = "<group>"; };
+		7653DADF1E2333070057D178 /* LBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBService.m; path = class/service/lb/LBService.m; sourceTree = "<group>"; };
 		7653DB121E2336AC0057D178 /* DOFavoriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DOFavoriteButton.m; path = class/common/lib/DOFavoriteButton.m; sourceTree = "<group>"; };
 		7653DB131E2336AC0057D178 /* DOFavoriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DOFavoriteButton.h; path = class/common/lib/DOFavoriteButton.h; sourceTree = "<group>"; };
 		7653DB141E2336AC0057D178 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = class/common/lib/Reachability.h; sourceTree = "<group>"; };
@@ -250,8 +286,6 @@
 		7653DB3F1E233A960057D178 /* REComposeBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = REComposeBackgroundView.h; path = class/common/comment/REComposeBackgroundView.h; sourceTree = "<group>"; };
 		7653DB401E233A960057D178 /* REComposeBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = REComposeBackgroundView.m; path = class/common/comment/REComposeBackgroundView.m; sourceTree = "<group>"; };
 		7653DB491E233B4E0057D178 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = frameworks/TencentOpenAPI.framework; sourceTree = "<group>"; };
-		7653DB4B1E233B900057D178 /* AAShareBubbles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AAShareBubbles.h; path = class/common/lib/AAShareBubbles.h; sourceTree = "<group>"; };
-		7653DB4C1E233B900057D178 /* AAShareBubbles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AAShareBubbles.m; path = class/common/lib/AAShareBubbles.m; sourceTree = "<group>"; };
 		7653DB4E1E233BD80057D178 /* MySTPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MySTPopupController.m; path = class/common/lib/MySTPopupController.m; sourceTree = "<group>"; };
 		7653DB4F1E233BD80057D178 /* MySTPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MySTPopupController.h; path = class/common/lib/MySTPopupController.h; sourceTree = "<group>"; };
 		7653DB511E233C1F0057D178 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = class/service/lb/User.h; sourceTree = "<group>"; };
@@ -298,8 +332,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				760938051E30C5A800ECBB3D /* libBPush.a in Frameworks */,
 				7653DB4A1E233B4E0057D178 /* TencentOpenAPI.framework in Frameworks */,
-				7653DAB21E232AAE0057D178 /* libBPush.a in Frameworks */,
 				7653DAB31E232AAE0057D178 /* libCBLForestDBStorage.a in Frameworks */,
 				7653DAAD1E2329EF0057D178 /* libc++.tbd in Frameworks */,
 				7653DAAB1E2329DF0057D178 /* libz.tbd in Frameworks */,
@@ -329,6 +363,43 @@
 				ECB17A460F08C8F8D0D37DEA /* Pods-Cliplay_new.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		760937F91E30AC3900ECBB3D /* AAShareBubbles */ = {
+			isa = PBXGroup;
+			children = (
+				760937FA1E30AC5200ECBB3D /* AAShareBubbles.h */,
+				760937FB1E30AC5200ECBB3D /* AAShareBubbles.m */,
+				760937FC1E30AC5200ECBB3D /* AAShareBubbles.bundle */,
+			);
+			name = AAShareBubbles;
+			sourceTree = "<group>";
+		};
+		760938001E30B31900ECBB3D /* Push */ = {
+			isa = PBXGroup;
+			children = (
+				760938011E30B39400ECBB3D /* PushService.h */,
+				760938021E30B39400ECBB3D /* PushService.m */,
+			);
+			name = Push;
+			sourceTree = "<group>";
+		};
+		760938061E30C5BF00ECBB3D /* Push */ = {
+			isa = PBXGroup;
+			children = (
+				760938071E30C5D800ECBB3D /* BPush.h */,
+				760938081E30C5D800ECBB3D /* BPushCerResource.bundle */,
+			);
+			name = Push;
+			sourceTree = "<group>";
+		};
+		760938131E30F11600ECBB3D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				760938141E30F13300ECBB3D /* Helper.h */,
+				760938151E30F13300ECBB3D /* Helper.m */,
+			);
+			name = Helper;
 			sourceTree = "<group>";
 		};
 		761EB5571E24E4F50086D990 /* Players */ = {
@@ -387,6 +458,7 @@
 				7653DABD1E232D900057D178 /* favorite.storyboard */,
 				7653DAC71E2330960057D178 /* AlbumListTableViewCell.m */,
 				7653DAC81E2330960057D178 /* AlbumListTableViewCell.h */,
+				761701431E2CFA4F00C6F692 /* TitleView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -443,6 +515,7 @@
 		7653DA541E2264810057D178 /* Cliplay_new */ = {
 			isa = PBXGroup;
 			children = (
+				7641188B1E30A0F200F6844B /* Cliplay_new.entitlements */,
 				761EB5571E24E4F50086D990 /* Players */,
 				7653DB7A1E238D180057D178 /* News */,
 				7653DAB41E232B0B0057D178 /* Common */,
@@ -504,6 +577,7 @@
 		7653DA861E2324260057D178 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				760938001E30B31900ECBB3D /* Push */,
 				761EB57C1E2716850086D990 /* Cache */,
 				7653DADD1E2332CC0057D178 /* LB */,
 				7653DA871E23242E0057D178 /* CBL */,
@@ -544,6 +618,7 @@
 		7653DAB41E232B0B0057D178 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				760938131E30F11600ECBB3D /* Helper */,
 				7653DAEA1E2335630057D178 /* Components */,
 				7653DAD31E2331520057D178 /* Lib */,
 				7653DAD21E23312F0057D178 /* View */,
@@ -556,8 +631,17 @@
 		7653DAB51E232B5E0057D178 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7653DAB61E232B6D0057D178 /* ArticleEntity.h */,
-				7653DAB71E232B6D0057D178 /* ArticleEntity.m */,
+				7653DAB61E232B6D0057D178 /* ImageEntity.h */,
+				7653DAB71E232B6D0057D178 /* ImageEntity.m */,
+				7609380A1E30DD6900ECBB3D /* Content.h */,
+				7609380D1E30DDC300ECBB3D /* PushFeed.h */,
+				7609380E1E30DDC300ECBB3D /* PushFeed.m */,
+				7609381B1E31B09C00ECBB3D /* CliplayBaseSettings.h */,
+				7609381C1E31B09C00ECBB3D /* CliplayBaseSettings.m */,
+				7653DB511E233C1F0057D178 /* User.h */,
+				7653DB521E233C1F0057D178 /* User.m */,
+				760938181E31AB4400ECBB3D /* Configuration.h */,
+				760938191E31AB4400ECBB3D /* Configuration.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -565,12 +649,18 @@
 		7653DABF1E2330760057D178 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7653DB671E233FA00057D178 /* ClipPlayController.h */,
-				7653DB661E233FA00057D178 /* ClipPlayController.m */,
-				7653DAD51E2331A70057D178 /* ClipController.h */,
-				7653DAD41E2331A70057D178 /* ClipController.m */,
 				7653DAD01E2330BB0057D178 /* CliplayTabBarViewController.h */,
 				7653DACF1E2330BB0057D178 /* CliplayTabBarViewController.m */,
+				7653DAD51E2331A70057D178 /* ClipController.h */,
+				7653DAD41E2331A70057D178 /* ClipController.m */,
+				7653DB671E233FA00057D178 /* ClipPlayController.h */,
+				7653DB661E233FA00057D178 /* ClipPlayController.m */,
+				76335ED81E2E37C500664761 /* CacheSettingViewController.h */,
+				76335ED91E2E37C500664761 /* CacheSettingViewController.m */,
+				7649E4281E2F91C8006E91C4 /* AutoRotateNavController.h */,
+				7649E4291E2F91C8006E91C4 /* AutoRotateNavController.m */,
+				760938101E30E70800ECBB3D /* UIViewController+Utils.h */,
+				760938111E30E70800ECBB3D /* UIViewController+Utils.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -590,6 +680,8 @@
 		7653DAD31E2331520057D178 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				760938061E30C5BF00ECBB3D /* Push */,
+				760937F91E30AC3900ECBB3D /* AAShareBubbles */,
 				762681C61E2A4CC800B535E8 /* Swipe DIsmiss */,
 				762681B51E2A25A700B535E8 /* ARSegmentPager */,
 				76FE94D61E2794AE006A1B31 /* UIImage+ImageEffects.h */,
@@ -606,8 +698,6 @@
 				7653DB551E233C580057D178 /* AppSettings+Cliplay.m */,
 				7653DB4E1E233BD80057D178 /* MySTPopupController.m */,
 				7653DB4F1E233BD80057D178 /* MySTPopupController.h */,
-				7653DB4B1E233B900057D178 /* AAShareBubbles.h */,
-				7653DB4C1E233B900057D178 /* AAShareBubbles.m */,
 				7653DB291E2339F10057D178 /* UIImageView+Placeholder.h */,
 				7653DB2A1E2339F10057D178 /* UIImageView+Placeholder.m */,
 				7653DB261E2339B40057D178 /* DRImagePlaceholderHelper.m */,
@@ -629,13 +719,11 @@
 		7653DADD1E2332CC0057D178 /* LB */ = {
 			isa = PBXGroup;
 			children = (
-				7653DB511E233C1F0057D178 /* User.h */,
-				7653DB521E233C1F0057D178 /* User.m */,
 				7653DB2C1E233A460057D178 /* MyLBAdapter.h */,
 				7653DB2D1E233A460057D178 /* MyLBAdapter.m */,
 				7653DB211E2336E80057D178 /* MyLBDelegate.h */,
-				7653DADE1E2333070057D178 /* MyLBService.h */,
-				7653DADF1E2333070057D178 /* MyLBService.m */,
+				7653DADE1E2333070057D178 /* LBService.h */,
+				7653DADF1E2333070057D178 /* LBService.m */,
 			);
 			name = LB;
 			sourceTree = "<group>";
@@ -721,6 +809,7 @@
 		D743C9279FD04661B2960965 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				760938041E30C5A800ECBB3D /* libBPush.a */,
 				7653DB491E233B4E0057D178 /* TencentOpenAPI.framework */,
 				7653DAAE1E232AAE0057D178 /* LoopBack.framework */,
 				7653DAAF1E232AAE0057D178 /* libBPush.a */,
@@ -791,6 +880,17 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = NFXT343F5P;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					7653DA6D1E2264820057D178 = {
 						CreatedOnToolsVersion = 8.0;
@@ -825,6 +925,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7653DA681E2264820057D178 /* LaunchScreen.storyboard in Resources */,
+				760937FE1E30AC5200ECBB3D /* AAShareBubbles.bundle in Resources */,
 				761EB5691E24E75E0086D990 /* players.storyboard in Resources */,
 				762681C21E2A40ED00B535E8 /* NoContent.xib in Resources */,
 				7653DB7C1E238D570057D178 /* news.storyboard in Resources */,
@@ -835,6 +936,8 @@
 				7653DB761E237BD80057D178 /* cliplay_content.cblite2 in Resources */,
 				7653DA631E2264820057D178 /* Main.storyboard in Resources */,
 				762681B11E2A1A2400B535E8 /* PlayerBanner.xib in Resources */,
+				761701441E2CFA4F00C6F692 /* TitleView.xib in Resources */,
+				760938091E30C5D800ECBB3D /* BPushCerResource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,22 +1013,24 @@
 				761EB5671E24E7520086D990 /* PlayersTableViewController.m in Sources */,
 				762681BE1E2A25C100B535E8 /* ARSegmentPageController.m in Sources */,
 				7653DB741E2340CC0057D178 /* MBCircularProgressBarLayer.m in Sources */,
+				7609381A1E31AB4400ECBB3D /* Configuration.m in Sources */,
 				7653DB591E233E0C0057D178 /* EBCommentCell.m in Sources */,
 				7653DB471E233A960057D178 /* DEComposeRuledView.m in Sources */,
 				7653DA9D1E23243E0057D178 /* CBLBaseModel.m in Sources */,
 				762681CF1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m in Sources */,
 				7653DB531E233C1F0057D178 /* User.m in Sources */,
 				761EB56C1E24F6520086D990 /* Player.m in Sources */,
-				7653DB4D1E233B900057D178 /* AAShareBubbles.m in Sources */,
 				7653DAD61E2331A70057D178 /* ClipController.m in Sources */,
 				762681CE1E2A4CFF00B535E8 /* PresentedAnimation.m in Sources */,
 				761EB57F1E2717160086D990 /* CacheManager.m in Sources */,
 				7653DA5A1E2264820057D178 /* AppDelegate.m in Sources */,
 				7653DACD1E2330960057D178 /* AlbumInfoViewController.m in Sources */,
 				7653DB561E233C580057D178 /* AppSettings+Cliplay.m in Sources */,
+				760938121E30E70800ECBB3D /* UIViewController+Utils.m in Sources */,
 				7653DA9C1E23243E0057D178 /* Album.m in Sources */,
 				761EB5721E263C2F0086D990 /* MovesTableViewCell.m in Sources */,
-				7653DAE01E2333070057D178 /* MyLBService.m in Sources */,
+				7653DAE01E2333070057D178 /* LBService.m in Sources */,
+				7609380F1E30DDC300ECBB3D /* PushFeed.m in Sources */,
 				7653DB621E233EF40057D178 /* EBShadedView.m in Sources */,
 				7653DB791E23826D0057D178 /* News.m in Sources */,
 				761EB57B1E2662490086D990 /* RoundUIImageView.m in Sources */,
@@ -935,6 +1040,7 @@
 				761EB5641E24E7450086D990 /* PlayersTableViewCell.m in Sources */,
 				7653DB421E233A960057D178 /* DEComposeTextView.m in Sources */,
 				7653DB441E233A960057D178 /* REComposeViewController.m in Sources */,
+				7609381D1E31B09C00ECBB3D /* CliplayBaseSettings.m in Sources */,
 				7653DACA1E2330960057D178 /* AlbumTableViewController.m in Sources */,
 				7653DB5E1E233EA70057D178 /* EBCommentsView.m in Sources */,
 				7653DB651E233F000057D178 /* FRDLivelyButton.m in Sources */,
@@ -944,6 +1050,7 @@
 				7653DB501E233BD80057D178 /* MySTPopupController.m in Sources */,
 				7653DACE1E2330960057D178 /* AlbumListTableViewCell.m in Sources */,
 				7653DB5F1E233EA70057D178 /* EBCommentsTableView.m in Sources */,
+				760938031E30B39500ECBB3D /* PushService.m in Sources */,
 				7653DB451E233A960057D178 /* REComposeSheetView.m in Sources */,
 				7653DA9B1E23243E0057D178 /* Favorite.m in Sources */,
 				7653DAD11E2330BB0057D178 /* CliplayTabBarViewController.m in Sources */,
@@ -951,24 +1058,28 @@
 				762681B41E2A1A5500B535E8 /* PlayerBanner.m in Sources */,
 				7653DACC1E2330960057D178 /* AlbumAddClipDescViewController.m in Sources */,
 				7653DA571E2264820057D178 /* main.m in Sources */,
-				7653DAB81E232B6D0057D178 /* ArticleEntity.m in Sources */,
+				7653DAB81E232B6D0057D178 /* ImageEntity.m in Sources */,
 				7653DB2B1E2339F10057D178 /* UIImageView+Placeholder.m in Sources */,
 				7653DB461E233A960057D178 /* ModelComment.m in Sources */,
 				762681C01E2A25C100B535E8 /* ARSegmentView.m in Sources */,
 				7653DA981E23243E0057D178 /* CBLService.m in Sources */,
+				76335EDA1E2E37C500664761 /* CacheSettingViewController.m in Sources */,
 				762681BF1E2A25C100B535E8 /* ARSegmentPageHeader.m in Sources */,
 				762681AC1E2903EC00B535E8 /* PostTableViewController.m in Sources */,
 				7653DB1E1E2336AC0057D178 /* CALayer+YYAdd.m in Sources */,
 				7653DACB1E2330960057D178 /* AlbumSelectBottomSheetViewController.m in Sources */,
 				762681A11E28CB8400B535E8 /* Move.m in Sources */,
+				760937FD1E30AC5200ECBB3D /* AAShareBubbles.m in Sources */,
 				762681C51E2A43B300B535E8 /* NoContent.m in Sources */,
 				7653DB7F1E238E8E0057D178 /* NewsTableViewController.m in Sources */,
+				7649E42A1E2F91C8006E91C4 /* AutoRotateNavController.m in Sources */,
 				7653DB481E233A960057D178 /* REComposeBackgroundView.m in Sources */,
 				7653DB681E233FA00057D178 /* ClipPlayController.m in Sources */,
 				7653DB1C1E2336AC0057D178 /* DOFavoriteButton.m in Sources */,
 				76FE94D81E2794AE006A1B31 /* UIImage+ImageEffects.m in Sources */,
 				7653DB281E2339B40057D178 /* DRImagePlaceholderHelper.m in Sources */,
 				7653DB871E23A4AE0057D178 /* NewsTableViewCell.m in Sources */,
+				760938161E30F13300ECBB3D /* Helper.m in Sources */,
 				7653DB431E233A960057D178 /* EBCommentsViewController.m in Sources */,
 				762681971E27A89200B535E8 /* PlayerViewController.m in Sources */,
 			);
@@ -1107,7 +1218,9 @@
 			baseConfigurationReference = F69D0D46FAAF270ADC00F89C /* Pods-Cliplay_new.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Cliplay_new/Cliplay_new.entitlements;
 				DEVELOPMENT_TEAM = NFXT343F5P;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -1120,8 +1233,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
+					"$(PROJECT_DIR)/frameworks/push",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lee.cliplay-new";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lee.cliplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1131,7 +1245,9 @@
 			baseConfigurationReference = ECB17A460F08C8F8D0D37DEA /* Pods-Cliplay_new.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Cliplay_new/Cliplay_new.entitlements;
 				DEVELOPMENT_TEAM = NFXT343F5P;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
@@ -1144,8 +1260,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
+					"$(PROJECT_DIR)/frameworks/push",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lee.cliplay-new";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lee.cliplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

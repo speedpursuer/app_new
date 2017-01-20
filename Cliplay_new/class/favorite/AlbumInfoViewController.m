@@ -81,4 +81,5 @@
 		self.navigationItem.rightBarButtonItem.enabled = YES;
 	}
 }
+
 @end

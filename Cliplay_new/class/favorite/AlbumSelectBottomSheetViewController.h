@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "MySTPopupController.h"
-#import "Album.h"
 
 @interface AlbumSelectBottomSheetViewController : UITableViewController
 @property (nonatomic, strong) Album *selectedAlbum;

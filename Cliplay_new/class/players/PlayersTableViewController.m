@@ -8,8 +8,6 @@
 
 #import "PlayersTableViewController.h"
 #import "PlayersTableViewCell.h"
-#import "Player.h"
-#import "CBLService.h"
 #import "PlayerViewController.h"
 
 @interface PlayersTableViewController ()
@@ -105,7 +103,6 @@
 	PlayerViewController *vc = [[PlayerViewController alloc] initWithPlayer:player];	
 	[self.navigationController pushViewController:vc animated:YES];
 }
-
 
 /*
 // Override to support conditional editing of the table view.

@@ -12,8 +12,6 @@
 #import "EBCommentsViewDelegate.h"
 #import "DOFavoriteButton.h"
 #import "MyLBDelegate.h"
-#import "Album.h"
-#import "News.h"
 
 typedef NS_ENUM(NSInteger, clipActionType) {
 	addToAlbum,
@@ -30,7 +28,7 @@ typedef NS_ENUM(NSInteger, clipActionType) {
 @property (nonatomic, strong) NSArray *articleDicts;
 @property (nonatomic, strong) NSArray *articleURLs;
 @property (nonatomic, strong) Album *album;
-@property (nonatomic, strong) Post *post;
+@property (nonatomic, strong) id<Content> content;
 @property (nonatomic, strong) NSString *header;
 @property (nonatomic, strong) NSString *summary;
 @property (nonatomic, assign) BOOL showInfo;

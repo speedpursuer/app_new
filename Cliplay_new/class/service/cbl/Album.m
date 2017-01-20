@@ -49,7 +49,7 @@
 }
 
 +(Class)clipsItemClass {
-	return [ArticleEntity class];
+	return [ImageEntity class];
 }
 
 //With image quality decreased

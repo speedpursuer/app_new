@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "CBLBaseModel.h"
-#import "ArticleEntity.h"
 
 #define kTaskImageName @"image"
 #define AlbumModelType @"album"

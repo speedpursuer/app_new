@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ARSegmentPageController.h"
-#import "Player.h"
 
 @interface PostTableViewController : UITableViewController <ARSegmentControllerDelegate>
 @property Player *player;

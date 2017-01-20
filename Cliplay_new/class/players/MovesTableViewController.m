@@ -10,10 +10,6 @@
 #import "MovesTableViewCell.h"
 #import <TLYShyNavBar/TLYShyNavBarManager.h>
 #import "RoundUIImageView.h"
-#import "CacheManager.h"
-#import "ClipController.h"
-#import "Move.h"
-#import "CBLService.h"
 
 
 @interface MovesTableViewController ()
@@ -76,7 +72,7 @@
 	ClipController *vc = [ClipController new];
 	Post *post = [[CBLService sharedManager] clipsForPlayer:_player withMove:move];
 	vc.header = [NSString stringWithFormat:@"%@ - %@", _player.name, move.move_name];
-	vc.post = post;	
+	vc.content = post;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

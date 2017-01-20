@@ -41,7 +41,7 @@
 	return CGSizeMake(kScreenWidth, self.imageLabel.size.height + cellMargin * 2);
 }
 
-- (void)setCellData:(ArticleEntity*) entity isForHeight:(BOOL)isForHeight {
+- (void)setCellData:(ImageEntity*) entity isForHeight:(BOOL)isForHeight {
 	
 	NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
 	style.lineSpacing = 10;
@@ -210,7 +210,7 @@
 	[tc slowPlayWithURL:url];
 }
 
-- (void)setCellData:(ArticleEntity*) entity isForHeight:(BOOL)isForHeight {
+- (void)setCellData:(ImageEntity*) entity isForHeight:(BOOL)isForHeight {
 	
 	self.webImageView.size = CGSizeMake(kScreenWidth, _cellHeight);
 	

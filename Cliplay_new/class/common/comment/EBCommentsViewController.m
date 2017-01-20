@@ -12,13 +12,11 @@
 #import "EBCommentsView.h"
 #import "EBCommentsTableView.h"
 #import "FRDLivelyButton.h"
-#import "MyLBService.h"
 #import "UIGestureRecognizer+YYAdd.h"
 #import "EBShadedView.h"
 
 @interface EBCommentsViewController() {
-//	FakeService *service;
-	MyLBService *lbService;
+	LBService *lbService;
 }
 @property (nonatomic, strong) FRDLivelyButton *closeButton;
 @property (weak, readwrite) UIView *activityIndicator;
@@ -32,7 +30,7 @@
 - (id)init
 {
 	self = [super init];
-	lbService = [MyLBService sharedManager];
+	lbService = [LBService sharedManager];
 	[lbService setCommentdelegate:self];
 //	service = [FakeService new];
 //	[service setDelegate:self];
@@ -131,7 +129,7 @@
 
 - (void)loadCancelButton {
 	_cancelButton = [UILabel new];
-	_cancelButton.frame = CGRectMake(10, 15, 100, 30);
+	_cancelButton.frame = CGRectMake(10, 30, 100, 30);
 	_cancelButton.textAlignment = NSTextAlignmentLeft;
 	_cancelButton.text = @"取消";
 	_cancelButton.textColor = [UIColor whiteColor];

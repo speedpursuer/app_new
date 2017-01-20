@@ -8,6 +8,9 @@
 
 #import "CacheManager.h"
 #import "Reachability.h"
+#import "JDStatusBarNotification.h"
+
+#define kOneMB (1024 * 1024)
 
 @interface CacheManager()
 @property YYWebImageManager *backgroundManager;
@@ -38,16 +41,30 @@ dispatch_semaphore_t _lock;
 	return self;
 }
 
++ (dispatch_queue_t)ManagerQueue {
+	static dispatch_queue_t queue;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		queue = dispatch_queue_create("com.lee.cliplay.cache", DISPATCH_QUEUE_SERIAL);
+		dispatch_set_target_queue(queue, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+	});
+	return queue;
+}
+
 #pragma mark - Initial Setup
 
 - (void)setup {
 	_foregroundManager = [YYWebImageManager sharedManager];
-	[_foregroundManager.queue setMaxConcurrentOperationCount:1];
+	[[self foregroundManager].queue setMaxConcurrentOperationCount:2];
+	[[self foregroundManager] setTimeout:5];
 	
 	YYImageCache *sharedCache = [YYImageCache sharedCache];
+	[self configCacheLimit:sharedCache.diskCache];
+	
 	NSOperationQueue *backGroundQueue = [NSOperationQueue new];
-	backGroundQueue.maxConcurrentOperationCount = 1;
+	backGroundQueue.maxConcurrentOperationCount = 2;
 	_backgroundManager = [[YYWebImageManager alloc] initWithCache:sharedCache queue:backGroundQueue];
+	[_backgroundManager setTimeout:3];
 	
 	YYImageCache *sImageCache = [self sImageCache];
 	NSOperationQueue *queue = [NSOperationQueue new];
@@ -57,7 +74,12 @@ dispatch_semaphore_t _lock;
 	
 	_defaultPlaceholder = [self createImageWithColor:[UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1]];
 	
-	[self cleanup];
+//	[self cleanup];
+}
+
+- (void)configCacheLimit:(YYDiskCache *)diskCache {
+	diskCache.costLimit = [self getCacheLimit] * kOneMB;
+	diskCache.freeDiskSpaceLimit = 200 * kOneMB;
 }
 
 - (YYImageCache *)sImageCache {
@@ -71,7 +93,7 @@ dispatch_semaphore_t _lock;
 #pragma mark - Auto background download
 
 - (void)observeChanges {
-	[_foregroundManager.queue addObserver:self forKeyPath:@"operationCount" options:0 context:nil];
+	[[self foregroundManager].queue addObserver:self forKeyPath:@"operationCount" options:0 context:nil];
 	[self configReachability];
 }
 
@@ -81,16 +103,22 @@ dispatch_semaphore_t _lock;
 }
 
 - (void)performBackgroundDownload {
-	dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
-	if(_foregroundManager.queue.operationCount > 0) {
+	dispatch_async([CacheManager ManagerQueue], ^{
+		dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
 		[self cancelBackgroundOprts];
-	}else {
-		[self cancelBackgroundOprts];
-		if([self hasWifi]) {
-			[_delegate handleGIFFetch];
+		if([self hasWifi] && _delegate && [self foregroundManager].queue.operationCount == 0) {
+			[_delegate handleBackgroundDownload];
 		}
-	}
-	dispatch_semaphore_signal(_lock);
+//		if(_foregroundManager.queue.operationCount > 0) {
+//			[self cancelBackgroundOprts];
+//		}else {
+//			[self cancelBackgroundOprts];
+//			if([self hasWifi] && _delegate) {
+//				[_delegate handleBackgroundDownload];
+//			}
+//		}
+		dispatch_semaphore_signal(_lock);
+	});
 }
 
 - (void)cancelBackgroundOprts {
@@ -102,7 +130,7 @@ dispatch_semaphore_t _lock;
 #pragma mark - Cleanup
 
 - (void)dealloc {
-	[_foregroundManager.queue removeObserver:self forKeyPath:@"operationCount"];
+	[[self foregroundManager].queue removeObserver:self forKeyPath:@"operationCount"];
 	[[NSNotificationCenter defaultCenter] removeObserver:self
 													name:kReachabilityChangedNotification
 												  object:nil];
@@ -113,11 +141,11 @@ dispatch_semaphore_t _lock;
 - (void)stopGIFAllOprts {
 	[self cancelGIFOperations];
 	[[YYImageCache sharedCache].memoryCache removeAllObjects];
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void)cancelGIFOperations {
-	[_foregroundManager.queue cancelAllOperations];
+	[[self foregroundManager].queue cancelAllOperations];
 	[_backgroundManager.queue cancelAllOperations];
 }
 
@@ -129,7 +157,7 @@ dispatch_semaphore_t _lock;
 
 #pragma mark - Request remote/cached image
 - (void)requestGIFWithURL:(NSString *)url {
-	if(![[YYImageCache sharedCache] containsImageForKey:url]){
+	if(![[YYImageCache sharedCache] containsImageForKey:url withType:YYImageCacheTypeDisk]){
 		[_backgroundManager requestImageWithURL:[NSURL URLWithString:url]
 										options:YYWebImageOptionShowNetworkActivity
 									   progress:nil
@@ -141,7 +169,7 @@ dispatch_semaphore_t _lock;
 - (void)requestSImageWithURL:(NSString *)url forImageView:(UIImageView *)imageView{
 	 [imageView yy_setImageWithURL:[NSURL URLWithString: url]
 					   placeholder:_defaultPlaceholder
-						   options:YYWebImageOptionProgressiveBlur
+						   options:YYWebImageOptionSetImageWithFadeAnimation
 						   manager:_sImageManager
 						  progress:nil
 						 transform:nil
@@ -175,6 +203,30 @@ dispatch_semaphore_t _lock;
 	return [[YYImageCache sharedCache] getImageForKey:[[YYWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:url]]];
 }
 
+#pragma mark - Cache Settings
+- (void)setCacheLimit:(int)limit {
+	Configuration *config = [Configuration load];
+	config.cacheLimit = [NSNumber numberWithInt:limit];
+	[config save];
+	[[YYImageCache sharedCache].diskCache setCostLimit:limit * kOneMB];
+	[[YYImageCache sharedCache].diskCache trimToCost:limit * kOneMB];
+	[self showSuccessMessage:@"设置成功"];
+}
+
+- (int)getCacheLimit {
+	Configuration *config = [Configuration load];
+	return [config.cacheLimit intValue];
+}
+
+- (NSInteger)totalCached {
+	return [YYImageCache sharedCache].diskCache.totalCost / kOneMB;
+}
+
+- (void)deleteAllCache {
+	[[YYImageCache sharedCache].diskCache removeAllObjects];
+	[self showSuccessMessage:@"已删除所有缓存"];
+}
+
 #pragma mark - Helper
 
 -(UIImage *)createImageWithColor: (UIColor *) color {
@@ -189,9 +241,8 @@ dispatch_semaphore_t _lock;
 	return theImage;
 }
 
-- (void)performBlock:(void(^)())block afterDelay:(NSTimeInterval)delay {
-	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
-	dispatch_after(popTime, dispatch_get_main_queue(), block);
+- (void)showSuccessMessage:(NSString *)message {
+	[JDStatusBarNotification showWithStatus:message dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
 }
 
 #pragma mark - Reachability

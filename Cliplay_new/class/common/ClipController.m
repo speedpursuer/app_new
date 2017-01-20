@@ -1,3 +1,4 @@
+
 //
 //  ClipController.m
 //
@@ -7,25 +8,19 @@
 #import "ClipController.h"
 #import "ClipPlayController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-//#import "Reachability.h"
 #import "AppDelegate.h"
-#import "MyLBAdapter.h"
 #import "EBCommentsViewController.h"
 #import "ModelComment.h"
 #import "ClipCell.h"
-#import "ArticleEntity.h"
-#import "MyLBService.h"
 #import "AlbumAddClipDescViewController.h"
 #import "AlbumSelectBottomSheetViewController.h"
 #import "AlbumInfoViewController.h"
 #import <STPopup/STPopup.h>
-#import "CBLService.h"
-//#import <JDFPeekaboo/JDFPeekabooCoordinator.h>
 #import <TLYShyNavBar/TLYShyNavBarManager.h>
 #import "DismissAnimation.h"
 #import "PresentedAnimation.h"
 #import "SwipeUpInteractiveTransition.h"
-
+#import "AutoRotateNavController.h"
 
 
 #define cellMargin 10
@@ -35,14 +30,9 @@
 #define sHeight [UIScreen mainScreen].bounds.size.height
 #define topBottomAdjust 10.0
 #define tableViewYoffset -64.0
-#define ratio16_9   (double)9/16
-#define ratio4_3    (double)3/4
-#define ratio16_10  (double)10/16
-#define ratioSettings "ratioSettings"
 
 @interface ClipController ()
 @property (nonatomic, strong) STPopupController *popCtr;
-@property CBLService *cblService;
 @property Album *albumToAdd;
 @property NSInteger indexOfSelectedClip;
 @property clipActionType actionType;
@@ -50,21 +40,23 @@
 @property CGFloat correction;
 @property NSDictionary *collectionList;
 @property CGFloat cellHeight;
-@property CacheManager *cacheManager;
-//@property (nonatomic, strong) YYWebImageManager *backgroudManager;
-//@property (nonatomic, weak) YYWebImageManager *defaultManage;
 @property NSInteger currIndex;
 @property BOOL isScrollingDown;
-//@property BOOL hasWifi;
-//@property (nonatomic, strong) JDFPeekabooCoordinator *scrollCoordinator;
 @property (nonatomic, weak) UISearchBar *searchBar;
 @property NSString *searchKeywords;
 @property BOOL playStopped;
-@property UITableView *tableView;
+@property (nonatomic, weak) UITableView *tableView;
 @property NSArray *data;
-@property MyLBService *lbService;
+@property (nonatomic, weak) CacheManager *cacheManager;
+@property (nonatomic, weak) CBLService *cblService;
+@property (nonatomic, weak) LBService *lbService;
 @property NSDictionary* commentList;
 @property (nonatomic, strong) SwipeUpInteractiveTransition *interactiveTransition;
+@property BOOL isDismissed;
+//@property (nonatomic, strong) JDFPeekabooCoordinator *scrollCoordinator;
+//@property BOOL hasWifi;
+//@property (nonatomic, strong) YYWebImageManager *backgroudManager;
+//@property (nonatomic, weak) YYWebImageManager *defaultManage;
 //@property TLYShyNavBarManager *shyNavBarManager;
 //@property NSArray *filteredClips;
 //@property BOOL didAppear;
@@ -84,7 +76,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	_lbService = [MyLBService sharedManager];
+	_lbService = [LBService sharedManager];
 	_cblService = [CBLService sharedManager];
 	
 	[self initValues];
@@ -97,7 +89,6 @@
 	
 	[self setupTableView];
 	
-	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	self.view.backgroundColor = [UIColor whiteColor];
 	
 	[self setTitle: _header];
@@ -105,8 +96,6 @@
 	self.tableView.fd_debugLogEnabled = NO;
 	
 	[self registerReusableCell];
-	
-//	[self setUpScrollCoordinator];
 	
 	[self setupNavBarStyle];
 	
@@ -132,51 +121,63 @@
 - (void)setupNavBarStyle {
 	[self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
 	[self.navigationController.navigationBar setShadowImage:nil];
-//	[self.navigationController.navigationBar setBarTintColor:CLIPLAY_COLOR];
 }
 
 - (void)setupTableView {
 	CGRect tableViewFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-	self.tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStylePlain];
-	[self.view addSubview:self.tableView];
+	
+	UITableView *tableView = [[UITableView alloc] initWithFrame:tableViewFrame style:UITableViewStylePlain];
+	[self.view addSubview:tableView];
+	self.tableView = tableView;
 	[self.tableView setDelegate:self];
 	[self.tableView setDataSource:self];
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	[self setupNavAutoHide];
 }
 
 - (void)setupNavAutoHide {
+	UIView *view = view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 1.f)];
+	view.backgroundColor = [UIColor clearColor];
+	[self.shyNavBarManager setExtensionView:view];
 	self.tableView.contentInset = UIEdgeInsetsMake(64,0,0,0);
 	self.shyNavBarManager.scrollView = self.tableView;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];	
+//- (void)viewWillAppear:(BOOL)animated {
+//	[super viewWillAppear:animated];
+//	[UIViewController attemptRotationToDeviceOrientation];
+//}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
 	if(_playStopped) {
 		[self autoPlayFullyVisibleImages];
 	}else{
 		[self fetchPostComments:NO];
-	}	
+	}
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
-//	[self.scrollCoordinator disable];
 	if(![self isVisible]){
 		[self stopPlayingAllImages];
 		if(![self presentedViewController]){
+			_isDismissed = YES;
 			self.shyNavBarManager.scrollView = nil;
+			self.shyNavBarManager.extensionView = nil;
+//			[_cacheManager stopGIFAllOprts];
 		}
 	}
+}
+
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
+	NSLog(@"didReceiveMemoryWarning!!!!!");
 }
 
 - (void)dealloc {
 	[_cacheManager stopGIFAllOprts];
 }
-
-//- (void)viewDidAppear:(BOOL)animated {
-//	[super viewDidAppear:animated];
-//	[self.scrollCoordinator enable];
-//}
 
 - (BOOL)hidesBottomBarWhenPushed {
 	return YES;
@@ -197,6 +198,8 @@
 //	[self.tableView.tableHeaderView addSubview:self.searchBar];
 //	self.navigationItem.titleView = self.searchBar;
 	[self.navigationController.view insertSubview:searchBar aboveSubview:self.navigationController.navigationBar];
+	
+	[searchBar becomeFirstResponder];
 	
 	_searchBar = searchBar;
 }
@@ -227,17 +230,18 @@
 	_cacheManager.delegate = self;
 }
 
-- (void)handleGIFFetch {
+- (void)handleBackgroundDownload {
+	if(_isDismissed) return;
 	if(_isScrollingDown) {
 		for (int i = (int)_currIndex + 1; i < [_data count]; i++) {
-			ArticleEntity *entity = (ArticleEntity *)_data[i];
+			ImageEntity *entity = (ImageEntity *)_data[i];
 			if([entity.url length] != 0) {
 				[self.cacheManager requestGIFWithURL:entity.url];
 			}
 		}
 	}else {
 		for (int i = (int)_currIndex - 1; i >= 0; i--) {
-			ArticleEntity *entity = (ArticleEntity *)_data[i];
+			ImageEntity *entity = (ImageEntity *)_data[i];
 			if([entity.url length] != 0) {
 				[self.cacheManager requestGIFWithURL:entity.url];
 			}
@@ -271,11 +275,6 @@
 }
 
 #pragma mark - Initialization
-//- (void)setUpScrollCoordinator {
-//	self.scrollCoordinator = [[JDFPeekabooCoordinator alloc] init];
-//	self.scrollCoordinator.scrollView = self.tableView;
-//	self.scrollCoordinator.topView = self.navigationController.navigationBar;
-//}
 
 -(void)registerReusableCell {
 	
@@ -290,8 +289,8 @@
 	NSMutableArray *entities = @[].mutableCopy;
 	if(_searchKeywords) {
 		[self converAlbumClips:_album.clips toData:entities withSearch:_searchKeywords];
-	}else if (_post) {
-		[self converAlbumClips:_post.image toData:entities withSearch:nil];
+	}else if (_content) {
+		[self converAlbumClips:[_content images] toData:entities withSearch:nil];
 	}else if(_album) {
 		[self converAlbumClips:_album.clips toData:entities withSearch:nil];
 	}else if(_articleDicts) {
@@ -299,13 +298,13 @@
 			NSString *desc = obj[@"desc"];
 			NSString *url = obj[@"url"];
 			if(desc && [desc length] != 0) {
-				[entities addObject:[[ArticleEntity alloc] initWithData:@"" desc:desc]];
+				[entities addObject:[[ImageEntity alloc] initWithData:@"" desc:desc]];
 			}
-			[entities addObject:[[ArticleEntity alloc] initWithData:url desc:@""]];
+			[entities addObject:[[ImageEntity alloc] initWithData:url desc:@""]];
 		}];
 	}else if(_articleURLs) {
 		for (NSString *url in _articleURLs) {
-			[entities addObject:[[ArticleEntity alloc] initWithData:url desc: @""]];
+			[entities addObject:[[ImageEntity alloc] initWithData:url desc: @""]];
 		}
 	}
 	
@@ -315,15 +314,15 @@
 - (void)converAlbumClips:(NSArray *)clips toData:(NSMutableArray *)entities withSearch:(NSString *)keywords{
 	NSMutableArray *pureURL = @[].mutableCopy;
 	[clips enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		ArticleEntity *entity = (ArticleEntity *)obj;
+		ImageEntity *entity = (ImageEntity *)obj;
 		if(!keywords || [entity.desc rangeOfString:_searchKeywords options:NSCaseInsensitiveSearch].location != NSNotFound)
 		{
 			NSString *desc = entity.desc;
 			NSString *url = entity.url;
 			if(desc && [desc length] != 0) {
-				[entities addObject:[[ArticleEntity alloc] initWithData:@"" desc:desc]];
+				[entities addObject:[[ImageEntity alloc] initWithData:@"" desc:desc]];
 			}
-			[entities addObject:[[ArticleEntity alloc] initWithData:url desc:@"" tag:idx]];
+			[entities addObject:[[ImageEntity alloc] initWithData:url desc:@"" tag:idx]];
 			[pureURL addObject:url];
 		}
 	}];
@@ -386,9 +385,8 @@
 	}else if([self isInAlbum]) {
 		button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showOverallActionsheet)];
 	}else {
-		button = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleBordered target:self action:@selector(showRatioActionsheet)];
+		button = [[UIBarButtonItem alloc] initWithTitle:@"显示" style:UIBarButtonItemStyleBordered target:self action:@selector(showRatioActionsheet)];
 	}
-//	button.tintColor = CLIPLAY_COLOR;
 	self.navigationItem.rightBarButtonItem = button;
 }
 
@@ -502,7 +500,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	ArticleEntity *entity = _data[indexPath.row];
+	ImageEntity *entity = _data[indexPath.row];
 	
 	if([entity.url length] == 0) {
 		TitleCell *cell = [tableView dequeueReusableCellWithIdentifier:TitleCellIdentifier];
@@ -530,7 +528,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-	ArticleEntity *entity = _data[indexPath.row];
+	ImageEntity *entity = _data[indexPath.row];
 	
 	if([entity.url length] == 0) {
 		return [tableView fd_heightForCellWithIdentifier:TitleCellIdentifier cacheByIndexPath:indexPath configuration:^(id cell) {
@@ -541,14 +539,6 @@
 			[self configureCell:cell atIndexPath:indexPath isForHeight:true];
 		}];
 	}
-}
-
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-	
-}
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -571,13 +561,6 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 	[self recordCurrIndex:indexPath.row];
 }
-
-- (void)reload {
-	[[YYImageCache sharedCache].memoryCache removeAllObjects];
-	[[YYImageCache sharedCache].diskCache removeAllObjects];
-	[self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.1];
-}
-
 
 #pragma mark - Clip Play
 
@@ -633,16 +616,12 @@
 
 #pragma mark - Favorite
 - (void)setFavoriate:(NSString *)url {
-//	[[FavoriateMgr sharedInstance] setFavoriate:url];
-//	[lbService recordFavoriteWithClipID:url postID:_postID];
 	[_cblService setFavoriate:url];
 }
 - (void)unsetFavoriate:(NSString *)url {
-//	[[FavoriateMgr sharedInstance] unsetFavoriate:url];
 	[_cblService unsetFavoriate:url];
 }
 - (BOOL)isFavoriate:(NSString *)url {
-//	return [[FavoriateMgr sharedInstance] isFavoriate:url];
 	return [_cblService isFavoriate:url];
 }
 
@@ -701,7 +680,6 @@
 	EBCommentsViewController *clipCtr = [[EBCommentsViewController alloc] init];
 	[clipCtr setClipID:clipID];
 	[clipCtr setDelegate:self];
-//	[self setDownloadLimit:NO];
 	clipCtr.modalPresentationStyle = UIModalPresentationOverFullScreen;
 	[self presentViewController:clipCtr animated:YES completion:nil];
 }
@@ -752,16 +730,10 @@
 		[self setCollected:[self urlForSeletedClip]];
 		[((ClipCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_indexOfSelectedClip inSection:0]]) selectAlbumButton];
 	}
-	
-//	if([_cblService addClip:[self urlForSeletedClip] toAlum:_albumToAdd withDesc:desc]) {
-//		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:@"已加入\"%@\"", _albumToAdd.title] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
-//	}else{
-//		[JDStatusBarNotification showWithStatus:@"操作失败，请重试" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
-//	}
 }
 
 - (NSString *)urlForSeletedClip {
-	ArticleEntity *entity = _data[_indexOfSelectedClip];
+	ImageEntity *entity = _data[_indexOfSelectedClip];
 	return entity.url;
 }
 
@@ -783,9 +755,6 @@
 
 - (void)saveAllClips {
 	[_cblService addClips:_articleURLs toAlum:_albumToAdd];
-//	if([_cblService addClips:_articleURLs toAlum:_albumToAdd]){
-//		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:@"已加入\"%@\"", _albumToAdd.title] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
-//	}
 }
 
 - (IBAction)unwindBack:(UIStoryboardSegue *)segue {
@@ -826,8 +795,8 @@
 }
 
 - (void)modifyClipDesc:(NSString *)newDesc {
-	NSInteger clipIndexInAlbum = ((ArticleEntity *)_data[_indexOfSelectedClip]).tag;
-	NSString *origDesc = ((ArticleEntity *)_album.clips[clipIndexInAlbum]).desc;
+	NSInteger clipIndexInAlbum = ((ImageEntity *)_data[_indexOfSelectedClip]).tag;
+	NSString *origDesc = ((ImageEntity *)_album.clips[clipIndexInAlbum]).desc;
 	
 	//No need to change if not changed
 	if([origDesc isEqualToString:newDesc]) {
@@ -840,7 +809,7 @@
 }
 
 - (void)deleteClip {
-	NSInteger clipIndexInAlbum = ((ArticleEntity *)_data[_indexOfSelectedClip]).tag;
+	NSInteger clipIndexInAlbum = ((ImageEntity *)_data[_indexOfSelectedClip]).tag;
 	if([_cblService deleteClipWithIndex:clipIndexInAlbum forAlbum:_album]) {
 		[self refreshScreen:YES];
 	}
@@ -854,8 +823,8 @@
 	ctr.delegate = self;
 	ctr.modalPresentationStyle = UIModalPresentationCurrentContext;
 	
-	UINavigationController *navigationController =
-	[[UINavigationController alloc] initWithRootViewController:ctr];
+	AutoRotateNavController *navigationController =
+	[[AutoRotateNavController alloc] initWithRootViewController:ctr];
 	
 	[self presentViewController:navigationController animated:YES completion:nil];
 }
@@ -871,7 +840,7 @@
 - (void)prepareForDescModify {
 	NSString *curDesc = @"";
 	if(_indexOfSelectedClip != 0) {
-		ArticleEntity *entity = _data[_indexOfSelectedClip - 1];
+		ImageEntity *entity = _data[_indexOfSelectedClip - 1];
 		curDesc = entity.desc;
 	}
 	
@@ -907,8 +876,8 @@
 	ctr.desc = _album.desc;
 	ctr.delegate = self;
 	
-	UINavigationController *navigationController =
-	[[UINavigationController alloc] initWithRootViewController:ctr];
+	AutoRotateNavController *navigationController =
+	[[AutoRotateNavController alloc] initWithRootViewController:ctr];
 	
 	[self presentViewController:navigationController animated:YES completion:nil];
 }
@@ -918,7 +887,6 @@
 }
 
 - (void)updateAlbumInfoWithTitle:(NSString *)title withDesc:(NSString *)desc {
-//	NSLog(@"from album info, title = %@, desc = %@", title, desc);
 	if([_cblService updateAlbumInfo:title withDesc:desc forAlbum:_album]) {
 		[self setTitle:title];
 		[self setSummary:desc];
@@ -1028,7 +996,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 	[self setCellHeight:ceil((kScreenWidth) * height / width)];
 }
 
-- (void)setClipRatio:(double)ratio {
+- (void)setClipRatio:(float)ratio {
 	[self setCellHeight:ceil((kScreenWidth) * ratio)];
 }
 
@@ -1037,7 +1005,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 	[self refreshScreen:NO];
 }
 
-- (void)changeClipRatio:(double)ratio {
+- (void)changeClipRatio:(float)ratio {
 	[self setRatioSetting:ratio];
 	[self setClipRatio:ratio];
 	[self refreshScreen:NO];
@@ -1073,24 +1041,15 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 	[self autoPlayFullyVisibleImages];
 }
 
-- (void)setRatioSetting:(double)ratio {
-	NSUserDefaults *nud = [NSUserDefaults standardUserDefaults];
-	[nud setObject:[NSNumber numberWithDouble:ratio] forKey:@ratioSettings];
-	[nud synchronize];
+- (void)setRatioSetting:(float)ratio {
+	Configuration *config = [Configuration load];
+	config.displayRatio = [NSNumber numberWithFloat:ratio];
+	[config save];
 }
 
-- (double)getRatioSetting {
-	NSUserDefaults *nud = [NSUserDefaults standardUserDefaults];
-	NSNumber *ratio = [nud objectForKey:@ratioSettings];
-	if(!ratio){
-		return ratio4_3;
-	}
-	return [ratio doubleValue];
-}
-
-- (void)performBlock:(void(^)())block afterDelay:(NSTimeInterval)delay {
-	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
-	dispatch_after(popTime, dispatch_get_main_queue(), block);
+- (float)getRatioSetting {
+	Configuration *config = [Configuration load];
+	return [config.displayRatio floatValue];
 }
 
 #pragma mark - Animation
@@ -1127,4 +1086,5 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 -(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
 	return (self.interactiveTransition.isInteracting ? self.interactiveTransition : nil);
 }
+
 @end

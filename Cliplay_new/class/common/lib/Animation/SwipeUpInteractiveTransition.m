@@ -9,7 +9,7 @@
 #import "SwipeUpInteractiveTransition.h"
 
 #define kMargin 30
-#define kMinDismissY 50
+#define kMinDismissY 100
 
 @implementation SwipeUpInteractiveTransition
 - (instancetype)init:(ClipPlayController *)vc
@@ -28,7 +28,8 @@
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan: {
             _isInteracting = YES;
-            [_vc dismissViewControllerAnimated:YES completion:nil];
+			[self checkPlayingStart];
+			[_vc dismissViewControllerAnimated:YES completion:nil];
             break;
         }
         case UIGestureRecognizerStateChanged: {
@@ -40,8 +41,7 @@
 					[self updateInteractiveTransition:fraction];
 				}
 			}else {
-				__weak typeof(self) _self = self;
-				[_self adjustProgressWithGesture:gesture];
+				[self adjustProgressWithGesture:gesture];
 			}
             break;
         }
@@ -52,6 +52,7 @@
             }else {
                 [self finishInteractiveTransition];
             }
+			[self checkPlayingEnd];
             break;
         }
         default:
@@ -74,6 +75,16 @@
 			progress = (p.x - kMargin) / (gesture.view.frame.size.width - kMargin * 2);
 			imageView.currentAnimatedImageIndex = image.animatedImageFrameCount * progress;
 		}
+	}
+}
+
+- (void)checkPlayingStart {
+	self.previousIsPlaying = [self.vc.imageView isAnimating]? YES: NO;
+}
+
+- (void)checkPlayingEnd {
+	if (self.previousIsPlaying) {
+		[self.vc.imageView startAnimating];
 	}
 }
 

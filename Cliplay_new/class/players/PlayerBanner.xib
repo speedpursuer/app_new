@@ -22,10 +22,10 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="xh1-zf-8NM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="45z-Et-rEN"/>
-                <constraint firstAttribute="bottom" secondItem="Inv-dI-P4A" secondAttribute="bottom" constant="20" id="I0J-OB-4AE"/>
+                <constraint firstItem="Inv-dI-P4A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="StQ-mq-U3d"/>
+                <constraint firstAttribute="bottom" secondItem="Inv-dI-P4A" secondAttribute="bottom" constant="20" id="eQr-6m-SBz"/>
                 <constraint firstAttribute="trailing" secondItem="xh1-zf-8NM" secondAttribute="trailing" id="fLv-p4-QZm"/>
                 <constraint firstItem="xh1-zf-8NM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pmD-gp-sLZ"/>
-                <constraint firstItem="Inv-dI-P4A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="r99-72-UFj"/>
                 <constraint firstAttribute="bottom" secondItem="xh1-zf-8NM" secondAttribute="bottom" id="yF4-xW-33P"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

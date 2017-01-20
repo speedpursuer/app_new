@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ClipController.h"
 
 @interface ClipPlayController : UIViewController
 @property (nonatomic, strong) YYAnimatedImageView *imageView;
@@ -17,5 +16,5 @@
 @property (nonatomic, weak) ClipController *delegate;
 @property (nonatomic, assign) BOOL standalone;
 @property BOOL isInLandscapeMode;
-- (void) cancelAction;
+- (void)prepareToExit;
 @end

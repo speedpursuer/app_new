@@ -9,7 +9,7 @@
 #import "AppSettings+Cliplay.h"
 
 @implementation AppSettings (Cliplay)
-+ (id)loadWithDefault
++ (id)load
 {
 	NSString *mainKey = NSStringFromClass([self class]);
 	return [[self class] loadFromKeyWithDefault:mainKey];
@@ -24,4 +24,5 @@
 	}
 	return [[[self class] alloc] initWithDictionary:serializedSelf];
 }
+
 @end

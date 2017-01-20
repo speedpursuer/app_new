@@ -7,17 +7,12 @@
 //
 
 #import "NewsTableViewController.h"
-#import "CBLService.h"
-#import "News.h"
-#import "ArticleEntity.h"
 #import "NewsTableViewCell.h"
-#import "ClipController.h"
-#import "CBLService.h"
-//#import <BOZPongRefreshControl/BOZPongRefreshControl.h>
 
 
 @interface NewsTableViewController ()
 @property NSArray *newsList;
+@property BOOL isSynced;
 @end
 
 @implementation NewsTableViewController
@@ -29,6 +24,17 @@
 	[self allNews];
 	[self hideBackButtonText];
 	[self addObserver];
+//	[self syncStart];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[self autoRefresh];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	[self.refreshControl endRefreshing];
 }
 
 - (void)hideBackButtonText {
@@ -46,12 +52,27 @@
 	[self.refreshControl addTarget:self action:@selector(syncStart) forControlEvents:UIControlEventValueChanged];
 }
 
+- (void)autoRefresh {
+	if(_isSynced) return;
+	
+	[self.refreshControl beginRefreshing];
+	[self.tableView setContentOffset:CGPointMake(0, self.tableView.contentOffset.y-self.refreshControl.frame.size.height) animated:YES];
+	
+	[self syncStart];
+	
+	_isSynced = YES;
+}
+
 - (void)syncStart {
 	[[CBLService sharedManager] syncStartWithDelegate:self];
 }
-
+	 
 - (void)syncEnd {
-	[self.refreshControl endRefreshing];
+	__weak typeof(self) _self = self;
+	[Helper performBlock:^{
+		[_self.refreshControl endRefreshing];
+	} afterDelay:0.3];
+	
 }
 
 - (void)allNews {
@@ -102,7 +123,7 @@
 	News *news = _newsList[indexPath.row];
 	vc.header = news.name;
 	vc.summary = news.summary;
-	vc.post = news;	
+	vc.content = news;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

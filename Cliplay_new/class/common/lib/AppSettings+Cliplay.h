@@ -9,5 +9,5 @@
 #import <AppSettings/AppSettings.h>
 
 @interface AppSettings (Cliplay)
-+ (id)loadWithDefault;
++ (id)load;
 @end

@@ -7,17 +7,23 @@
 //
 
 #import "CBLService.h"
-#import "CacheManager.h"
 #import "FCUUID.h"
 #import "MRProgress.h"
 #import "JDStatusBarNotification.h"
 #import "Reachability.h"
 
+#define didSyncedFlag @"didSynced"
+#define kLocalFlag @"isFromLocal"
+#define kDBName @"cliplay"
+#define kStorageType kCBLForestDBStorage
+#define kContentDBName @"cliplay_content"
+#define kDBFileType @"cblite2"
 //#define cbserverURL   @"http://localhost:4984/cliplay_user_data"
 #define cbserverURL @"http://121.40.197.226:8000/cliplay_user_data"
 #define cbContentServerURL @"http://121.40.197.226:8000/cliplay_staging"
-#define didSyncedFlag @"didSynced"
-#define kLocalFlag @"isFromLocal"
+#define cbContentUserName  @"app_viewer"
+#define cbContentPassword  @"Cliplay1234"
+//#define kDidSynced @"didSynced"
 
 
 @interface CBLService()
@@ -77,7 +83,6 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
 	NSString *applicationSupportDirectory = [paths firstObject];
 	NSLog(@"applicationSupportDirectory: '%@'", applicationSupportDirectory);
-	[self getSpecificContent];
 	
 	return self;
 }
@@ -322,7 +327,7 @@
 - (BOOL)addClip:(NSString *)url toAlum:(Album *)album withDesc:(NSString *)desc {
 	
 	NSMutableArray *existingClips = [NSMutableArray arrayWithArray:album.clips];
-	ArticleEntity *clip = [[ArticleEntity alloc] initWithData:url desc:desc];
+	ImageEntity *clip = [[ImageEntity alloc] initWithData:url desc:desc];
 	
 	[existingClips addObject:clip];
 	album.clips = [existingClips copy];
@@ -335,7 +340,7 @@
 	NSMutableArray *existingClips = [NSMutableArray arrayWithArray:album.clips];
 	
 	for(NSString *url in urls) {
-		ArticleEntity *clip = [[ArticleEntity alloc] initWithData:url desc:@""];
+		ImageEntity *clip = [[ImageEntity alloc] initWithData:url desc:@""];
 		[existingClips addObject:clip];
 	}
 	
@@ -347,8 +352,8 @@
 - (BOOL)modifyClipDesc:(NSString *)newDesc withIndex:(NSInteger)index forAlbum:(Album *)album {
 	
 	NSMutableArray *clipsToModify = [album.clips mutableCopy];
-	ArticleEntity *clip = clipsToModify[index];
-	ArticleEntity *newClip = [[ArticleEntity alloc] initWithCopy:clip];
+	ImageEntity *clip = clipsToModify[index];
+	ImageEntity *newClip = [[ImageEntity alloc] initWithCopy:clip];
 	newClip.desc = newDesc;
 	[clipsToModify replaceObjectAtIndex:index withObject:newClip];
 	album.clips = [clipsToModify copy];
@@ -371,7 +376,7 @@
 		[album removeThumb];
 	}else if(index == 0) {
 		//Change thumb if the first clip is switched
-		ArticleEntity *currFirstClip = clipsToModify[0];
+		ImageEntity *currFirstClip = clipsToModify[0];
 		[album setThumb:[self getThumb:currFirstClip.url]];
 	}
 	album.clips = [clipsToModify copy];
@@ -544,8 +549,8 @@
 	_pull = [_contentDatabase createPullReplication:syncUrl];
 	
 	id<CBLAuthenticator> auth;
-	auth = [CBLAuthenticator basicAuthenticatorWithName: @"app_viewer"
-											   password: @"Cliplay1234"];
+	auth = [CBLAuthenticator basicAuthenticatorWithName: cbContentUserName
+											   password: cbContentPassword];
 	_pull.authenticator = auth;
 	
 	NSNotificationCenter *nctr = [NSNotificationCenter defaultCenter];
@@ -630,8 +635,9 @@
 	
 	_lastSyncError = nil;
 	
-	[self performBlock:^{
-		[_pull start];
+	__weak typeof(self) _self = self;
+	[Helper performBlock:^{
+		[_self.pull start];
 	} afterDelay:0.5];
 }
 
@@ -679,8 +685,10 @@
 				[self setDidSynced];
 			};
 		}
-		[self performBlock:^{
-			[_progressView dismiss:NO];
+		
+		__weak typeof(self) _self = self;
+		[Helper performBlock:^{
+			[_self.progressView dismiss:NO];
 		} afterDelay:0.8];
 	}
 }
@@ -805,7 +813,7 @@
 
 - (void)setThumbForAlbum:(Album *)album {
 	if(!album.getThumb) {
-		ArticleEntity *firstClip = album.clips[0];
+		ImageEntity *firstClip = album.clips[0];
 		if(firstClip){
 			[album setThumb:[self getThumb:firstClip.url]];
 		}
@@ -814,11 +822,6 @@
 
 - (UIImage *)getThumb:(NSString *)url{
 	return [[CacheManager sharedManager] cachedGIFWith:url];
-}
-
-- (void)performBlock:(void(^)())block afterDelay:(NSTimeInterval)delay {
-	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
-	dispatch_after(popTime, dispatch_get_main_queue(), block);
 }
 
 - (void)showMessage:(NSString *)text withTitle:(NSString *)title {
@@ -837,6 +840,42 @@
 		return NO;
 	}
 	return YES;
+}
+
+- (void)fetchNewsByID:(NSString *)newID completionHandlder:(void (^)(id<Content> content))handlder {
+	NSString *authStr = [NSString stringWithFormat:@"%@:%@", cbContentUserName, cbContentPassword];
+	NSData *authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
+	NSString *authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
+	
+	
+	NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@/", cbContentServerURL] stringByAppendingString: newID]];
+	
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+	[request setValue:authValue forHTTPHeaderField:@"Authorization"];
+	
+	[NSURLConnection sendAsynchronousRequest:request
+									   queue:[NSOperationQueue mainQueue]
+						   completionHandler:^(NSURLResponse *response,
+											   NSData *data, NSError *connectionError) {
+		 if (data.length > 0 && connectionError == nil) {
+			 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data
+																  options:0
+																	error:NULL];
+			 
+			 PushFeed *feed = [PushFeed new];
+			 NSMutableArray *array = [NSMutableArray new];
+			 
+			 [dict[@"image"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+				 ImageEntity *entry = [[ImageEntity alloc] initWithJSON:obj];
+				 [array addObject:entry];
+			 }];
+			 
+			 feed.image = [array copy];
+			 feed.summary = dict[@"summary"];
+			 
+			 handlder(feed);
+		 }
+	}];
 }
 
 #pragma mark - For test

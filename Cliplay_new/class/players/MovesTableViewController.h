@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ARSegmentPageController.h"
-#import "Player.h"
 
 @interface MovesTableViewController : UITableViewController <ARSegmentControllerDelegate>
 @property Player *player;

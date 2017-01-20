@@ -7,14 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CacheManager.h"
 #import "UIView+YYAdd.h"
 #import "CALayer+YYAdd.h"
 #import "UIGestureRecognizer+YYAdd.h"
 #import "DOFavoriteButton.h"
 #import "TTTAttributedLabel.h"
-#import "ArticleEntity.h"
-#import "ClipController.h"
 
 #define TitleCellIdentifier @"titleCell"
 #define ClipCellIdentifier  @"clipCell"
@@ -30,10 +27,9 @@
 @property (nonatomic, strong) UIButton *commentBtn;
 @property (nonatomic, strong) UIButton *shareBtn;
 @property (nonatomic, strong) DOFavoriteButton *albumBtn;
-//@property (nonatomic, strong) UIImageView *backgroundImage;
 @property (nonatomic, weak) ClipController *delegate;
 @property (nonatomic, assign) CGFloat cellHeight;
-- (void)setCellData:(ArticleEntity*) entity isForHeight:(BOOL)isForHeight;
+- (void)setCellData:(ImageEntity*) entity isForHeight:(BOOL)isForHeight;
 - (void)updateCommentQty;
 - (void)setBorder;
 - (void)unSetBorder;
@@ -42,5 +38,5 @@
 
 @interface TitleCell : UITableViewCell
 @property (nonatomic, strong) TTTAttributedLabel *imageLabel;
-- (void)setCellData:(ArticleEntity*) entity isForHeight:(BOOL)isForHeight;
+- (void)setCellData:(ImageEntity*) entity isForHeight:(BOOL)isForHeight;
 @end

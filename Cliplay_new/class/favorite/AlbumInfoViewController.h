@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ClipController.h"
 
 @interface AlbumInfoViewController : UITableViewController <UITextFieldDelegate>
 @property NSString *name;

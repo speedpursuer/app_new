@@ -8,21 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CouchbaseLite/CouchbaseLite.h>
-#import "Album.h"
-#import "Favorite.h"
-#import "AlbumSeq.h"
-#import "News.h"
-#import "Player.h"
-#import "Move.h"
 #import "NewsTableViewController.h"
 
-#define kDBName @"cliplay"
-#define kStorageType kCBLForestDBStorage
-#define kDidSynced @"didSynced"
 #define kAlbumListChange @"albumModified"
 #define kContentUpdate @"contentUpdated"
-#define kContentDBName @"cliplay_content"
-#define kDBFileType @"cblite2"
+
 
 @interface CBLService : NSObject
 @property (strong, nonatomic, readonly) CBLDatabase *database;
@@ -40,6 +30,8 @@
 - (Post *)clipsForPlayer:(Player*) player withMove:(Move *)move;
 - (NSArray *)newsForPlayer:(Player*) player;
 - (void)syncStartWithDelegate:(NewsTableViewController *)delegate;
+- (void)fetchNewsByID:(NSString *)newID completionHandlder:(void (^)(id<Content> content))handlder;
+
 #pragma mark - Album
 - (Album *)creatAlubmWithTitle:(NSString*)title;
 - (BOOL)deleteAlbum:(Album *)album;

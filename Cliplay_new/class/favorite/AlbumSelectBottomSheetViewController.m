@@ -7,7 +7,6 @@
 //
 
 #import "AlbumSelectBottomSheetViewController.h"
-#import "CBLService.h"
 #import "AlbumListTableViewCell.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
 
@@ -124,6 +123,7 @@
 	}
 	[self performSegueWithIdentifier:@"albumSelected" sender:self];
 }
+
 
 /*
 #pragma mark - Navigation
