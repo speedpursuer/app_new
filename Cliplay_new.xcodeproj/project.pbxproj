@@ -80,8 +80,6 @@
 		7653DB1E1E2336AC0057D178 /* CALayer+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB171E2336AC0057D178 /* CALayer+YYAdd.m */; };
 		7653DB1F1E2336AC0057D178 /* UIGestureRecognizer+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB191E2336AC0057D178 /* UIGestureRecognizer+YYAdd.m */; };
 		7653DB201E2336AC0057D178 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB1B1E2336AC0057D178 /* UIView+YYAdd.m */; };
-		7653DB281E2339B40057D178 /* DRImagePlaceholderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB261E2339B40057D178 /* DRImagePlaceholderHelper.m */; };
-		7653DB2B1E2339F10057D178 /* UIImageView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB2A1E2339F10057D178 /* UIImageView+Placeholder.m */; };
 		7653DB2E1E233A460057D178 /* MyLBAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB2D1E233A460057D178 /* MyLBAdapter.m */; };
 		7653DB411E233A960057D178 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB2F1E233A960057D178 /* RECommonFunctions.m */; };
 		7653DB421E233A960057D178 /* DEComposeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB311E233A960057D178 /* DEComposeTextView.m */; };
@@ -110,6 +108,8 @@
 		7653DB7F1E238E8E0057D178 /* NewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB7E1E238E8E0057D178 /* NewsTableViewController.m */; };
 		7653DB871E23A4AE0057D178 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB861E23A4AE0057D178 /* NewsTableViewCell.m */; };
 		7653DB891E23B79A0057D178 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7653DB881E23B79A0057D178 /* heart@2x.png */; };
+		76BC498E1E335BC400DBA6AA /* common.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76BC498D1E335BC300DBA6AA /* common.storyboard */; };
+		76BC49911E335C4200DBA6AA /* ClipDescViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC49901E335C4200DBA6AA /* ClipDescViewController.m */; };
 		76FE94D81E2794AE006A1B31 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */; };
 		C532DFA5CB9D196A6662A61E /* libPods-Cliplay_new.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9A1EF7DF9BB2D15285E8B1 /* libPods-Cliplay_new.a */; };
 /* End PBXBuildFile section */
@@ -261,10 +261,6 @@
 		7653DB1A1E2336AC0057D178 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+YYAdd.h"; path = "class/common/lib/UIView+YYAdd.h"; sourceTree = "<group>"; };
 		7653DB1B1E2336AC0057D178 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+YYAdd.m"; path = "class/common/lib/UIView+YYAdd.m"; sourceTree = "<group>"; };
 		7653DB211E2336E80057D178 /* MyLBDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLBDelegate.h; path = class/service/lb/MyLBDelegate.h; sourceTree = "<group>"; };
-		7653DB261E2339B40057D178 /* DRImagePlaceholderHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DRImagePlaceholderHelper.m; path = class/common/lib/DRImagePlaceholderHelper.m; sourceTree = "<group>"; };
-		7653DB271E2339B40057D178 /* DRImagePlaceholderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DRImagePlaceholderHelper.h; path = class/common/lib/DRImagePlaceholderHelper.h; sourceTree = "<group>"; };
-		7653DB291E2339F10057D178 /* UIImageView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Placeholder.h"; path = "class/common/lib/UIImageView+Placeholder.h"; sourceTree = "<group>"; };
-		7653DB2A1E2339F10057D178 /* UIImageView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Placeholder.m"; path = "class/common/lib/UIImageView+Placeholder.m"; sourceTree = "<group>"; };
 		7653DB2C1E233A460057D178 /* MyLBAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLBAdapter.h; path = class/service/lb/MyLBAdapter.h; sourceTree = "<group>"; };
 		7653DB2D1E233A460057D178 /* MyLBAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLBAdapter.m; path = class/service/lb/MyLBAdapter.m; sourceTree = "<group>"; };
 		7653DB2F1E233A960057D178 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RECommonFunctions.m; path = class/common/comment/RECommonFunctions.m; sourceTree = "<group>"; };
@@ -319,6 +315,9 @@
 		7653DB851E23A4AE0057D178 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsTableViewCell.h; path = class/news/NewsTableViewCell.h; sourceTree = "<group>"; };
 		7653DB861E23A4AE0057D178 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsTableViewCell.m; path = class/news/NewsTableViewCell.m; sourceTree = "<group>"; };
 		7653DB881E23B79A0057D178 /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heart@2x.png"; path = "Cliplay_new/Resources/heart@2x.png"; sourceTree = "<group>"; };
+		76BC498D1E335BC300DBA6AA /* common.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = common.storyboard; path = class/common/common.storyboard; sourceTree = "<group>"; };
+		76BC498F1E335C4200DBA6AA /* ClipDescViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClipDescViewController.h; path = class/common/ClipDescViewController.h; sourceTree = "<group>"; };
+		76BC49901E335C4200DBA6AA /* ClipDescViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClipDescViewController.m; path = class/common/ClipDescViewController.m; sourceTree = "<group>"; };
 		76FE94D01E2766E4006A1B31 /* Cliplay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cliplay-Prefix.pch"; sourceTree = "<group>"; };
 		76FE94D61E2794AE006A1B31 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "class/common/lib/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "class/common/lib/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
@@ -659,6 +658,8 @@
 				76335ED91E2E37C500664761 /* CacheSettingViewController.m */,
 				7649E4281E2F91C8006E91C4 /* AutoRotateNavController.h */,
 				7649E4291E2F91C8006E91C4 /* AutoRotateNavController.m */,
+				76BC498F1E335C4200DBA6AA /* ClipDescViewController.h */,
+				76BC49901E335C4200DBA6AA /* ClipDescViewController.m */,
 				760938101E30E70800ECBB3D /* UIViewController+Utils.h */,
 				760938111E30E70800ECBB3D /* UIViewController+Utils.m */,
 			);
@@ -668,11 +669,12 @@
 		7653DAD21E23312F0057D178 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7653DAD71E2331B40057D178 /* ClipCell.m */,
 				7653DAD81E2331B40057D178 /* ClipCell.h */,
+				7653DAD71E2331B40057D178 /* ClipCell.m */,
 				762681C11E2A40ED00B535E8 /* NoContent.xib */,
 				762681C31E2A43B300B535E8 /* NoContent.h */,
 				762681C41E2A43B300B535E8 /* NoContent.m */,
+				76BC498D1E335BC300DBA6AA /* common.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -698,10 +700,6 @@
 				7653DB551E233C580057D178 /* AppSettings+Cliplay.m */,
 				7653DB4E1E233BD80057D178 /* MySTPopupController.m */,
 				7653DB4F1E233BD80057D178 /* MySTPopupController.h */,
-				7653DB291E2339F10057D178 /* UIImageView+Placeholder.h */,
-				7653DB2A1E2339F10057D178 /* UIImageView+Placeholder.m */,
-				7653DB261E2339B40057D178 /* DRImagePlaceholderHelper.m */,
-				7653DB271E2339B40057D178 /* DRImagePlaceholderHelper.h */,
 				7653DB121E2336AC0057D178 /* DOFavoriteButton.m */,
 				7653DB131E2336AC0057D178 /* DOFavoriteButton.h */,
 				7653DB141E2336AC0057D178 /* Reachability.h */,
@@ -925,6 +923,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7653DA681E2264820057D178 /* LaunchScreen.storyboard in Resources */,
+				76BC498E1E335BC400DBA6AA /* common.storyboard in Resources */,
 				760937FE1E30AC5200ECBB3D /* AAShareBubbles.bundle in Resources */,
 				761EB5691E24E75E0086D990 /* players.storyboard in Resources */,
 				762681C21E2A40ED00B535E8 /* NoContent.xib in Resources */,
@@ -1059,7 +1058,6 @@
 				7653DACC1E2330960057D178 /* AlbumAddClipDescViewController.m in Sources */,
 				7653DA571E2264820057D178 /* main.m in Sources */,
 				7653DAB81E232B6D0057D178 /* ImageEntity.m in Sources */,
-				7653DB2B1E2339F10057D178 /* UIImageView+Placeholder.m in Sources */,
 				7653DB461E233A960057D178 /* ModelComment.m in Sources */,
 				762681C01E2A25C100B535E8 /* ARSegmentView.m in Sources */,
 				7653DA981E23243E0057D178 /* CBLService.m in Sources */,
@@ -1076,8 +1074,8 @@
 				7653DB481E233A960057D178 /* REComposeBackgroundView.m in Sources */,
 				7653DB681E233FA00057D178 /* ClipPlayController.m in Sources */,
 				7653DB1C1E2336AC0057D178 /* DOFavoriteButton.m in Sources */,
+				76BC49911E335C4200DBA6AA /* ClipDescViewController.m in Sources */,
 				76FE94D81E2794AE006A1B31 /* UIImage+ImageEffects.m in Sources */,
-				7653DB281E2339B40057D178 /* DRImagePlaceholderHelper.m in Sources */,
 				7653DB871E23A4AE0057D178 /* NewsTableViewCell.m in Sources */,
 				760938161E30F13300ECBB3D /* Helper.m in Sources */,
 				7653DB431E233A960057D178 /* EBCommentsViewController.m in Sources */,
@@ -1218,6 +1216,7 @@
 			baseConfigurationReference = F69D0D46FAAF270ADC00F89C /* Pods-Cliplay_new.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Cliplay_new/Cliplay_new.entitlements;
 				DEVELOPMENT_TEAM = NFXT343F5P;
 				ENABLE_BITCODE = NO;
@@ -1245,6 +1244,7 @@
 			baseConfigurationReference = ECB17A460F08C8F8D0D37DEA /* Pods-Cliplay_new.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Cliplay_new/Cliplay_new.entitlements;
 				DEVELOPMENT_TEAM = NFXT343F5P;
 				ENABLE_BITCODE = NO;

@@ -58,23 +58,9 @@
 @property (nonatomic, weak) CBLService *cblService;
 @property (nonatomic, weak) LBService *lbService;
 
-//@property (nonatomic, strong) JDFPeekabooCoordinator *scrollCoordinator;
-//@property BOOL hasWifi;
-//@property (nonatomic, strong) YYWebImageManager *backgroudManager;
-//@property (nonatomic, weak) YYWebImageManager *defaultManage;
-//@property TLYShyNavBarManager *shyNavBarManager;
-//@property NSArray *filteredClips;
-//@property BOOL didAppear;
-//@property NSInteger currMinIndex;
-//@property NSOperationQueue *queue;
-//@property (nonatomic, copy) NSString *clipToAdd;
-//@property BOOL isAddAll;
 @end
 
 @implementation ClipController {
-//	MyLBService *lbService;
-//	NSDictionary* commentList;
-//	NSString *shareText;
 }
 
 #pragma mark - View event
@@ -85,8 +71,6 @@
 	_cblService = [CBLService sharedManager];
 	
 	[self initValues];
-	
-//	[self setupDownload];
 	
 	[self setUpCollectionList];
 	
@@ -147,7 +131,6 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[self setupDownload];
-//	[UIViewController attemptRotationToDeviceOrientation];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -195,9 +178,6 @@
 	searchBar.showsCancelButton = YES;
 	searchBar.placeholder = @"搜索描述";
 	searchBar.barStyle = UISearchBarStyleMinimal;
-//	[self.view addSubview:self.searchBar];
-//	[self.tableView.tableHeaderView addSubview:self.searchBar];
-//	self.navigationItem.titleView = self.searchBar;
 	[self.navigationController.view insertSubview:searchBar aboveSubview:self.navigationController.navigationBar];
 	
 	[searchBar becomeFirstResponder];
@@ -302,20 +282,6 @@
 			[entities addObject:[[ImageEntity alloc] initWithData:url desc: @""]];
 		}
 	}
-//	else if(_articleDicts) {
-//		[_articleDicts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//			NSString *desc = obj[@"desc"];
-//			NSString *url = obj[@"url"];
-//			if(desc && [desc length] != 0) {
-//				[entities addObject:[[ImageEntity alloc] initWithData:@"" desc:desc]];
-//			}
-//			[entities addObject:[[ImageEntity alloc] initWithData:url desc:@""]];
-//		}];
-//	}else if(_articleURLs) {
-//		for (NSString *url in _articleURLs) {
-//			[entities addObject:[[ImageEntity alloc] initWithData:url desc: @""]];
-//		}
-//	}
 	_data = [entities mutableCopy];
 }
 
@@ -431,6 +397,9 @@
 		case editClip:
 			[self showAlbumActionsheet];
 			break;
+		case shareClip:
+			[self shareClip];
+			break;
 		default:
 			break;
 	}
@@ -517,7 +486,6 @@
 	}else {
 		_correction = 0;
 	}
-	
 	[self autoPlayFullyVisibleImages];
 }
 
@@ -653,8 +621,13 @@
 
 #pragma mark - Share
 
-- (void)shareClip:(NSURL *)clipID {
-	[_lbService shareWithClipID:clipID];
+- (void)shareClip{
+//	[_lbService shareWithClipID:clipID];
+	[self showClipDescPopupWithDesc:@"" descPlaceholder:@"分享文字" actionType:sendClip];
+}
+
+-(void)sendClip:(NSString *)url desc:(NSString *)desc {
+	[_lbService shareClipWithURL:url desc:desc];
 }
 
 #pragma mark - Album & Favorite
@@ -780,17 +753,19 @@
 }
 
 - (void)showClipDescPopup:(NSString *)desc {
-	AlbumAddClipDescViewController *ctr = [[UIStoryboard storyboardWithName:@"favorite" bundle:nil] instantiateViewControllerWithIdentifier:@"addDesc"];
-	
-	[ctr setUrl:[self urlForSeletedClip]];
-	ctr.currDesc = desc;
-	ctr.delegate = self;
-	ctr.modalPresentationStyle = UIModalPresentationCurrentContext;
-	
-	AutoRotateNavController *navigationController =
-	[[AutoRotateNavController alloc] initWithRootViewController:ctr];
-	
-	[self presentViewController:navigationController animated:YES completion:nil];
+	if(_actionType == modifyDesc) {
+		[self showClipDescPopupWithDesc:desc descPlaceholder:@"备注" actionType:editDesc];
+	}else {
+		[self showClipDescPopupWithDesc:desc descPlaceholder:@"备注" actionType:addDesc];
+	}
+}
+
+- (void)saveDesc:(NSString *)desc {
+	if(_actionType == addToAlbum) {
+		[self saveClipToAlbumWithDesc:desc];
+	}else if(_actionType == modifyDesc) {
+		[self modifyClipDesc:desc];
+	}
 }
 
 - (void)clipDescCallbackWithDesc:(NSString *)desc{
@@ -881,7 +856,7 @@
 															 delegate:self
 													cancelButtonTitle:@"取消"
 											   destructiveButtonTitle:nil
-													otherButtonTitles:@"设置动图比例", @"根据描述过滤", @"修改收藏夹名称", nil];
+													otherButtonTitles:@"设置动图比例", @"根据描述过滤", @"修改收藏夹名", nil];
 	actionSheet.tag = 1;
 	[actionSheet showInView:self.view];
 }
@@ -901,7 +876,7 @@
 															 delegate:self
 													cancelButtonTitle:@"取消"
 											   destructiveButtonTitle:@"删除动图"
-													otherButtonTitles:@"修改描述", @"加入其他收藏夹", nil];
+													otherButtonTitles:@"修改描述", @"加入其他", nil];
 	actionSheet.tag = 3;
 	[actionSheet showInView:self.view];
 }
@@ -1016,6 +991,25 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 	return [config.displayRatio floatValue];
 }
 
+- (void)showClipDescPopupWithDesc:(NSString *)desc descPlaceholder:(NSString *)placeholder actionType:(ClipDescActionType)actionType {
+	ClipDescViewController *ctr = [[UIStoryboard storyboardWithName:@"common" bundle:nil] instantiateViewControllerWithIdentifier:@"clipDesc"];
+	
+	[ctr setUrl:[self urlForSeletedClip]];
+	ctr.delegate = self;
+	ctr.desc = desc;
+	ctr.descPlaceholder = placeholder;
+	ctr.actionType = actionType;
+	ctr.modalPresentationStyle = UIModalPresentationCurrentContext;
+	
+	AutoRotateNavController *navigationController =
+	[[AutoRotateNavController alloc] initWithRootViewController:ctr];
+	
+	__weak typeof (self) _self = self;
+	[Helper performBlock:^{
+		[_self presentViewController:navigationController animated:YES completion:nil];
+	} afterDelay:0.2];
+}
+
 #pragma mark - Animation
 - (void)slowPlayWithURL:(NSString *)url {
 	[self recordSlowPlayWithUrl:url];
@@ -1050,60 +1044,5 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 -(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
 	return (self.interactiveTransition.isInteracting ? self.interactiveTransition : nil);
 }
-
-//- (void)showPopup {
-//
-//	NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
-//	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-//	paragraphStyle.alignment = NSTextAlignmentCenter;
-//
-//	NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"操作说明" attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:24], NSParagraphStyleAttributeName : paragraphStyle}];
-//
-//	NSAttributedString *lineOne= [[NSAttributedString alloc] initWithString:@"点击图片进入滑屏慢放模式" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : CLIPLAY_COLOR, NSParagraphStyleAttributeName : paragraphStyle}];
-//
-//	NSAttributedString *lineTwo = [[NSAttributedString alloc] initWithString:@"点击播放/暂停，滑屏拖动播放" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSParagraphStyleAttributeName : paragraphStyle}];
-//
-//	CNPPopupButton *button = [[CNPPopupButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
-//	[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//	button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-//	[button setTitle:@"知道了" forState:UIControlStateNormal];
-//	button.backgroundColor = CLIPLAY_COLOR;
-//	button.layer.cornerRadius = 4;
-//
-//	UILabel *titleLabel = [[UILabel alloc] init];
-//	titleLabel.numberOfLines = 0;
-//	titleLabel.attributedText = title;
-//
-//	UILabel *lineOneLabel = [[UILabel alloc] init];
-//	lineOneLabel.numberOfLines = 0;
-//	lineOneLabel.attributedText = lineOne;
-//
-//	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tip"]];
-//
-//	UILabel *lineTwoLabel = [[UILabel alloc] init];
-//	lineTwoLabel.numberOfLines = 0;
-//	lineTwoLabel.attributedText = lineTwo;
-//
-//	CNPPopupController *popupController = [[CNPPopupController alloc] initWithContents:@[titleLabel, lineOneLabel, lineTwoLabel, imageView, button]];
-//	popupController.theme = [CNPPopupTheme defaultTheme];
-//	popupController.theme.popupStyle = CNPPopupStyleCentered;
-//	popupController.theme.cornerRadius = 10.0f;
-//
-//	popupController.delegate = self;
-//
-//	button.selectionHandler = ^(CNPPopupButton *button){
-//		[popupController dismissPopupControllerAnimated:YES];
-//	};
-//
-//	[popupController presentPopupControllerAnimated:YES];
-//}
-//
-//- (void)popupControllerDidDismiss:(CNPPopupController *)controller {
-//	if(!self.infoButton.selected) [self.infoButton select];
-//}
-//
-//- (void)tappedButton:(DOFavoriteButton *)sender {
-//	[self showPopup];
-//}
 
 @end

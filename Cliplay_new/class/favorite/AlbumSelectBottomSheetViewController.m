@@ -115,7 +115,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[self.popupController dismiss];
+//	[self.popupController dismiss];
 	if(indexPath.row == 0) {
 		_selectedAlbum = nil;
 	}else {

@@ -65,7 +65,7 @@
 	}else {
 		goodLookingValue = [NSString stringWithFormat:@"%.1fG", (float)rawNumber/1000];;
 	}
-	_limitLabel.text = [NSString stringWithFormat:@"自动定期清除缓存，以低于：%@，", goodLookingValue];
+	_limitLabel.text = [NSString stringWithFormat:@"自动定期清除不常看，以低于：%@", goodLookingValue];
 	
 	[_limitLabel sizeToFit];
 }

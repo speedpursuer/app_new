@@ -40,44 +40,29 @@
 	UITabBarItem *tabBarItem2 = [tabBar.items objectAtIndex:1];
 	UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:2];
 	
-	tabBarItem1.title = @"最新信息";
+	tabBarItem1.title = @"最新内容";
 	tabBarItem2.title = @"球星动作";
-	tabBarItem3.title = @"我的收藏";
+	tabBarItem3.title = @"我的球路";
 	
 	CGSize size = CGSizeMake(30, 30);
 	
-	FAKIonIcons *basketball = [FAKIonIcons iosBasketballOutlineIconWithSize:30];
-	[tabBarItem1 setImage:[basketball imageWithSize:size]];
+	FAKIonIcons *icon1 = [FAKIonIcons iosPaperOutlineIconWithSize:30];
+	[tabBarItem1 setImage:[icon1 imageWithSize:size]];
+	FAKIonIcons *iconSelected1 = [FAKIonIcons iosPaperIconWithSize:30];
+	[tabBarItem1 setSelectedImage:[iconSelected1 imageWithSize:size]];
 	
-	FAKIonIcons *players = [FAKIonIcons iosPeopleOutlineIconWithSize:30];
-	[tabBarItem2 setImage:[players imageWithSize:size]];
+	FAKIonIcons *icon2 = [FAKIonIcons iosStarOutlineIconWithSize:30];
+	[tabBarItem2 setImage:[icon2 imageWithSize:size]];
+	FAKIonIcons *iconSelected2 = [FAKIonIcons iosStarIconWithSize:30];
+	[tabBarItem2 setSelectedImage:[iconSelected2 imageWithSize:size]];
 	
-	FAKIonIcons *favorite = [FAKIonIcons androidFavoriteOutlineIconWithSize:30];
-	[tabBarItem3 setImage:[favorite imageWithSize:size]];
+	FAKIonIcons *icon3 = [FAKIonIcons iosBasketballOutlineIconWithSize:30];
+	[tabBarItem3 setImage:[icon3 imageWithSize:size]];
+	FAKIonIcons *iconSelected3 = [FAKIonIcons iosBasketballIconWithSize:30];
+	[tabBarItem3 setSelectedImage:[iconSelected3 imageWithSize:size]];
 	
 	[[UITabBar appearance] setTintColor:CLIPLAY_COLOR];
 }
-
-//- (void)configureNewsCtr {
-//	NSArray *ctrs = [self.viewControllers copy];
-//	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"news" bundle:nil];
-//	UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"news"];
-//	[(UINavigationController *)ctrs[0] pushViewController:vc animated:NO];
-//}
-//
-//- (void)configurePlayersCtr {
-//	NSArray *ctrs = [self.viewControllers copy];
-//	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"players" bundle:nil];
-//	UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"players"];
-//	[(UINavigationController *)ctrs[1] pushViewController:vc animated:NO];
-//}
-//
-//- (void)configureFavoriteCtr {
-//	NSArray *ctrs = [self.viewControllers copy];
-//	UIStoryboard *sb = [UIStoryboard storyboardWithName:@"favorite" bundle:nil];
-//	UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"favorite"];
-//	[(UINavigationController *)ctrs[2] pushViewController:vc animated:NO];
-//}
 
 - (void)configureCtrs {
 	NSArray *ctrNames = @[@"news", @"players", @"favorite"];
@@ -98,20 +83,6 @@
 	return [self.selectedViewController supportedInterfaceOrientations];
 }
 
-//- (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
-//	if ([rootViewController isKindOfClass:[UITabBarController class]]) {
-//		UITabBarController* tabBarController = (UITabBarController*)rootViewController;
-//		return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
-//	} else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-//		UINavigationController* navigationController = (UINavigationController*)rootViewController;
-//		return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
-//	} else if (rootViewController.presentedViewController) {
-//		UIViewController* presentedViewController = rootViewController.presentedViewController;
-//		return [self topViewControllerWithRootViewController:presentedViewController];
-//	} else {
-//		return rootViewController;
-//	}
-//}
 /*
 #pragma mark - Navigation
 

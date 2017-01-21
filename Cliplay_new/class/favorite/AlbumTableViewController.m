@@ -65,7 +65,7 @@
 }
 
 - (void)setupTitle {
-	self.title = @"我的收藏";
+	self.title = @"我的球路";
 }
 
 - (void)hideBackButtonText {

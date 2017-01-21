@@ -188,7 +188,13 @@ static NSInteger const pageSize = 11;
 
 - (void)shareWithClipID:(NSURL *)clipID {
 	sharedClipID = clipID;
-	[self showComposeViewWithText];
+	[self showComposeViewWithText];	
+}
+
+- (void)shareClipWithURL:(NSString *)url desc:(NSString *)desc {
+	sharedClipID = [NSURL URLWithString:url];
+	sharedText = desc;
+	[self tryShare];
 }
 
 - (void)recordFavoriteWithClipID:(NSString *)url

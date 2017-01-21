@@ -166,30 +166,20 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) {
-		__weak typeof(self) _self = self;
-		[Helper performBlock:^{
-			[_self fetchData];
-		} afterDelay:0.5];
+		[self fetchData];
 	}
 }
 
 - (void)fetchData {
+	__weak typeof(self) _self = self;
+	[Helper performBlock:^{
+		[_self showPushFeed];
+	} afterDelay:0.5];
+}
+
+- (void)showPushFeed {
 	
 	if(!_pushID) return;
-	
-//	_pushID = @"post_player_kobe_bryant_move_dunk";
-//	_header = @"Title";
-	
-	
-//	UINavigationController *currentNav = [UIViewController tabBarViewController].selectedViewController;
-	
-//	if([currentVC isKindOfClass:[ClipController class]]) {
-//		ClipController *clip = (ClipController *)currentVC;
-//		clip.suspended = YES;
-//		if([currentVC.parentViewController isKindOfClass:[UINavigationController class]]) {
-//			[(UINavigationController *)currentVC.parentViewController popViewControllerAnimated:YES];
-//		}
-//	}
 	
 	UIViewController *currentVC = [UIViewController currentViewController];
 	
@@ -209,7 +199,6 @@
 		[[AutoRotateNavController alloc] initWithRootViewController:vc];
 		
 		[currentVC presentViewController:navigationController animated:YES completion:nil];
-//		[currentNav pushViewController:vc animated:YES];
 	}];
 	
 	self.pushID = nil;

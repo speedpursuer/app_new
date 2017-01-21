@@ -11,6 +11,7 @@
 #import "DOFavoriteButton.h"
 #import "MyLBDelegate.h"
 #import "CacheManager.h"
+#import "ClipDescViewController.h"
 //#import "CNPPopupController.h"
 
 typedef NS_ENUM(NSInteger, clipActionType) {
@@ -20,10 +21,10 @@ typedef NS_ENUM(NSInteger, clipActionType) {
 	modifyDesc,
 	deleteClip,
 	noAction,
+	shareClip,
 };
 
-//@interface ClipController : UITableViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, CNPPopupControllerDelegate>
-@interface ClipController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, DownloadDelegate, UIViewControllerTransitioningDelegate>
+@interface ClipController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate, DownloadDelegate, ClipDescDelegate>
 
 @property (nonatomic, strong) id<Content> content;
 @property (nonatomic, strong) Album *album;
@@ -32,16 +33,10 @@ typedef NS_ENUM(NSInteger, clipActionType) {
 @property (nonatomic, strong) NSString *summary;
 @property (nonatomic, strong) NSString *postID;
 @property (nonatomic, assign) BOOL fetchMode;
-//@property (nonatomic, strong) NSArray *articleDicts;
-//@property (nonatomic, assign) BOOL showInfo;
-//@property (nonatomic, strong) NSString *postID;
-//@property (nonatomic, assign) BOOL favorite;
-//@property (strong) DOFavoriteButton *infoButton;
-//@property (nonatomic, assign) BOOL fullScreen;
 
 - (NSString *)getCommentQty:(NSString *)clipID;
 - (void)showComments:(NSString *)clipID;
-- (void)shareClip:(NSURL *)clipID;
+//- (void)shareClip:(NSURL *)clipID;
 - (BOOL)isFullyVisible:(UITableViewCell *)cell;
 - (BOOL)needToPlay:(UITableViewCell *)cell;
 - (void)setFavoriate:(NSString *)url;
@@ -55,5 +50,4 @@ typedef NS_ENUM(NSInteger, clipActionType) {
 - (void)fetchPostComments:(BOOL)isRefresh;
 - (void)clipDescCallbackWithDesc:(NSString *)desc;
 - (void)albumInfoCallbackWithName:(NSString *)name withDesc:(NSString *)desc;
-//- (void)closeCommentView;
 @end

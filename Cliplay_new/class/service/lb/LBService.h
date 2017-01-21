@@ -63,6 +63,8 @@ NS_ENUM(NSInteger)
 
 - (void)shareWithClipID:(NSURL *)clipID;
 
+- (void)shareClipWithURL:(NSString *)url desc:(NSString *)desc;
+
 - (void)showProgressViewWithText:(NSString *)text;
 
 - (void)hideProgressView;

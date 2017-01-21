@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Clip Desc View Controller-->
+        <scene sceneID="pva-VT-gIt">
+            <objects>
+                <viewController storyboardIdentifier="clipDesc" id="BdA-hn-A2y" customClass="ClipDescViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="E1L-o7-ApD"/>
+                        <viewControllerLayoutGuide type="bottom" id="uds-qj-5yi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bjq-Rx-3JY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0hc-Yb-ogH" customClass="YYAnimatedImageView">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="BIj-l7-LIt"/>
+                                    <constraint firstAttribute="height" constant="120" id="gDx-Ei-Bpu"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="G53-1x-AxT" customClass="DEComposeTextView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="079-9L-qVd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="0hc-Yb-ogH" secondAttribute="trailing" id="7VP-Sy-Jto"/>
+                            <constraint firstItem="0hc-Yb-ogH" firstAttribute="leading" secondItem="G53-1x-AxT" secondAttribute="trailing" constant="10" id="9Lq-RY-ukp"/>
+                            <constraint firstItem="0hc-Yb-ogH" firstAttribute="top" secondItem="E1L-o7-ApD" secondAttribute="bottom" constant="15" id="H0a-Ud-2Sv"/>
+                            <constraint firstItem="G53-1x-AxT" firstAttribute="top" secondItem="E1L-o7-ApD" secondAttribute="bottom" constant="7" id="SHg-wQ-tgN"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="G53-1x-AxT" secondAttribute="leading" id="gXu-y4-ouN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="MqF-uR-A9n">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="i9R-c3-PDI">
+                            <connections>
+                                <action selector="goBack:" destination="BdA-hn-A2y" id="vuO-U1-Yi5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="n0m-q8-xUs">
+                            <connections>
+                                <action selector="goBack:" destination="BdA-hn-A2y" id="dS5-qB-ceP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="i9R-c3-PDI" id="18f-dg-BPx"/>
+                        <outlet property="confirmButton" destination="n0m-q8-xUs" id="rJt-vN-SYn"/>
+                        <outlet property="descView" destination="G53-1x-AxT" id="q41-gf-pKi"/>
+                        <outlet property="thumbView" destination="0hc-Yb-ogH" id="E2M-uf-w5M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wb1-Re-XIX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3100" y="609"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Asd-P0-3sS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hzr-fv-GZt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iBP-qj-D7n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BdA-hn-A2y" kind="relationship" relationship="rootViewController" id="L9D-IX-jeH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eaT-Pf-ajb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2312.8000000000002" y="608.54572713643188"/>
+        </scene>
+    </scenes>
+</document>

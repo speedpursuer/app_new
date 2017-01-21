@@ -54,8 +54,6 @@ PODS:
   - YYImage (1.0.1):
     - YYImage/Core (= 1.0.1)
   - YYImage/Core (1.0.1)
-  - YYImage/WebP (1.0.1):
-    - YYImage/Core
   - YYWebImage (1.0.3):
     - YYCache
     - YYImage
@@ -78,7 +76,6 @@ DEPENDENCIES:
   - UINavigationItem+Margin
   - UITableView+FDTemplateLayoutCell
   - WeiboSDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
-  - YYImage/WebP
   - YYWebImage
 
 EXTERNAL SOURCES:
@@ -123,6 +120,6 @@ SPEC CHECKSUMS:
   YYImage: b41b45bc5f32bfcdf67bdfb9c09da9e9832357c0
   YYWebImage: 8da75a611fd0d2e0f58a273f9ca0bc731614cb0d
 
-PODFILE CHECKSUM: ff31af18228296ce4480b26dfd07c242234f56dc
+PODFILE CHECKSUM: fbf0e7ddf18822f636e6f067a133107dbdc5917f
 
 COCOAPODS: 1.1.0.rc.2

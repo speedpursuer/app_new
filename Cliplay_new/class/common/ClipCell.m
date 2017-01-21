@@ -8,7 +8,6 @@
 
 #import "ClipCell.h"
 #import "ClipPlayController.h"
-#import "DRImagePlaceholderHelper.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
 
 #define cellMargin 10
@@ -337,7 +336,8 @@
 
 - (void)shareClip {
 	ClipController* ctr = [self getViewCtr];
-	[ctr shareClip:self.webImageView.yy_imageURL];
+	[ctr formActionForCell:self withActionType:shareClip];
+//	[ctr shareClip:self.webImageView.yy_imageURL];
 }
 
 - (void)collectClipToAlbum {

@@ -81,7 +81,7 @@
 }
 
 - (void)setupTitle {
-	self.title = @"最新信息";
+	self.title = @"最新内容";
 }
 
 - (void)addObserver {
