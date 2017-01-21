@@ -32,27 +32,32 @@
 #define tableViewYoffset -64.0
 
 @interface ClipController ()
-@property (nonatomic, strong) STPopupController *popCtr;
-@property Album *albumToAdd;
-@property NSInteger indexOfSelectedClip;
+//Control
 @property clipActionType actionType;
-@property NSString *clipCellID;
+@property NSString *clipCellType;
 @property CGFloat correction;
-@property NSDictionary *collectionList;
 @property CGFloat cellHeight;
-@property NSInteger currIndex;
 @property BOOL isScrollingDown;
-@property (nonatomic, weak) UISearchBar *searchBar;
-@property NSString *searchKeywords;
 @property BOOL playStopped;
-@property (nonatomic, weak) UITableView *tableView;
+@property BOOL isDismissed;
+//Data
 @property NSArray *data;
+@property Album *albumToAdd;
+@property NSDictionary* commentList;
+@property NSString *searchKeywords;
+@property NSDictionary *collectionList;
+@property NSInteger indexOfSelectedClip;
+@property NSInteger currIndexForDownload;
+//UI
+@property (nonatomic, weak) UISearchBar *searchBar;
+@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak) STPopupController *popCtr;
+@property (nonatomic, strong) SwipeUpInteractiveTransition *interactiveTransition;
+//Service
 @property (nonatomic, weak) CacheManager *cacheManager;
 @property (nonatomic, weak) CBLService *cblService;
 @property (nonatomic, weak) LBService *lbService;
-@property NSDictionary* commentList;
-@property (nonatomic, strong) SwipeUpInteractiveTransition *interactiveTransition;
-@property BOOL isDismissed;
+
 //@property (nonatomic, strong) JDFPeekabooCoordinator *scrollCoordinator;
 //@property BOOL hasWifi;
 //@property (nonatomic, strong) YYWebImageManager *backgroudManager;
@@ -81,7 +86,7 @@
 	
 	[self initValues];
 	
-	[self setupDownload];
+//	[self setupDownload];
 	
 	[self setUpCollectionList];
 	
@@ -99,11 +104,7 @@
 	
 	[self setupNavBarStyle];
 	
-	[self addInfoIcon];
-	
-	if(_showInfo) {
-		[self showPopup];
-	}
+	[self setupNavItem];
 	
 	[self initData];
 	
@@ -113,7 +114,7 @@
 }
 
 - (void)initValues {
-	_currIndex = 0;
+	_currIndexForDownload = 0;
 	_correction = 0;
 	_isScrollingDown = YES;
 }
@@ -143,10 +144,11 @@
 	self.shyNavBarManager.scrollView = self.tableView;
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//	[super viewWillAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self setupDownload];
 //	[UIViewController attemptRotationToDeviceOrientation];
-//}
+}
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
@@ -165,7 +167,6 @@
 			_isDismissed = YES;
 			self.shyNavBarManager.scrollView = nil;
 			self.shyNavBarManager.extensionView = nil;
-//			[_cacheManager stopGIFAllOprts];
 		}
 	}
 }
@@ -227,20 +228,22 @@
 #pragma mark - Download
 - (void)setupDownload {
 	_cacheManager = [CacheManager sharedManager];
-	_cacheManager.delegate = self;
+	if(_cacheManager.delegate != self) {
+		_cacheManager.delegate = self;
+	}
 }
 
 - (void)handleBackgroundDownload {
 	if(_isDismissed) return;
 	if(_isScrollingDown) {
-		for (int i = (int)_currIndex + 1; i < [_data count]; i++) {
+		for (int i = (int)_currIndexForDownload + 1; i < [_data count]; i++) {
 			ImageEntity *entity = (ImageEntity *)_data[i];
 			if([entity.url length] != 0) {
 				[self.cacheManager requestGIFWithURL:entity.url];
 			}
 		}
 	}else {
-		for (int i = (int)_currIndex - 1; i >= 0; i--) {
+		for (int i = (int)_currIndexForDownload - 1; i >= 0; i--) {
 			ImageEntity *entity = (ImageEntity *)_data[i];
 			if([entity.url length] != 0) {
 				[self.cacheManager requestGIFWithURL:entity.url];
@@ -253,13 +256,13 @@
 	
 	BOOL currScrollingDown;
 	
-	if(row >= _currIndex) {
+	if(row >= _currIndexForDownload) {
 		currScrollingDown = YES;
 	}else {
 		currScrollingDown = NO;
 	}
 	
-	_currIndex = row;
+	_currIndexForDownload = row;
 	
 	if(currScrollingDown != _isScrollingDown) {
 		_isScrollingDown = currScrollingDown;
@@ -280,9 +283,9 @@
 	
 	[self.tableView registerClass:[TitleCell class] forCellReuseIdentifier:TitleCellIdentifier];
 	
-	_clipCellID = [self isInAlbum]? AlbumCellIdentifier: ClipCellIdentifier;
+	_clipCellType = [self isInAlbum]? AlbumCellIdentifier: ClipCellIdentifier;
 	
-	[self.tableView registerClass:[ClipCell class] forCellReuseIdentifier:_clipCellID];
+	[self.tableView registerClass:[ClipCell class] forCellReuseIdentifier:_clipCellType];
 }
 
 - (void)initData {
@@ -293,21 +296,26 @@
 		[self converAlbumClips:[_content images] toData:entities withSearch:nil];
 	}else if(_album) {
 		[self converAlbumClips:_album.clips toData:entities withSearch:nil];
-	}else if(_articleDicts) {
-		[_articleDicts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			NSString *desc = obj[@"desc"];
-			NSString *url = obj[@"url"];
-			if(desc && [desc length] != 0) {
-				[entities addObject:[[ImageEntity alloc] initWithData:@"" desc:desc]];
-			}
-			[entities addObject:[[ImageEntity alloc] initWithData:url desc:@""]];
-		}];
-	}else if(_articleURLs) {
-		for (NSString *url in _articleURLs) {
+	}
+	else if(_pureURLs) {
+		for (NSString *url in _pureURLs) {
 			[entities addObject:[[ImageEntity alloc] initWithData:url desc: @""]];
 		}
 	}
-	
+//	else if(_articleDicts) {
+//		[_articleDicts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//			NSString *desc = obj[@"desc"];
+//			NSString *url = obj[@"url"];
+//			if(desc && [desc length] != 0) {
+//				[entities addObject:[[ImageEntity alloc] initWithData:@"" desc:desc]];
+//			}
+//			[entities addObject:[[ImageEntity alloc] initWithData:url desc:@""]];
+//		}];
+//	}else if(_articleURLs) {
+//		for (NSString *url in _articleURLs) {
+//			[entities addObject:[[ImageEntity alloc] initWithData:url desc: @""]];
+//		}
+//	}
 	_data = [entities mutableCopy];
 }
 
@@ -326,7 +334,7 @@
 			[pureURL addObject:url];
 		}
 	}];
-	_articleURLs = [pureURL copy];
+	_pureURLs = [pureURL copy];
 }
 
 - (void)initHeader {
@@ -378,7 +386,7 @@
 	[self.tableView setTableFooterView:footer];
 }
 
-- (void)addInfoIcon {
+- (void)setupNavItem {
 	UIBarButtonItem *button;
 	if(_fetchMode) {
 		button = [[UIBarButtonItem alloc] initWithTitle:@"收藏全部" style:UIBarButtonItemStyleBordered target:self action:@selector(prepareToSaveAll)];
@@ -388,6 +396,15 @@
 		button = [[UIBarButtonItem alloc] initWithTitle:@"显示" style:UIBarButtonItemStyleBordered target:self action:@selector(showRatioActionsheet)];
 	}
 	self.navigationItem.rightBarButtonItem = button;
+	
+	if(self.modalPresentationStyle == UIModalPresentationCurrentContext) {
+		button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissSelf)];
+		self.navigationItem.leftBarButtonItem = button;
+	}
+}
+
+- (void)dismissSelf {
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL)isVisible {
@@ -395,60 +412,6 @@
 }
 
 #pragma mark - (User Interaction)
-- (void)showPopup {
-	
-	NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
-	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-	paragraphStyle.alignment = NSTextAlignmentCenter;
-	
-	NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"操作说明" attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:24], NSParagraphStyleAttributeName : paragraphStyle}];
-	
-	NSAttributedString *lineOne= [[NSAttributedString alloc] initWithString:@"点击图片进入滑屏慢放模式" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : CLIPLAY_COLOR, NSParagraphStyleAttributeName : paragraphStyle}];
-	
-	NSAttributedString *lineTwo = [[NSAttributedString alloc] initWithString:@"点击播放/暂停，滑屏拖动播放" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSParagraphStyleAttributeName : paragraphStyle}];
-	
-	CNPPopupButton *button = [[CNPPopupButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
-	[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-	[button setTitle:@"知道了" forState:UIControlStateNormal];
-	button.backgroundColor = CLIPLAY_COLOR;
-	button.layer.cornerRadius = 4;
-	
-	UILabel *titleLabel = [[UILabel alloc] init];
-	titleLabel.numberOfLines = 0;
-	titleLabel.attributedText = title;
-	
-	UILabel *lineOneLabel = [[UILabel alloc] init];
-	lineOneLabel.numberOfLines = 0;
-	lineOneLabel.attributedText = lineOne;
-	
-	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tip"]];
-	
-	UILabel *lineTwoLabel = [[UILabel alloc] init];
-	lineTwoLabel.numberOfLines = 0;
-	lineTwoLabel.attributedText = lineTwo;
-	
-	CNPPopupController *popupController = [[CNPPopupController alloc] initWithContents:@[titleLabel, lineOneLabel, lineTwoLabel, imageView, button]];
-	popupController.theme = [CNPPopupTheme defaultTheme];
-	popupController.theme.popupStyle = CNPPopupStyleCentered;
-	popupController.theme.cornerRadius = 10.0f;
-	
-	popupController.delegate = self;
-	
-	button.selectionHandler = ^(CNPPopupButton *button){
-		[popupController dismissPopupControllerAnimated:YES];
-	};
-	
-	[popupController presentPopupControllerAnimated:YES];
-}
-
-- (void)popupControllerDidDismiss:(CNPPopupController *)controller {
-	if(!self.infoButton.selected) [self.infoButton select];
-}
-
-- (void)tappedButton:(DOFavoriteButton *)sender {
-	[self showPopup];
-}
 
 #pragma mark - Public API
 - (void)formActionForCell:(UITableViewCell *)cell withActionType:(clipActionType)type {
@@ -507,7 +470,7 @@
 		[self configureTitleCell:cell atIndexPath:indexPath isForHeight:false];
 		return cell;
 	}else {
-		ClipCell *cell = [tableView dequeueReusableCellWithIdentifier:_clipCellID];
+		ClipCell *cell = [tableView dequeueReusableCellWithIdentifier:_clipCellType];
 		[self configureCell:cell atIndexPath:indexPath isForHeight:false];
 		return cell;
 	}
@@ -535,7 +498,7 @@
 			[self configureTitleCell:cell atIndexPath:indexPath isForHeight:true];
 		}];
 	}else{
-		return [tableView fd_heightForCellWithIdentifier:_clipCellID cacheByIndexPath:indexPath configuration:^(id cell) {
+		return [tableView fd_heightForCellWithIdentifier:_clipCellType cacheByIndexPath:indexPath configuration:^(id cell) {
 			[self configureCell:cell atIndexPath:indexPath isForHeight:true];
 		}];
 	}
@@ -631,13 +594,13 @@
 	
 	NSString *id_post = [self postID];
 	
-	if(self.articleURLs.count > 0) {
-		[_lbService getCommentsSummaryByClipIDs:[_articleURLs copy] isRefresh:isRefresh success:^(NSArray *list) {
+	if(id_post){
+		[_lbService getCommentsSummaryByPostID:id_post isRefresh:isRefresh success:^(NSArray *list) {
 			[self generateCommentList:list];
 		} failure:^{
 		}];
-	}else if(id_post){
-		[_lbService getCommentsSummaryByPostID:id_post isRefresh:isRefresh success:^(NSArray *list) {
+	}else if(_pureURLs.count > 0) {
+		[_lbService getCommentsSummaryByClipIDs:[_pureURLs copy] isRefresh:isRefresh title:_header success:^(NSArray *list) {
 			[self generateCommentList:list];
 		} failure:^{
 		}];
@@ -715,13 +678,14 @@
 	[self.popCtr dismiss];
 }
 
-- (void)showNewAlbumForm {
+- (void)showNewAlbumFormWithTitle:(NSString *)title {
 	UIAlertView* alert= [[UIAlertView alloc] initWithTitle:@"新建收藏夹"
 												   message:@"请输入名称:"
 												  delegate:self
 										 cancelButtonTitle:@"取消"
 										 otherButtonTitles:@"确定", nil];
 	alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+	[alert textFieldAtIndex:0].text = title;
 	[alert show];
 }
 
@@ -754,7 +718,7 @@
 }
 
 - (void)saveAllClips {
-	[_cblService addClips:_articleURLs toAlum:_albumToAdd];
+	[_cblService addClips:_pureURLs toAlum:_albumToAdd];
 }
 
 - (IBAction)unwindBack:(UIStoryboardSegue *)segue {
@@ -777,13 +741,13 @@
 			if(_albumToAdd){
 				[self saveAllClips];
 			}else {
-				[self showNewAlbumForm];
+				[self showNewAlbumFormWithTitle:_header];
 			}
 		}else{
 			if(_albumToAdd){
 				[self showClipDescPopup:@""];
 			}else {
-				[self showNewAlbumForm];
+				[self showNewAlbumFormWithTitle:@""];
 			}
 		}
 	}else if([source isKindOfClass:[AlbumInfoViewController class]]) {
@@ -1059,9 +1023,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 	ClipPlayController *clipCtr = [ClipPlayController new];
 	
 	clipCtr.clipURL = url;
-	clipCtr.favorite = TRUE;
-	clipCtr.showLike = FALSE;
-	clipCtr.standalone = false;
+	clipCtr.favorite = YES;
+	clipCtr.showLike = NO;
+	clipCtr.standalone = NO;
 	
 	clipCtr.modalPresentationStyle = UIModalPresentationCurrentContext;
 	clipCtr.delegate = self;
@@ -1086,5 +1050,60 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 -(id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
 	return (self.interactiveTransition.isInteracting ? self.interactiveTransition : nil);
 }
+
+//- (void)showPopup {
+//
+//	NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+//	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+//	paragraphStyle.alignment = NSTextAlignmentCenter;
+//
+//	NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"操作说明" attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:24], NSParagraphStyleAttributeName : paragraphStyle}];
+//
+//	NSAttributedString *lineOne= [[NSAttributedString alloc] initWithString:@"点击图片进入滑屏慢放模式" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : CLIPLAY_COLOR, NSParagraphStyleAttributeName : paragraphStyle}];
+//
+//	NSAttributedString *lineTwo = [[NSAttributedString alloc] initWithString:@"点击播放/暂停，滑屏拖动播放" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSParagraphStyleAttributeName : paragraphStyle}];
+//
+//	CNPPopupButton *button = [[CNPPopupButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
+//	[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//	button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+//	[button setTitle:@"知道了" forState:UIControlStateNormal];
+//	button.backgroundColor = CLIPLAY_COLOR;
+//	button.layer.cornerRadius = 4;
+//
+//	UILabel *titleLabel = [[UILabel alloc] init];
+//	titleLabel.numberOfLines = 0;
+//	titleLabel.attributedText = title;
+//
+//	UILabel *lineOneLabel = [[UILabel alloc] init];
+//	lineOneLabel.numberOfLines = 0;
+//	lineOneLabel.attributedText = lineOne;
+//
+//	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tip"]];
+//
+//	UILabel *lineTwoLabel = [[UILabel alloc] init];
+//	lineTwoLabel.numberOfLines = 0;
+//	lineTwoLabel.attributedText = lineTwo;
+//
+//	CNPPopupController *popupController = [[CNPPopupController alloc] initWithContents:@[titleLabel, lineOneLabel, lineTwoLabel, imageView, button]];
+//	popupController.theme = [CNPPopupTheme defaultTheme];
+//	popupController.theme.popupStyle = CNPPopupStyleCentered;
+//	popupController.theme.cornerRadius = 10.0f;
+//
+//	popupController.delegate = self;
+//
+//	button.selectionHandler = ^(CNPPopupButton *button){
+//		[popupController dismissPopupControllerAnimated:YES];
+//	};
+//
+//	[popupController presentPopupControllerAnimated:YES];
+//}
+//
+//- (void)popupControllerDidDismiss:(CNPPopupController *)controller {
+//	if(!self.infoButton.selected) [self.infoButton select];
+//}
+//
+//- (void)tappedButton:(DOFavoriteButton *)sender {
+//	[self showPopup];
+//}
 
 @end

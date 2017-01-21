@@ -82,6 +82,7 @@
 	vc.header = news.name;
 	vc.summary = news.summary;
 	vc.content = news;
+	vc.postID = news.docID;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

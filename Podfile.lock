@@ -1,6 +1,5 @@
 PODS:
   - AppSettings (1.0.0)
-  - CNPPopupController (0.3.1)
   - DGActivityIndicatorView (2.0)
   - FCUUID (1.2.0):
     - UICKeyChainStore (~> 2.1.0)
@@ -63,7 +62,6 @@ PODS:
 
 DEPENDENCIES:
   - AppSettings
-  - CNPPopupController
   - DGActivityIndicatorView
   - FCUUID
   - FontAwesomeKit/FontAwesome
@@ -104,7 +102,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AppSettings: 6478db0cf70d7bea0b02fe3a4f12a8b929c45a55
-  CNPPopupController: 67dc2ca5a3f88cd49a27bb1b0aeb78a24d423d79
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
   FCUUID: 9bfe031d35b7c221a7c66156a0af45d4eb49c3b6
   FontAwesomeKit: 025fd4dd1017fe4e3f8d47b03e024deedbb33cd4
@@ -126,6 +123,6 @@ SPEC CHECKSUMS:
   YYImage: b41b45bc5f32bfcdf67bdfb9c09da9e9832357c0
   YYWebImage: 8da75a611fd0d2e0f58a273f9ca0bc731614cb0d
 
-PODFILE CHECKSUM: 2bdd1c6c9f620807c08f038ad9666a35cfeba32a
+PODFILE CHECKSUM: ff31af18228296ce4480b26dfd07c242234f56dc
 
 COCOAPODS: 1.1.0.rc.2

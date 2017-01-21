@@ -11,5 +11,5 @@
 @interface UIViewController (Utils)
 
 +(UIViewController*) currentViewController;
-+(UIViewController*) rootViewController;
++(UITabBarController*) tabBarViewController;
 @end

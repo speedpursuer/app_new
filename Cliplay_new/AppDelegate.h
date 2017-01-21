@@ -12,8 +12,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-- (void)recordRootVC: (UITabBarController *)controller;
-- (UITabBarController *)rootViewController;
-
 @end
 

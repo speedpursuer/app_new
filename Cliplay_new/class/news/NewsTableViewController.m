@@ -123,6 +123,7 @@
 	News *news = _newsList[indexPath.row];
 	vc.header = news.name;
 	vc.summary = news.summary;
+	vc.postID = news.docID;
 	vc.content = news;
 	[self.navigationController pushViewController:vc animated:YES];
 }

@@ -21,7 +21,6 @@
 	[super awakeFromNib];
 	[self configureCtrs];
 	[self configureTabBar];
-	[(AppDelegate *)[[UIApplication sharedApplication] delegate] recordRootVC:self];
 }
 
 - (void)viewDidLoad {

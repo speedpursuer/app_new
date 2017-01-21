@@ -54,6 +54,7 @@ NS_ENUM(NSInteger)
 
 - (void)getCommentsSummaryByClipIDs:(NSArray *)clips
 						  isRefresh:(BOOL)isRefresh
+							  title:(NSString *)title
 						   success:(void(^)(NSArray*))success
 						   failure:(void(^)())failure;
 

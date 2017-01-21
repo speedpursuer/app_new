@@ -20,4 +20,5 @@
 
 - (void)showLocalNotificaion:(UILocalNotification *)notification;
 
+- (void)fetchData;
 @end

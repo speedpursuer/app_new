@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CNPPopupController.h"
-#import "CacheManager.h"
 #import "EBCommentsViewDelegate.h"
 #import "DOFavoriteButton.h"
 #import "MyLBDelegate.h"
+#import "CacheManager.h"
+//#import "CNPPopupController.h"
 
 typedef NS_ENUM(NSInteger, clipActionType) {
 	addToAlbum,
@@ -23,22 +23,22 @@ typedef NS_ENUM(NSInteger, clipActionType) {
 };
 
 //@interface ClipController : UITableViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, CNPPopupControllerDelegate>
-@interface ClipController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, CNPPopupControllerDelegate,UITableViewDelegate, UITableViewDataSource, DownloadDelegate, UIViewControllerTransitioningDelegate>
+@interface ClipController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, DownloadDelegate, UIViewControllerTransitioningDelegate>
 
-@property (nonatomic, strong) NSArray *articleDicts;
-@property (nonatomic, strong) NSArray *articleURLs;
-@property (nonatomic, strong) Album *album;
 @property (nonatomic, strong) id<Content> content;
+@property (nonatomic, strong) Album *album;
+@property (nonatomic, strong) NSArray *pureURLs;
 @property (nonatomic, strong) NSString *header;
 @property (nonatomic, strong) NSString *summary;
-@property (nonatomic, assign) BOOL showInfo;
 @property (nonatomic, strong) NSString *postID;
-@property (nonatomic, assign) BOOL favorite;
 @property (nonatomic, assign) BOOL fetchMode;
-@property (strong) DOFavoriteButton *infoButton;
+//@property (nonatomic, strong) NSArray *articleDicts;
+//@property (nonatomic, assign) BOOL showInfo;
+//@property (nonatomic, strong) NSString *postID;
+//@property (nonatomic, assign) BOOL favorite;
+//@property (strong) DOFavoriteButton *infoButton;
 //@property (nonatomic, assign) BOOL fullScreen;
 
-- (void)popupControllerDidDismiss:(CNPPopupController *)controller;
 - (NSString *)getCommentQty:(NSString *)clipID;
 - (void)showComments:(NSString *)clipID;
 - (void)shareClip:(NSURL *)clipID;

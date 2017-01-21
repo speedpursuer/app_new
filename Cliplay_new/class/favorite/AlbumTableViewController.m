@@ -223,22 +223,14 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 	NSString *url = [UIPasteboard generalPasteboard].string;
 	
 	if([[url pathExtension] caseInsensitiveCompare:@"gif"] == NSOrderedSame) {
-		ClipController *vc = [ClipController new];
-		vc.fetchMode = true;
-//		vc.header = @"单图下载";
-		vc.articleURLs = @[url];
-		[self.navigationController pushViewController:vc animated:YES];
+		[self showClipsForFetch:@[url] title:@""];
 	}else {
 		LBService *service = [LBService sharedManager];
 		[self showProgress];
 		[service fetchClipsFromURL:url success:^(NSArray *images, NSString *title) {
 			[self hideProgress];
 			if(images.count > 0){
-				ClipController *vc = [ClipController new];
-				vc.fetchMode = true;
-//				vc.header = title? title: @"多图下载";
-				vc.articleURLs = images;
-				[self.navigationController pushViewController:vc animated:YES];
+				[self showClipsForFetch:images title:title];
 			}else{
 				[self showAlertMessage:@"此页面无法获取动图：" withMessage:url];
 			}
@@ -248,6 +240,14 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 			[self showAlertMessage:@"获得动图失败" withMessage:@"请检查网络后重试"];
 		}];
 	}
+}
+
+- (void)showClipsForFetch:(NSArray *)pureURLs title:(NSString *)title {
+	ClipController *vc = [ClipController new];
+	vc.fetchMode = true;
+	vc.header = title;
+	vc.pureURLs = pureURLs;
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Cache Settings 
@@ -377,10 +377,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	ClipController *vc = [ClipController new];
 	if(indexPath.section == 0) {
-//		Favorite *favorite = _service.favorite;
-		vc.favorite = true;
 		vc.header = @kFavoriteTitle;
-		vc.articleURLs = _favorite.clips;
+		vc.pureURLs = _favorite.clips;
 	}else {
 		Album *album = [self getAlbumWithIndex:indexPath];
 		vc.header = album.title;

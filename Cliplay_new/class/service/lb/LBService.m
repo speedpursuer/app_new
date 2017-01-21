@@ -152,12 +152,14 @@ static NSInteger const pageSize = 11;
 
 - (void)getCommentsSummaryByClipIDs:(NSArray *)clips
 						  isRefresh:(BOOL)isRefresh
+							  title:(NSString *)title
 							success:(void(^)(NSArray*))success
 							failure:(void(^)())failure
 {	
-	[postRep invokeStaticMethod:@"getCommentQtyByClips"
+	[postRep invokeStaticMethod:@"getCommentQtyByClipsV2"
 					 parameters:@{
 								  @"clips": clips,
+								  @"title": title,
 								  @"isRefresh":[NSNumber numberWithBool:isRefresh]
 								}
 						success:^(id value) {

@@ -10,7 +10,6 @@
 #import "PushService.h"
 
 @interface AppDelegate ()
-@property UITabBarController *rootVC;
 @property LBService *service;
 @property CBLService *lblService;
 @property PushService *pushService;
@@ -133,16 +132,6 @@
 	}else {
 		return UIInterfaceOrientationMaskPortrait;
 	}
-}
-
-#pragma mark - Helper
-
-- (void)recordRootVC: (UITabBarController *)controller {
-	_rootVC = controller;
-}
-
-- (UITabBarController *)rootViewController {
-	return _rootVC;
 }
 
 @end

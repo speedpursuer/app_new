@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>CNPPopupController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>DGActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -117,21 +112,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0525080274458A9F6CB236016239D7F7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>05865F5E30E604530FD2038C6605B8F9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>07C7237F082DE03E1354F50D963A3EEA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>12AC35F9C569FA2A4543EFEDD802D2C9</key>
 		<dict>
 			<key>primary</key>
@@ -142,12 +122,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2E7B3B6CB5C4A96BE233C53043465FAF</key>
+		<key>2B13C2B2A6CBF60BB7F5B0E923B88A0B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>43FC44CFB002D4A1F6A1FD3594D8FFC2</key>
+		<key>40EB2105F272615F527ABE907692F1AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,17 +137,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4FADCC758A1AC3552104CEFC0AD929E7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>611A56531AE8BFDB2320359150B8A900</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6D425182FBEE57F08008FB0607A22467</key>
+		<key>5AC2436373A940D2D32E2E4C42B2BD45</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -178,6 +148,11 @@
 			<true/>
 		</dict>
 		<key>6EB6C59C76FE31B6679F07CE096BE526</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>727E34552EAB602B311028FB819B0C9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -197,6 +172,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9E00EB5D4F18761425793F6797498838</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AB8B509DC8A58593CADE4834114BF260</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>ABEAA29CF33D2F962956C7DEA8662A4A</key>
 		<dict>
 			<key>primary</key>
@@ -207,17 +192,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DF5E4CB45FAF4E8E682A2C4BAB95588C</key>
+		<key>E7057BE72234B1132B10950578E58426</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E6CE776385BB0801663D1244CCC062DB</key>
+		<key>EB5409C3BAC853A5251F24F073981981</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F2DD172957D39963092DD9A25229B850</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA1C775649730684787BB47037827F89</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -73,6 +73,7 @@
 	Post *post = [[CBLService sharedManager] clipsForPlayer:_player withMove:move];
 	vc.header = [NSString stringWithFormat:@"%@ - %@", _player.name, move.move_name];
 	vc.content = post;
+	vc.postID = post.docID;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

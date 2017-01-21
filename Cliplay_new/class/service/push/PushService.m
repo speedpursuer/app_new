@@ -12,7 +12,7 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 #import "UIViewController+Utils.h"
-#import "AppDelegate.h"
+#import "AutoRotateNavController.h"
 
 #define pushApiKey @"10YipKN8jSfOn0t5e1NbBwXl"
 #define pushCat    @"cliplay"
@@ -149,7 +149,7 @@
 	// 应用在前台 或者后台开启状态下，不跳转页面，让用户选择。
 	if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
 		NSLog(@"acitve or background");
-		UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"收到一条消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"最新消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 		[alertView show];
 	}
 	else //if(webViewLaunched)//杀死状态下，直接跳转到跳转页面。
@@ -177,18 +177,21 @@
 	
 	if(!_pushID) return;
 	
-//	UIViewController *c = [UIViewController rootViewController];
+//	_pushID = @"post_player_kobe_bryant_move_dunk";
+//	_header = @"Title";
 	
-//	UITabBarController *[(AppDelegate *)[[UIApplication sharedApplication] delegate] recordRootVC:self]
 	
-	UINavigationController *currentNav = [(AppDelegate *)[[UIApplication sharedApplication] delegate] rootViewController].selectedViewController;	
+//	UINavigationController *currentNav = [UIViewController tabBarViewController].selectedViewController;
+	
+//	if([currentVC isKindOfClass:[ClipController class]]) {
+//		ClipController *clip = (ClipController *)currentVC;
+//		clip.suspended = YES;
+//		if([currentVC.parentViewController isKindOfClass:[UINavigationController class]]) {
+//			[(UINavigationController *)currentVC.parentViewController popViewControllerAnimated:YES];
+//		}
+//	}
+	
 	UIViewController *currentVC = [UIViewController currentViewController];
-	
-	if([currentVC isKindOfClass:[ClipController class]]) {
-		if([currentVC.parentViewController isKindOfClass:[UINavigationController class]]) {
-			[(UINavigationController *)currentVC.parentViewController popViewControllerAnimated:NO];
-		}
-	}
 	
 	NSString *header = self.header;
 	NSString *pushID = self.pushID;
@@ -196,40 +199,21 @@
 	[[CBLService sharedManager] fetchNewsByID:pushID completionHandlder:^(id<Content> content) {
 		ClipController *vc = [ClipController new];
 		vc.content = content;
+		vc.summary = content.headline;
 		vc.header = header;
-		[currentNav pushViewController:vc animated:YES];
+		vc.postID = pushID;
+		
+		vc.modalPresentationStyle = UIModalPresentationCurrentContext;
+		
+		AutoRotateNavController *navigationController =
+		[[AutoRotateNavController alloc] initWithRootViewController:vc];
+		
+		[currentVC presentViewController:navigationController animated:YES completion:nil];
+//		[currentNav pushViewController:vc animated:YES];
 	}];
 	
 	self.pushID = nil;
 	self.header = nil;
-	
-//	NSURL *url = [NSURL URLWithString:[[NSString stringWithFormat:@"%@/", cbserverURL] stringByAppendingString: pushID]];
-//	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//	[NSURLConnection sendAsynchronousRequest:request
-//									   queue:[NSOperationQueue mainQueue]
-//						   completionHandler:^(NSURLResponse *response,
-//											   NSData *data, NSError *connectionError)
-//	 {
-//		 if (data.length > 0 && connectionError == nil)
-//		 {
-//			 NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data
-//																  options:0
-//																	error:NULL];
-//			 
-//			 ClipController *vc = [ClipController new];
-//			 vc.header = header;
-//			 vc.postID = pushID;
-//			 vc.showInfo = false;
-//			 vc.articleDicts = dict[@"image"];
-//			 vc.summary = dict[@"summary"];
-//			 
-////			 [_nv pushViewController:vc animated:YES];			 
-////			 [_nv setNavigationBarHidden:NO];
-//		 }
-//	 }];
-//}
-//
-// }];
 }
 
 #pragma mark - Help
