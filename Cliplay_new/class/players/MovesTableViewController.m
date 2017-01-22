@@ -10,7 +10,7 @@
 #import "MovesTableViewCell.h"
 #import <TLYShyNavBar/TLYShyNavBarManager.h>
 #import "RoundUIImageView.h"
-
+#import "NoContent.h"
 
 @interface MovesTableViewController ()
 @property NSArray *moves;
@@ -29,7 +29,7 @@
 }
 
 -(NSString *)segmentTitle {
-	return @"动作";
+	return NSLocalizedString(@"Movement", @"Player tab");
 }
 
 -(void)loadMoves {
@@ -42,14 +42,11 @@
 	if (_moves.count > 0) {
 		return 1;
 	} else {
-		UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-		messageLabel.text = @"无内容显示";
-		messageLabel.textColor = [UIColor lightGrayColor];
-		messageLabel.numberOfLines = 0;
-		messageLabel.textAlignment = NSTextAlignmentCenter;
-		messageLabel.font = [UIFont systemFontOfSize:20];
-		[messageLabel sizeToFit];
-		self.tableView.backgroundView = messageLabel;
+		NoContent *view = [[[NSBundle mainBundle] loadNibNamed:@"NoContent" owner:nil options:nil] lastObject];
+		view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+		view.message.text = NSLocalizedString(@"No Content", @"for tableView");
+		view.toBottom.constant = (self.view.bounds.size.height - 244)/2;
+		self.tableView.backgroundView = view;
 		self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 		return 0;
 	}

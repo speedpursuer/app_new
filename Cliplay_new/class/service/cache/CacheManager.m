@@ -210,7 +210,7 @@ dispatch_semaphore_t _lock;
 	[config save];
 	[[YYImageCache sharedCache].diskCache setCostLimit:limit * kOneMB];
 	[[YYImageCache sharedCache].diskCache trimToCost:limit * kOneMB];
-	[self showSuccessMessage:@"设置成功"];
+	[self showSuccessMessage:NSLocalizedString(@"Successfully Saved", @"cache setup")];
 }
 
 - (int)getCacheLimit {
@@ -224,7 +224,7 @@ dispatch_semaphore_t _lock;
 
 - (void)deleteAllCache {
 	[[YYImageCache sharedCache].diskCache removeAllObjects];
-	[self showSuccessMessage:@"已删除所有缓存"];
+	[self showSuccessMessage:NSLocalizedString(@"All Cached Removed", @"cache setup")];
 }
 
 #pragma mark - Helper

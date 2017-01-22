@@ -131,7 +131,7 @@
 	_cancelButton = [UILabel new];
 	_cancelButton.frame = CGRectMake(10, 30, 100, 30);
 	_cancelButton.textAlignment = NSTextAlignmentLeft;
-	_cancelButton.text = @"取消";
+	_cancelButton.text = NSLocalizedString(@"Cancel", @"Common text");
 	_cancelButton.textColor = [UIColor whiteColor];
 	_cancelButton.hidden = YES;
 	_cancelButton.userInteractionEnabled = YES;

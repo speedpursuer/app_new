@@ -40,9 +40,9 @@
 	UITabBarItem *tabBarItem2 = [tabBar.items objectAtIndex:1];
 	UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:2];
 	
-	tabBarItem1.title = @"最新内容";
-	tabBarItem2.title = @"球星动作";
-	tabBarItem3.title = @"我的球路";
+	tabBarItem1.title = NSLocalizedString(@"News", @"First tab bar title");
+	tabBarItem2.title = NSLocalizedString(@"Stars", @"Second tab bar title");
+	tabBarItem3.title = NSLocalizedString(@"Favorite", @"Third tab bar title");
 	
 	CGSize size = CGSizeMake(30, 30);
 	

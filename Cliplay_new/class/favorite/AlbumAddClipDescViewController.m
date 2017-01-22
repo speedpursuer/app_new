@@ -32,7 +32,7 @@
 
 - (void)loadUI {
 	[self loadThumb];
-	[_desc setPlaceholder:@"请输入描述..."];
+	[_desc setPlaceholder:NSLocalizedString(@"Enter Comment", @"Collection")];
 	[_desc becomeFirstResponder];
 	_thumb.contentMode = UIViewContentModeScaleAspectFill;
 	_thumb.layer.masksToBounds = YES;

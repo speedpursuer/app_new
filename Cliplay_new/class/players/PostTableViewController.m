@@ -27,7 +27,7 @@
 }
 
 -(NSString *)segmentTitle {
-	return @"专辑";
+	return NSLocalizedString(@"Album", @"Player tab");
 }
 
 -(void)loadPosts {
@@ -42,7 +42,7 @@
 	} else {
 		NoContent *view = [[[NSBundle mainBundle] loadNibNamed:@"NoContent" owner:nil options:nil] lastObject];
 		view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-		view.message.text = @"无内容显示";
+		view.message.text = NSLocalizedString(@"No Content", @"for tableView");
 		view.toBottom.constant = (self.view.bounds.size.height - 244)/2;
 		self.tableView.backgroundView = view;
 		self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

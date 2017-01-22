@@ -56,19 +56,19 @@
 
 - (void)setupButton {
 	if(_actionType == sendClip) {
-		_confirmButton.title = @"Send";
+		_confirmButton.title = NSLocalizedString(@"Send", @"Share to weibo");
 	}else{
-		_confirmButton.title = @"Save";
+		_confirmButton.title = NSLocalizedString(@"Save", @"clip edit");
 	}
 }
 
 - (void)setupTitle {
 	if(_actionType == sendClip) {
-		self.title = @"Share to Weibo";
+		self.title = NSLocalizedString(@"Share to Weibo", @"Share to weibo");
 	}else if(_actionType == editDesc) {
-		self.title = @"Edit Desc";
+		self.title = NSLocalizedString(@"Edit Comment", @"clip edit");
 	}else {
-		self.title = @"Add Desc";
+		self.title = NSLocalizedString(@"Add Comment", @"clip edit");
 	}
 }
 

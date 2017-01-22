@@ -1,0 +1,216 @@
+/* clip edit */
+"Add Comment" = "添加备注";
+
+/* Collection */
+"Add To Collection" = "加入收藏夹";
+
+/* for action sheet */
+"Add to others" = "加入其他";
+
+/* Player tab */
+"Album" = "专辑";
+
+/* cache setup */
+"All Cached Removed" = "已删除所有缓存";
+
+/* Cache setup */
+"Auto cleanup to keep space below: %@" = "自动定期清除不常看，以低于：%@";
+
+/* Common text
+   for action sheet
+   for alertView
+   Push */
+"Cancel" = "取消";
+
+/* cblservice */
+"Clip Removed" = "动图删除成功";
+
+/* cblservice */
+"Collection \"%@\" removed" = "已删除\\\"%@\\\"";
+
+/* cblservice */
+"Collection Info Saved" = "信息修改成功";
+
+/* Comment to share to weibo
+   Placeholder for clip edit */
+"Comment" = "备注";
+
+/* cblservice */
+"Comment Changed" = "描述修改成功";
+
+/* Common text
+   common text
+   for album create alert */
+"Create Collection" = "新建收藏夹";
+
+/* Cache setup */
+"Current total cache: %ldMB" = "当前全部缓存：%ldMB";
+
+/* Display ratio */
+"Display" = "显示";
+
+/* for action sheet */
+"Edit Collection Info" = "修改收藏夹名";
+
+/* clip edit
+   for action sheet */
+"Edit Comment" = "修改备注";
+
+/* for action sheet */
+"Edit this clip" = "操作此动图";
+
+/* Collection */
+"Enter Comment" = "请输入描述...";
+
+/* Collection
+   for album create alert */
+"Enter Name:" = "请输入名称:";
+
+/* Third tab bar title */
+"Favorite" = "我的球路";
+
+/* Collection */
+"Fetch Clips From Link" = "从链接获取";
+
+/* Collection */
+"Fetching failed" = "获得动图失败";
+
+/* No comment provided by engineer. */
+"From:" = "";
+
+/* cache */
+"Manage Cache" = "管理缓存区";
+
+/* Player tab */
+"Movement" = "动作";
+
+/* Collection */
+"My Collections" = "我的收藏夹";
+
+/* Collection */
+"Name" = "名称";
+
+/* cblservice */
+"New Collection \"%@\" created" = "已新建\\\"%@\\\" ";
+
+/* First tab bar title */
+"News" = "最新内容";
+
+/* Collection */
+"No Clips found in this page:" = "此页面无法获取动图：";
+
+/* for tableView
+   Message for empty table view */
+"No Content" = "无内容显示";
+
+/* for alertView
+   lbservice */
+"OK" = "好";
+
+/* Collection */
+"Please check network and retry" = "请检查网络后重试";
+
+/* Collection */
+"Please copy correct URL" = "请复制正确的链接";
+
+/* Cancel */
+"REComposeSheetView_Cancel" = "取消";
+
+/* Post */
+"REComposeSheetView_Post" = "发送";
+
+/* For link fetching */
+"Reading info from link" = "读取中...";
+
+/* Push */
+"Recent News" = "最新消息";
+
+/* for action sheet */
+"Remove" = "删除动图";
+
+/* Collections */
+"Reorder Collections" = "整理收藏夹";
+
+/* lbservice */
+"Request failed" = "操作失败";
+
+/* cblservice */
+"Request failed, please retry" = "操作失败，请重试";
+
+/* clip edit
+   for album create alert */
+"Save" = "保存";
+
+/* Save all images from link */
+"Save All" = "收藏全部";
+
+/* cblservice */
+"Saved to Collection \"%@\"" = "已加入\\\"%@\\\"";
+
+/* for action sheet
+   Search bar placeholder */
+"Search By Comment" = "根据备注过滤";
+
+/* Share to weibo */
+"Send" = "发送";
+
+/* for action sheet */
+"Set Display Ratio" = "设置动图比例";
+
+/* Share to weibo */
+"Share to Weibo" = "微博分享";
+
+/* Unknown error */
+"Some errors, please try again later" = "服务器忙，请稍后再试";
+
+/* Second tab bar title */
+"Stars" = "球星动作";
+
+/* cache setup */
+"Successfully Saved" = "设置成功";
+
+/* Collection */
+"Summary" = "简介";
+
+/* cblservice */
+"Sync Failed, please check network" = "同步数据失败，请检查网络";
+
+/* cblservice */
+"Sync of history failed, please check network" = "同步历史数据失败，请检查网络";
+
+/* Progress of Syncing history data */
+"Syncing history data" = "同步历史数据";
+
+/* Post text */
+"This NBA GIF is shared from Cliplay APP" = "分享自 “球路App” (NBA动图专家)";
+
+/* maybe network error */
+"User login error, please try again later" = "不能连接服务器，请稍后再试";
+
+/* Push */
+"View" = "观看";
+
+/* Collection */
+"View Clips From this Link?" = "查看这里的动图?";
+
+/* No comment provided by engineer. */
+"WiFi" = "";
+
+/* Appears in a textbox where a user can write a comment. */
+"Write a comment..." = "路过留言...";
+
+/* Exceed comment limit */
+"You comment too often" = "您评论太快，请休息一下";
+
+/* User cancelled login */
+"You're exceeding share limit per day" = "您已超出单日分享限额";
+
+/* User cancelled login */
+"You're not allowed to comment because you cancelled login" = "您必须登录后才能操作";
+
+/* User disabled */
+"You're not allowed to function" = "您暂时不能操作，请联系我们";
+
+/* Appears on a button that posts a comment when tapped. */
+"post" = "发送";
+

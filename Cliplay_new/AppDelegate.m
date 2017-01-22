@@ -106,7 +106,7 @@
 
 // 当 DeviceToken 获取失败时，系统会回调此方法
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-	NSLog(@"DeviceToken 获取失败，原因：%@",error);
+	NSLog(@"DeviceToken not received，reason：%@",error);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {

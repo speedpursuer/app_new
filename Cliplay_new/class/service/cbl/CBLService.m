@@ -301,10 +301,11 @@
 	if ([album save:&error]) {
 		[_albumSeq addAlbumID:[album docID]];
 		[self notifyAlbumChanges];
-		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:@"已新建\"%@\"", album.title] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
+		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:NSLocalizedString(@"New Collection \"%@\" created", @"cblservice"), album.title] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
 		return album;
 	}else {
-		[JDStatusBarNotification showWithStatus:@"操作失败，请重试" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+		[self showError];
+//		[JDStatusBarNotification showWithStatus:NSLocalizedString(@"Request failed, please retry", @"cblservice") dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
 		return nil;
 	}
 }
@@ -316,10 +317,11 @@
 	if ([album deleteDocument:&error]){
 		[_albumSeq deleteAlbumID:albumID];
 		[self notifyAlbumChanges];
-		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:@"已删除\"%@\"", albumName] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
+		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:NSLocalizedString(@"Collection \"%@\" removed", @"cblservice"), albumName] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
 		return YES;
 	}else{
-		[JDStatusBarNotification showWithStatus:@"操作失败，请重试" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+		[self showError];
+//		[JDStatusBarNotification showWithStatus:NSLocalizedString(@"Request failed, please retry", @"cblservice") dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
 		return NO;
 	}
 }
@@ -360,10 +362,11 @@
 	
 	NSError* error;
 	if ([album save: &error]) {
-		[JDStatusBarNotification showWithStatus:@"描述修改成功" dismissAfter:1.2 styleName:JDStatusBarStyleSuccess];
+		[JDStatusBarNotification showWithStatus:NSLocalizedString(@"Comment Changed", @"cblservice") dismissAfter:1.2 styleName:JDStatusBarStyleSuccess];
 		return YES;
 	}else {
-		[JDStatusBarNotification showWithStatus:@"操作失败，请重试" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+		[self showError];
+//		[JDStatusBarNotification showWithStatus:NSLocalizedString(@"Request failed, please retry", @"cblservice") dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
 		return NO;
 	}
 }
@@ -384,10 +387,11 @@
 	NSError* error;
 	if ([album save: &error]) {
 		[self notifyAlbumChanges];
-		[JDStatusBarNotification showWithStatus:@"动图删除成功" dismissAfter:1.2 styleName:JDStatusBarStyleSuccess];
+		[JDStatusBarNotification showWithStatus:NSLocalizedString(@"Clip Removed", @"cblservice") dismissAfter:1.2 styleName:JDStatusBarStyleSuccess];
 		return YES;
 	}else {
-		[JDStatusBarNotification showWithStatus:@"操作失败，请重试" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+		[self showError];
+//		[JDStatusBarNotification showWithStatus:@"操作失败，请重试" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
 		return NO;
 	}
 }
@@ -402,10 +406,11 @@
 	NSError* error;
 	if ([album save: &error]) {
 		[self notifyAlbumChanges];
-		[JDStatusBarNotification showWithStatus:@"信息修改成功" dismissAfter:1.2 styleName:JDStatusBarStyleSuccess];
+		[JDStatusBarNotification showWithStatus:NSLocalizedString(@"Collection Info Saved", @"cblservice") dismissAfter:1.2 styleName:JDStatusBarStyleSuccess];
 		return YES;
 	}else {
-		[JDStatusBarNotification showWithStatus:@"操作失败，请重试" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+		[self showError];
+//		[JDStatusBarNotification showWithStatus:@"操作失败，请重试" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
 		return NO;
 	}
 }
@@ -579,7 +584,7 @@
 	}
 	if(_pull.status == kCBLReplicationStopped) {
 		if(_lastSyncError){
-			[JDStatusBarNotification showWithStatus:@"同步数据失败，请检查网络" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+			[JDStatusBarNotification showWithStatus:NSLocalizedString(@"Sync Failed, please check network", @"cblservice") dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
 		}else if(_pull.changesCount == _pull.completedChangesCount) {
 			if(_pull.completedChangesCount > 0) {
 				[self notifyContentUpdate];
@@ -674,7 +679,7 @@
 	}
 	if(_pull.status == kCBLReplicationStopped) {
 		if(_lastSyncError){
-			[JDStatusBarNotification showWithStatus:@"同步历史数据失败，请检查网络" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+			[JDStatusBarNotification showWithStatus:NSLocalizedString(@"Sync of history failed, please check network", @"cblservice") dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
 		}else if(_pull.changesCount == _pull.completedChangesCount) {
 			// Successfull pull means - 1. No error 2. all changes completed
 			[_progressView setProgress:1.0];
@@ -716,7 +721,7 @@
 	
 	view.mode = MRProgressOverlayViewModeDeterminateHorizontalBar;
 	
-	NSAttributedString *title = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"同步历史数据", nil) attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor darkGrayColor]}];
+	NSAttributedString *title = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Syncing history data", @"Progress of Syncing history data") attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor darkGrayColor]}];
 	
 	view.titleLabelAttributedText = title;
 	
@@ -803,10 +808,11 @@
 	NSError* error;
 	if ([album save: &error]) {
 		[self notifyAlbumChanges];
-		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:@"已加入\"%@\"", album.title] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
+		[JDStatusBarNotification showWithStatus:[NSString stringWithFormat:NSLocalizedString(@"Saved to Collection \"%@\"", @"cblservice"), album.title] dismissAfter:2.0 styleName:JDStatusBarStyleSuccess];
 		return YES;
 	}else {
-		[JDStatusBarNotification showWithStatus:@"操作失败，请重试" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+		[self showError];
+//		[JDStatusBarNotification showWithStatus:@"操作失败，请重试" dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
 		return NO;
 	}
 }
@@ -876,6 +882,14 @@
 			 handlder(feed);
 		 }
 	}];
+}
+
+- (void)showErrorWithMessage:(NSString *)msg {
+	[JDStatusBarNotification showWithStatus:msg dismissAfter:2.0 styleName:JDStatusBarStyleWarning];
+}
+
+- (void)showError{
+	[self showErrorWithMessage:NSLocalizedString(@"Request failed, please retry", @"cblservice")];
 }
 
 #pragma mark - For test

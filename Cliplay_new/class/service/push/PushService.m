@@ -116,7 +116,7 @@
 	// 应用在前台，不跳转页面，让用户选择。
 	if (application.applicationState == UIApplicationStateActive) {
 		NSLog(@"acitve ");
-		UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"最新消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"观看", nil];
+		UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Recent News", @"Push") message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"Push") otherButtonTitles:NSLocalizedString(@"View", @"Push"), nil];
 		[alertView show];
 	}
 	//杀死状态下，直接跳转到跳转页面。
@@ -131,7 +131,7 @@
 		NSLog(@"background is Activated Application ");
 		// 此处可以选择激活应用提前下载邮件图片等内容。
 		_isBackGroundActivateApplication = YES;
-		UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"最新消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"观看", nil];
+		UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Recent News", @"Push") message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"Push") otherButtonTitles:NSLocalizedString(@"View", @"Push"), nil];
 		[alertView show];
 	}
 	
@@ -149,7 +149,7 @@
 	// 应用在前台 或者后台开启状态下，不跳转页面，让用户选择。
 	if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
 		NSLog(@"acitve or background");
-		UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"最新消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Recent News", @"Push") message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"Push") otherButtonTitles:NSLocalizedString(@"View", @"Push"), nil];
 		[alertView show];
 	}
 	else //if(webViewLaunched)//杀死状态下，直接跳转到跳转页面。
@@ -171,15 +171,18 @@
 }
 
 - (void)fetchData {
-	__weak typeof(self) _self = self;
-	[Helper performBlock:^{
-		[_self showPushFeed];
-	} afterDelay:0.5];
+//	__weak typeof(self) _self = self;
+//	[Helper performBlock:^{
+//		[_self showPushFeed];
+//	} afterDelay:0.5];
+	[self showPushFeed];
 }
 
 - (void)showPushFeed {
 	
-	if(!_pushID) return;
+//	if(!_pushID) return;
+	_pushID = @"post_player_kobe_bryant_move_dunk";
+	_header = @"Title";
 	
 	UIViewController *currentVC = [UIViewController currentViewController];
 	

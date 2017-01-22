@@ -278,7 +278,15 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aM-nQ-W3z">
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="删除全部缓存"/>
+                                                    <state key="normal" title="Delete All Cache"/>
+                                                    <attributedString key="userComments">
+                                                        <fragment content="Delete All Cache">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="smallSystem"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <connections>
                                                         <action selector="goBack:" destination="lYP-Fv-r8D" eventType="touchUpInside" id="9Uq-Jx-Un4"/>
                                                     </connections>
@@ -331,7 +339,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="收藏夹名称：" id="Dd2-0Q-4Yd">
+                            <tableViewSection headerTitle="Album Name:" id="Dd2-0Q-4Yd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ov2-EO-F68">
                                         <rect key="frame" x="0.0" y="120" width="375" height="44"/>
@@ -340,7 +348,7 @@
                                             <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="名称" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="cKV-k7-L6O">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Please Enter..." textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="cKV-k7-L6O">
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -355,8 +363,16 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
+                                <attributedString key="userComments">
+                                    <fragment content="Album Name">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="smallSystem"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                             </tableViewSection>
-                            <tableViewSection headerTitle="简介（显示在最上面的一段文字）：" id="DMZ-Ni-kBa">
+                            <tableViewSection headerTitle="Show Desc (Will be shown above all):" id="DMZ-Ni-kBa">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="153" id="GRc-WY-Cej">
                                         <rect key="frame" x="0.0" y="221" width="375" height="153"/>
@@ -414,7 +430,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TfN-9r-rYD" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IOd-dA-ZJE">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IOd-dA-ZJE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -432,7 +448,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AFA-LW-K9e" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eJg-md-JFF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eJg-md-JFF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -450,7 +466,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d5r-bH-Guw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="fnc-T3-Q35">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fnc-T3-Q35">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -468,7 +484,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mft-dj-z38" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="htg-Sh-lWt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="htg-Sh-lWt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

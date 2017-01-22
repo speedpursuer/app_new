@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/common/ClipPlayController.m"
-            timestampString = "506654889.690404"
+            timestampString = "506777344.043873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "-preferredStatusBarStyle"
             landmarkType = "7">
          </BreakpointContent>
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/players/MovesTableViewController.m"
-            timestampString = "506596408.380171"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "@implementation MovesTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/players/MovesTableViewController.m"
-            timestampString = "506596408.380171"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "@implementation MovesTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/players/MovesTableViewController.m"
-            timestampString = "506596408.380171"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "@implementation MovesTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -618,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/players/MovesTableViewController.m"
-            timestampString = "506596408.380171"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "@implementation MovesTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -634,43 +634,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/players/MovesTableViewController.m"
-            timestampString = "506596408.380171"
+            timestampString = "506781092.574187"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "@implementation MovesTableViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cliplay_new/class/players/MovesTableViewController.m"
+            timestampString = "506781092.574187"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "@implementation MovesTableViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cliplay_new/class/players/MovesTableViewController.m"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
             endingLineNumber = "122"
-            landmarkName = "@implementation MovesTableViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cliplay_new/class/players/MovesTableViewController.m"
-            timestampString = "506596408.380171"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "@implementation MovesTableViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cliplay_new/class/players/MovesTableViewController.m"
-            timestampString = "506596408.380171"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
             landmarkName = "@implementation MovesTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -984,11 +984,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/players/MovesTableViewController.m"
-            timestampString = "506570199.541231"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1016,11 +1016,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/players/MovesTableViewController.m"
-            timestampString = "506570199.541231"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1144,11 +1144,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/cbl/CBLService.m"
-            timestampString = "506570199.541231"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "895"
-            endingLineNumber = "895"
+            startingLineNumber = "909"
+            endingLineNumber = "909"
             landmarkName = "-getSpecificContent"
             landmarkType = "7">
          </BreakpointContent>
@@ -1288,11 +1288,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/common/ClipPlayController.m"
-            timestampString = "506654889.690404"
+            timestampString = "506777344.043873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "-loadImage:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1384,11 +1384,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/cbl/CBLService.m"
-            timestampString = "506570199.541231"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "584"
-            endingLineNumber = "584"
+            startingLineNumber = "589"
+            endingLineNumber = "589"
             landmarkName = "-contentReplicationProgress:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1748,15 +1748,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/common/ClipPlayController.m"
-            timestampString = "506654889.690404"
+            timestampString = "506777344.043873"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "-prepareToExit"
             landmarkType = "7">
          </BreakpointContent>
@@ -2166,11 +2166,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/cbl/CBLService.m"
-            timestampString = "506570199.541231"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "506"
-            endingLineNumber = "506"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
             landmarkName = "-loadFavorite"
             landmarkType = "7">
          </BreakpointContent>
@@ -2182,11 +2182,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/cbl/CBLService.m"
-            timestampString = "506570199.541231"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "619"
-            endingLineNumber = "619"
+            startingLineNumber = "624"
+            endingLineNumber = "624"
             landmarkName = "-syncFromRemote"
             landmarkType = "7">
          </BreakpointContent>
@@ -2566,11 +2566,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/push/PushService.m"
-            timestampString = "506695320.268724"
+            timestampString = "506746248.685317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "-showPushFeed"
             landmarkType = "7">
          </BreakpointContent>
@@ -2582,11 +2582,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/push/PushService.m"
-            timestampString = "506695320.268724"
+            timestampString = "506746248.685317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "-showPushFeed"
             landmarkType = "7">
             <Locations>
@@ -2630,11 +2630,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/cbl/CBLService.m"
-            timestampString = "506570199.541231"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "861"
-            endingLineNumber = "861"
+            startingLineNumber = "867"
+            endingLineNumber = "867"
             landmarkName = "-fetchNewsByID:completionHandlder:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2646,11 +2646,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/push/PushService.m"
-            timestampString = "506695320.268724"
+            timestampString = "506746248.685317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-showPushFeed"
             landmarkType = "7">
          </BreakpointContent>
@@ -2662,11 +2662,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/cbl/CBLService.m"
-            timestampString = "506570199.541231"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "865"
-            endingLineNumber = "865"
+            startingLineNumber = "871"
+            endingLineNumber = "871"
             landmarkName = "-fetchNewsByID:completionHandlder:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2678,11 +2678,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/cbl/CBLService.m"
-            timestampString = "506570199.541231"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "869"
-            endingLineNumber = "869"
+            startingLineNumber = "875"
+            endingLineNumber = "875"
             landmarkName = "-fetchNewsByID:completionHandlder:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2694,11 +2694,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/cbl/CBLService.m"
-            timestampString = "506570199.541231"
+            timestampString = "506781092.574187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "873"
-            endingLineNumber = "873"
+            startingLineNumber = "879"
+            endingLineNumber = "879"
             landmarkName = "-fetchNewsByID:completionHandlder:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3062,11 +3062,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/push/PushService.m"
-            timestampString = "506695320.268724"
+            timestampString = "506746248.685317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "-showPushFeed"
             landmarkType = "7">
             <Locations>
@@ -3173,11 +3173,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/service/push/PushService.m"
-            timestampString = "506695320.268724"
+            timestampString = "506746248.685317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "-showPushFeed"
             landmarkType = "7">
          </BreakpointContent>
@@ -3237,11 +3237,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cliplay_new/class/common/ClipController.m"
-            timestampString = "506693824.439272"
+            timestampString = "506771818.923736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "956"
-            endingLineNumber = "956"
+            startingLineNumber = "953"
+            endingLineNumber = "953"
             landmarkName = "-alertView:didDismissWithButtonIndex:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3355,6 +3355,86 @@
             startingLineNumber = "59"
             endingLineNumber = "59"
             landmarkName = "-setupButton"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cliplay_new/class/service/push/PushService.m"
+            timestampString = "506746248.685317"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "-showPushFeed"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cliplay_new/class/common/ClipPlayController.m"
+            timestampString = "506777344.043873"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "-exitSlowPlay"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cliplay_new/class/common/ClipPlayController.m"
+            timestampString = "506777494.132737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cliplay_new/class/common/ClipPlayController.m"
+            timestampString = "506777494.835082"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cliplay_new/class/common/ClipPlayController.m"
+            timestampString = "506777495.868796"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-viewDidDisappear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

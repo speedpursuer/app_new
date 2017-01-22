@@ -65,7 +65,7 @@
 }
 
 - (void)setupTitle {
-	self.title = @"我的球路";
+	self.title = NSLocalizedString(@"Favorite", @"Third tab bar title");;
 }
 
 - (void)hideBackButtonText {
@@ -120,7 +120,7 @@
 	[[[UIAlertView alloc] initWithTitle:title
 								message:message
 							   delegate:nil
-					  cancelButtonTitle:@"知道了"
+					  cancelButtonTitle:NSLocalizedString(@"OK", @"for alertView")
 					  otherButtonTitles:nil] show];
 }
 
@@ -128,8 +128,8 @@
 	UIAlertView* alert= [[UIAlertView alloc] initWithTitle:title
 												   message:message
 												  delegate:self
-										 cancelButtonTitle:@"取消"
-										 otherButtonTitles:@"确定", nil];
+										 cancelButtonTitle:NSLocalizedString(@"Cancel", @"for alertView")
+										 otherButtonTitles:NSLocalizedString(@"OK", @"for alertView"), nil];
 	alert.alertViewStyle = style;
 	alert.tag = tag;
 	[alert show];
@@ -144,7 +144,7 @@
 	
 	view.mode = MRProgressOverlayViewModeIndeterminateSmallDefault;
 	
-	NSAttributedString *title = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"读取中...", nil) attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor darkGrayColor]}];
+	NSAttributedString *title = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Reading info from link", @"For link fetching") attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : [UIColor darkGrayColor]}];
 	
 	view.titleLabelAttributedText = title;
 	
@@ -170,9 +170,9 @@
 - (IBAction)showActionSheet:(id)sender {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
 															 delegate:self
-													cancelButtonTitle:@"取消"
+													cancelButtonTitle:NSLocalizedString(@"Cancel", @"for alertView")
 											   destructiveButtonTitle:nil
-													otherButtonTitles:@"新建收藏夹", @"整理收藏夹", @"从链接获取", @"管理缓存区", nil];
+													otherButtonTitles:NSLocalizedString(@"Create Collection", @"common text"), NSLocalizedString(@"Reorder Collections", @"Collections"),  NSLocalizedString(@"Manage Cache", @"cache"), NSLocalizedString(@"Fetch Clips From Link", @"Collection"), nil];
 	[actionSheet showInView:self.view];
 }
 
@@ -180,16 +180,16 @@
 clickedButtonAtIndex:(NSInteger)buttonIndex {
 	switch (buttonIndex) {
 		case 0:
-			[self showActionMessage:@"新建收藏夹" withMessage:@"请输入名称:" withTag:1 withStyle:UIAlertViewStylePlainTextInput];
+			[self showActionMessage:NSLocalizedString(@"Create Collection", @"common text") withMessage:NSLocalizedString(@"Enter Name:", @"Collection") withTag:1 withStyle:UIAlertViewStylePlainTextInput];
 			break;
 		case 1:
 			[self toggleEditMode];
 			break;
 		case 2:
-			[self fetchClips];
+			[self showCachePage];
 			break;
 		case 3:
-			[self showCachePage];
+			[self fetchClips];
 			break;
 		default:
 			break;
@@ -213,9 +213,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 #pragma mark - Fetch Clips
 - (void)fetchClips {
 	if([self isValidURL:[UIPasteboard generalPasteboard].string]) {
-		[self showActionMessage:@"查看这里的动图？" withMessage:[UIPasteboard generalPasteboard].string withTag:3 withStyle:UIAlertViewStyleDefault];
+		[self showActionMessage:NSLocalizedString(@"View Clips From this Link?", @"Collection") withMessage:[UIPasteboard generalPasteboard].string withTag:3 withStyle:UIAlertViewStyleDefault];
 	}else{
-		[self showAlertMessage:@"请复制正确的链接" withMessage:@""];
+		[self showAlertMessage:NSLocalizedString(@"Please copy correct URL", @"Collection") withMessage:@""];
 	}
 }
 
@@ -232,12 +232,12 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 			if(images.count > 0){
 				[self showClipsForFetch:images title:title];
 			}else{
-				[self showAlertMessage:@"此页面无法获取动图：" withMessage:url];
+				[self showAlertMessage:NSLocalizedString(@"No Clips found in this page:", @"Collection") withMessage:url];
 			}
 			
 		} failure:^{
 			[self hideProgress];
-			[self showAlertMessage:@"获得动图失败" withMessage:@"请检查网络后重试"];
+			[self showAlertMessage:NSLocalizedString(@"Fetching failed", @"Collection") withMessage:NSLocalizedString(@"Please check network and retry", @"Collection")];
 		}];
 	}
 }
@@ -392,7 +392,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (section == 0) {
 		return nil;
 	}else{
-		return @"我的收藏夹";
+		return NSLocalizedString(@"My Collections", @"Collection");
 	}
 }
 

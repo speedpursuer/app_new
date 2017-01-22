@@ -24,7 +24,7 @@
 {
 	self = [super initWithCoder:aDecoder];
 	if (self) {
-		self.title = @"加入收藏夹";
+		self.title = NSLocalizedString(@"Add To Collection", @"Collection");
 		self.contentSizeInPopup = CGSizeMake(0, 250);
 		self.landscapeContentSizeInPopup = CGSizeMake(0, 250);
 	}
@@ -81,7 +81,7 @@
 	AlbumListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"favorite"];
 	
 	if(indexPath.row == 0) {
-		cell.title.text = @"新建收藏夹";
+		cell.title.text = NSLocalizedString(@"Create Collection", @"Common text");
 		[cell.thumb setImage:_addThumb];
 		cell.badge.hidden = YES;
 //		cell.detailTextLabel.text = @"";
@@ -115,13 +115,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//	[self.popupController dismiss];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	if(indexPath.row == 0) {
 		_selectedAlbum = nil;
 	}else {
 		_selectedAlbum = (self.albums)[indexPath.row - 1];
 	}
 	[self performSegueWithIdentifier:@"albumSelected" sender:self];
+	[self.popupController dismiss];
 }
 
 

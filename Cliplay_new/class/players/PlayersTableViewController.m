@@ -40,7 +40,7 @@
 }
 
 - (void)configureIndex {
-	self.title = @"球星动作";
+	self.title = NSLocalizedString(@"Stars", @"Second tab bar title");;
 	self.tableView.sectionIndexColor = CLIPLAY_COLOR;
 	
 	CBLService *service = [CBLService sharedManager];

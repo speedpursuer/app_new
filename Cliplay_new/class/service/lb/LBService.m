@@ -931,7 +931,7 @@ static NSInteger const pageSize = 11;
 }
 
 - (void)showAlertView:(NSString *)reason {
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"操作失败" message:reason delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil];
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Request failed", @"lbservice") message:reason delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"lbservice") otherButtonTitles:nil];
 	[alertView show];
 }
 

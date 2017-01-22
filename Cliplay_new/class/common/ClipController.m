@@ -176,7 +176,7 @@
 	searchBar.barTintColor = CLIPLAY_COLOR;
 	searchBar.delegate = self;
 	searchBar.showsCancelButton = YES;
-	searchBar.placeholder = @"搜索描述";
+	searchBar.placeholder = NSLocalizedString(@"Search By Comment", @"Search bar placeholder");
 	searchBar.barStyle = UISearchBarStyleMinimal;
 	[self.navigationController.view insertSubview:searchBar aboveSubview:self.navigationController.navigationBar];
 	
@@ -355,11 +355,11 @@
 - (void)setupNavItem {
 	UIBarButtonItem *button;
 	if(_fetchMode) {
-		button = [[UIBarButtonItem alloc] initWithTitle:@"收藏全部" style:UIBarButtonItemStyleBordered target:self action:@selector(prepareToSaveAll)];
+		button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save All", @"Save all images from link") style:UIBarButtonItemStyleBordered target:self action:@selector(prepareToSaveAll)];
 	}else if([self isInAlbum]) {
 		button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showOverallActionsheet)];
 	}else {
-		button = [[UIBarButtonItem alloc] initWithTitle:@"显示" style:UIBarButtonItemStyleBordered target:self action:@selector(showRatioActionsheet)];
+		button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Display", @"Display ratio") style:UIBarButtonItemStyleBordered target:self action:@selector(showRatioActionsheet)];
 	}
 	self.navigationItem.rightBarButtonItem = button;
 	
@@ -412,7 +412,7 @@
 		return 1;
 	} else {
 		UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-		messageLabel.text = @"无内容显示";
+		messageLabel.text = NSLocalizedString(@"No Content", @"Message for empty table view");
 		messageLabel.textColor = [UIColor lightGrayColor];
 		messageLabel.numberOfLines = 0;
 		messageLabel.textAlignment = NSTextAlignmentCenter;
@@ -623,7 +623,7 @@
 
 - (void)shareClip{
 //	[_lbService shareWithClipID:clipID];
-	[self showClipDescPopupWithDesc:@"" descPlaceholder:@"分享文字" actionType:sendClip];
+	[self showClipDescPopupWithDesc:@"" descPlaceholder:NSLocalizedString(@"Comment", @"Comment to share to weibo") actionType:sendClip];
 }
 
 -(void)sendClip:(NSString *)url desc:(NSString *)desc {
@@ -652,11 +652,11 @@
 }
 
 - (void)showNewAlbumFormWithTitle:(NSString *)title {
-	UIAlertView* alert= [[UIAlertView alloc] initWithTitle:@"新建收藏夹"
-												   message:@"请输入名称:"
+	UIAlertView* alert= [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Create Collection", @"for album create alert")
+												   message:NSLocalizedString(@"Enter Name:", @"for album create alert")
 												  delegate:self
-										 cancelButtonTitle:@"取消"
-										 otherButtonTitles:@"确定", nil];
+										 cancelButtonTitle:NSLocalizedString(@"Cancel", @"for action sheet")
+										 otherButtonTitles:NSLocalizedString(@"Save", @"for album create alert"), nil];
 	alert.alertViewStyle = UIAlertViewStylePlainTextInput;
 	[alert textFieldAtIndex:0].text = title;
 	[alert show];
@@ -753,11 +753,8 @@
 }
 
 - (void)showClipDescPopup:(NSString *)desc {
-	if(_actionType == modifyDesc) {
-		[self showClipDescPopupWithDesc:desc descPlaceholder:@"备注" actionType:editDesc];
-	}else {
-		[self showClipDescPopupWithDesc:desc descPlaceholder:@"备注" actionType:addDesc];
-	}
+	ClipDescActionType type = _actionType == modifyDesc? editDesc: addDesc;
+	[self showClipDescPopupWithDesc:desc descPlaceholder:NSLocalizedString(@"Comment", @"Placeholder for clip edit") actionType:type];
 }
 
 - (void)saveDesc:(NSString *)desc {
@@ -854,17 +851,17 @@
 - (void)showOverallActionsheet {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
 															 delegate:self
-													cancelButtonTitle:@"取消"
+													cancelButtonTitle:NSLocalizedString(@"Cancel", @"for action sheet")
 											   destructiveButtonTitle:nil
-													otherButtonTitles:@"设置动图比例", @"根据描述过滤", @"修改收藏夹名", nil];
+													otherButtonTitles:NSLocalizedString(@"Set Display Ratio", @"for action sheet"), NSLocalizedString(@"Search By Comment", @"for action sheet"), NSLocalizedString(@"Edit Collection Info", @"for action sheet"), nil];
 	actionSheet.tag = 1;
 	[actionSheet showInView:self.view];
 }
 
 - (void)showRatioActionsheet {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"设置动图比例"
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Set Display Ratio", @"for action sheet")
 															 delegate:self
-													cancelButtonTitle:@"取消"
+													cancelButtonTitle:NSLocalizedString(@"Cancel", @"for action sheet")
 											   destructiveButtonTitle:nil
 													otherButtonTitles:@"4:3", @"16:10", @"16:9", nil];
 	actionSheet.tag = 2;
@@ -872,11 +869,11 @@
 }
 
 - (void)showAlbumActionsheet {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"操作此动图"
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Edit this clip", @"for action sheet")
 															 delegate:self
-													cancelButtonTitle:@"取消"
-											   destructiveButtonTitle:@"删除动图"
-													otherButtonTitles:@"修改描述", @"加入其他", nil];
+													cancelButtonTitle:NSLocalizedString(@"Cancel", @"for action sheet")
+											   destructiveButtonTitle:NSLocalizedString(@"Remove", @"for action sheet")
+													otherButtonTitles:NSLocalizedString(@"Edit Comment", @"for action sheet"), NSLocalizedString(@"Add to others", @"for action sheet"), nil];
 	actionSheet.tag = 3;
 	[actionSheet showInView:self.view];
 }
@@ -1015,14 +1012,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 	[self recordSlowPlayWithUrl:url];
 	
 	ClipPlayController *clipCtr = [ClipPlayController new];
-	
 	clipCtr.clipURL = url;
-	clipCtr.favorite = YES;
-	clipCtr.showLike = NO;
-	clipCtr.standalone = NO;
-	
 	clipCtr.modalPresentationStyle = UIModalPresentationCurrentContext;
-	clipCtr.delegate = self;
+
 	_interactiveTransition = [[SwipeUpInteractiveTransition alloc]init:clipCtr];
 	clipCtr.transitioningDelegate = self;
 	

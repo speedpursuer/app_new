@@ -45,7 +45,7 @@
 		[self setLimitLableText:_savedLimit];
 		
 	}else{
-		header.textLabel.text = [NSString stringWithFormat:@"当前全部缓存：%ldMB", [_manager totalCached]];
+		header.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Current total cache: %ldMB", @"Cache setup"), [_manager totalCached]];
 	}
 	header.textLabel.font = [UIFont boldSystemFontOfSize:16];
 	header.textLabel.numberOfLines = 1;
@@ -65,7 +65,7 @@
 	}else {
 		goodLookingValue = [NSString stringWithFormat:@"%.1fG", (float)rawNumber/1000];;
 	}
-	_limitLabel.text = [NSString stringWithFormat:@"自动定期清除不常看，以低于：%@", goodLookingValue];
+	_limitLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Auto cleanup to keep space below: %@", @"Cache setup"), goodLookingValue];
 	
 	[_limitLabel sizeToFit];
 }

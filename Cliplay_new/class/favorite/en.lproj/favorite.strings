@@ -1,0 +1,30 @@
+
+/* Class = "UIButton"; normalTitle = "删除全部缓存"; ObjectID = "3aM-nQ-W3z"; */
+"3aM-nQ-W3z.normalTitle" = "Delete All Cache";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "44F-PZ-wkV"; */
+"44F-PZ-wkV.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "delete"; ObjectID = "4Y3-Zx-XKK"; */
+"4Y3-Zx-XKK.headerTitle" = "Delete";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "CQ7-n6-e6B"; */
+"CQ7-n6-e6B.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Show Desc (Will be shown above all):"; ObjectID = "DMZ-Ni-kBa"; */
+"DMZ-Ni-kBa.headerTitle" = "Show Desc (Will be shown above all):";
+
+/* Class = "UITableViewSection"; headerTitle = "Album Name:"; ObjectID = "Dd2-0Q-4Yd"; Note = "Album Name"; */
+"Dd2-0Q-4Yd.headerTitle" = "Album Name:";
+
+/* Class = "UITableViewSection"; headerTitle = "litmit"; ObjectID = "Ni4-DR-CBk"; */
+"Ni4-DR-CBk.headerTitle" = "Litmit";
+
+/* Class = "UITextField"; placeholder = "名称"; ObjectID = "cKV-k7-L6O"; */
+"cKV-k7-L6O.placeholder" = "Name";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "fxO-Zd-eHc"; */
+"fxO-Zd-eHc.text" = "Title";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "hGv-hl-oO8"; */
+"hGv-hl-oO8.text" = "Detail";

@@ -24,8 +24,8 @@
 }
 
 - (void)setUp {
-	_nameTextView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"名称" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-	[_descTextView setPlaceholder:@"简介"];
+	_nameTextView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Name", @"Collection") attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+	[_descTextView setPlaceholder:NSLocalizedString(@"Summary", @"Collection")];
 	[_nameTextView setText:_name];
 	[_descTextView setText:_desc];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextFieldTextDidChangeNotification object:nil];

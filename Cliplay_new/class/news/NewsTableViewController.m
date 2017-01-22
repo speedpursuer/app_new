@@ -81,7 +81,7 @@
 }
 
 - (void)setupTitle {
-	self.title = @"最新内容";
+	self.title = NSLocalizedString(@"News", @"First tab bar title");
 }
 
 - (void)addObserver {
