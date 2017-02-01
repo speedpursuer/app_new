@@ -10,6 +10,7 @@
 
 @interface Player : CBLBaseModel
 @property NSString *name;
+@property NSString *name_en;
 @property NSString *avatar;
 @property NSInteger sectionNumber;
 @property NSString *player_image;

@@ -9,6 +9,6 @@
 #import "Move.h"
 
 @implementation Move
-@dynamic move_name, desc, image;
+@dynamic move_name, move_name_en, desc, desc_en, image;
 @synthesize count;
 @end

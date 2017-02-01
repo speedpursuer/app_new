@@ -72,7 +72,7 @@ dispatch_semaphore_t _lock;
 	
 	[self observeChanges];
 	
-	_defaultPlaceholder = [self createImageWithColor:[UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1]];
+	_defaultPlaceholder = [Helper createImageWithColor:[UIColor colorWithRed:228.0/255.0 green:228.0/255.0 blue:228.0/255.0 alpha:1]];
 	
 //	[self cleanup];
 }
@@ -225,20 +225,6 @@ dispatch_semaphore_t _lock;
 - (void)deleteAllCache {
 	[[YYImageCache sharedCache].diskCache removeAllObjects];
 	[self showSuccessMessage:NSLocalizedString(@"All Cached Removed", @"cache setup")];
-}
-
-#pragma mark - Helper
-
--(UIImage *)createImageWithColor: (UIColor *) color {
-	CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-	UIGraphicsBeginImageContext(rect.size);
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextSetFillColorWithColor(context, [color CGColor]);
-	CGContextFillRect(context, rect);
-	
-	UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	return theImage;
 }
 
 - (void)showSuccessMessage:(NSString *)message {

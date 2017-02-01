@@ -14,7 +14,7 @@
 "All Cached Removed" = "已删除所有缓存";
 
 /* Cache setup */
-"Auto cleanup to keep space below: %@" = "自动定期清除不常看，以低于：%@";
+"Auto-cleanup to use disk below: %@" = "自动定期清除不常看，以低于：%@";
 
 /* Common text
    for action sheet
@@ -23,20 +23,22 @@
 "Cancel" = "取消";
 
 /* cblservice */
-"Clip Removed" = "动图删除成功";
+"Clip Removed" = "删除成功";
+
+/* Close Push Page */
+"Close" = "关闭";
 
 /* cblservice */
-"Collection \"%@\" removed" = "已删除\\\"%@\\\"";
+"Collection \"%@\" removed" = "已删除\"%@\"";
 
 /* cblservice */
 "Collection Info Saved" = "信息修改成功";
 
-/* Comment to share to weibo
-   Placeholder for clip edit */
+/* Placeholder for clip edit */
 "Comment" = "备注";
 
 /* cblservice */
-"Comment Changed" = "描述修改成功";
+"Comment Changed" = "备注修改成功";
 
 /* Common text
    common text
@@ -60,7 +62,7 @@
 "Edit this clip" = "操作此动图";
 
 /* Collection */
-"Enter Comment" = "请输入描述...";
+"Enter Comment" = "请输入备注...";
 
 /* Collection
    for album create alert */
@@ -88,10 +90,13 @@
 "My Collections" = "我的收藏夹";
 
 /* Collection */
+"My Favorite" = "我的最爱";
+
+/* Collection */
 "Name" = "名称";
 
 /* cblservice */
-"New Collection \"%@\" created" = "已新建\\\"%@\\\" ";
+"New Collection \"%@\" created" = "已新建\"%@\"";
 
 /* First tab bar title */
 "News" = "最新内容";
@@ -101,7 +106,7 @@
 
 /* for tableView
    Message for empty table view */
-"No Content" = "无内容显示";
+"No Content" = "无内容";
 
 /* for alertView
    lbservice */
@@ -145,14 +150,19 @@
 "Save All" = "收藏全部";
 
 /* cblservice */
-"Saved to Collection \"%@\"" = "已加入\\\"%@\\\"";
+"Saved to Collection \"%@\"" = "已加入\"%@\"";
 
-/* for action sheet
-   Search bar placeholder */
+/* for action sheet */
 "Search By Comment" = "根据备注过滤";
+
+/* Search bar placeholder */
+"Search Keywords" = "请输入关键字...";
 
 /* Share to weibo */
 "Send" = "发送";
+
+/* Sharing image to weibo */
+"Sending..." = "发送图片较大，请等待";
 
 /* for action sheet */
 "Set Display Ratio" = "设置动图比例";
@@ -184,6 +194,9 @@
 /* Post text */
 "This NBA GIF is shared from Cliplay APP" = "分享自 “球路App” (NBA动图专家)";
 
+/* idea to share to weibo */
+"Thought" = "心得";
+
 /* maybe network error */
 "User login error, please try again later" = "不能连接服务器，请稍后再试";
 
@@ -210,6 +223,9 @@
 
 /* User disabled */
 "You're not allowed to function" = "您暂时不能操作，请联系我们";
+
+/* Collection */
+"pics" = "张";
 
 /* Appears on a button that posts a comment when tapped. */
 "post" = "发送";

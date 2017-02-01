@@ -14,6 +14,9 @@
 #import "PlayerBanner.h"
 
 #define ksegmentTopInset @"segmentTopInset"
+#define kScreenWidth ((UIWindow *)[UIApplication sharedApplication].windows.firstObject).frame.size.width
+#define kBannerRetio (float)200/320
+
 
 @interface PlayerViewController ()
 @property (nonatomic, strong) UIImage *defaultImage;
@@ -36,7 +39,7 @@
 	self = [super initWithControllers:moveVC, postVC, nil];
 	if (self) {
 		self.segmentMiniTopInset = 64;
-		self.headerHeight = 200;
+		self.headerHeight = kScreenWidth * kBannerRetio;
 //		self.freezenHeaderWhenReachMaxHeaderHeight = YES;
 		self.player = player;
 	}
@@ -135,21 +138,9 @@
 }
 
 - (void)setupNavBarStyle {
-	[self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
-	[self.navigationController.navigationBar setShadowImage:[self createImageWithColor:[UIColor clearColor]]];
+	[self.navigationController.navigationBar setBackgroundImage:[Helper createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
+	[self.navigationController.navigationBar setShadowImage:[Helper createImageWithColor:[UIColor clearColor]]];
 	self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-}
-
--(UIImage *)createImageWithColor: (UIColor *) color {
-	CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-	UIGraphicsBeginImageContext(rect.size);
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextSetFillColorWithColor(context, [color CGColor]);
-	CGContextFillRect(context, rect);
-	
-	UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	return theImage;
 }
 
 /*
@@ -161,53 +152,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-
-//- (void)configNavbar1 {
-//	NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-//											   [UIColor whiteColor],NSForegroundColorAttributeName,
-//											   [UIFont systemFontOfSize:18],
-//											   NSFontAttributeName, nil];
-//	
-//	[self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
-//	
-//	[self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
-//	
-//	[self.navigationController.navigationBar setShadowImage:[self createImageWithColor:[UIColor clearColor]]];
-//	[self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-//	[self.navigationController.navigationBar setTranslucent:NO];
-//	[self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
-//}
-//
-//- (void)revertNavbar1 {
-//	NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-//											   [UIColor blackColor],NSForegroundColorAttributeName,
-//											   [UIFont systemFontOfSize:18],
-//											   NSFontAttributeName, nil];
-//	
-//	[self.navigationController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
-//	
-//	self.navigationController.navigationBar.barTintColor = [UIColor redColor];
-//	
-//	[self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-//	
-//	[self.navigationController.navigationBar setShadowImage:nil];
-//	
-//	[self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
-//	[self.navigationController.navigationBar setTranslucent:NO];
-//	[self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-//	
-//	[self.navigationController.navigationBar setBarTintColor:nil];
-//}
-
-//- (void)revertNavbar {
-//	[self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:CLIPLAY_COLOR] forBarMetrics:UIBarMetricsDefault];
-//	[self.navigationController.navigationBar setShadowImage:[self createImageWithColor:CLIPLAY_COLOR]];
-//	[self.navigationController.navigationBar setBarTintColor:CLIPLAY_COLOR];
-//	
-//	[self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-//	[self.navigationController.navigationBar setShadowImage:nil];
-//	[self.navigationController.navigationBar setBarTintColor:CLIPLAY_COLOR];
-//}
 
 @end

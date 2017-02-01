@@ -8,6 +8,7 @@
 
 #import "AlbumSelectBottomSheetViewController.h"
 #import "AlbumListTableViewCell.h"
+#import "ListTableViewCell.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
 
 @interface AlbumSelectBottomSheetViewController ()
@@ -40,6 +41,7 @@
 	_service = ((CBLService *)[CBLService sharedManager]);
 	_albums = [NSMutableArray arrayWithArray:[_service getAllAlbums]];
 	[self setupThumbs];
+	[self.tableView registerNib: [UINib nibWithNibName:@"BottomListTableViewCell" bundle:nil] forCellReuseIdentifier:@"listCell"];
 }
 
 
@@ -78,18 +80,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	AlbumListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"favorite"];
+	ListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"listCell"];
 	
 	if(indexPath.row == 0) {
 		cell.title.text = NSLocalizedString(@"Create Collection", @"Common text");
 		[cell.thumb setImage:_addThumb];
-		cell.badge.hidden = YES;
+		cell.desc.hidden = YES;
 //		cell.detailTextLabel.text = @"";
 	}else {
 		Album *album = (self.albums)[indexPath.row - 1];
 		cell.title.text = album.title;
-		cell.badge.hidden = NO;
-		cell.badge.text = [NSString stringWithFormat: @"%ld", album.clips.count];
+		cell.desc.hidden = NO;
+		cell.desc.text = [NSString stringWithFormat: @"%ld", album.clips.count];
 		UIImage *thumb = [album getThumb];
 		if(thumb == nil) {
 			thumb =	_albumThumb;

@@ -12,7 +12,7 @@
 #define kMinDismissY 100
 
 @implementation SwipeUpInteractiveTransition
-- (instancetype)init:(ClipPlayController *)vc
+- (instancetype)init:(SlowPlayViewController *)vc
 {
     self = [super init];
     if (self) {
@@ -37,7 +37,7 @@
 				if(!_vc.isInLandscapeMode && translation.y > kMinDismissY) {
 					CGFloat fraction = (translation.y / 400);
 					fraction = fmin(fmaxf(fraction, 0.0), 1.0);
-					_shouldComplete = fraction > 0.3;
+					_shouldComplete = fraction > 0.4;
 					[self updateInteractiveTransition:fraction];
 				}
 			}else {

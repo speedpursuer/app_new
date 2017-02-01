@@ -18,7 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self configureIndex];
+	[self allPlayers];
+	[self configureView];
 	[self hideBackButtonText];
 	[self addObserver];
     
@@ -39,12 +40,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)configureIndex {
+- (void)allPlayers {
+	CBLService *service = [CBLService sharedManager];
+	_players = service.players;
+}
+
+- (void)configureView {
 	self.title = NSLocalizedString(@"Stars", @"Second tab bar title");;
 	self.tableView.sectionIndexColor = CLIPLAY_COLOR;
-	
-	CBLService *service = [CBLService sharedManager];
-	_players = service.players;	
 }
 
 - (void)addObserver {
@@ -59,6 +62,7 @@
 }
 
 - (void)reload {
+	[self allPlayers];
 	[self.tableView reloadData];
 }
 

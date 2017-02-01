@@ -31,17 +31,11 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3t0-c3-Jvv">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="200" id="Bkp-cY-YV2"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTg-YD-BbK">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="200" id="yvK-Wx-YFe"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -51,8 +45,10 @@
                                         <constraint firstItem="3t0-c3-Jvv" firstAttribute="leading" secondItem="eV7-ZK-GCv" secondAttribute="trailing" constant="10" id="4Ht-Z9-1Ck"/>
                                         <constraint firstItem="3t0-c3-Jvv" firstAttribute="top" secondItem="Ep6-W6-wdO" secondAttribute="topMargin" constant="13" id="WkH-nZ-z7f"/>
                                         <constraint firstItem="gTg-YD-BbK" firstAttribute="top" secondItem="3t0-c3-Jvv" secondAttribute="bottom" constant="8" id="Xjb-bK-AiO"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="gTg-YD-BbK" secondAttribute="trailing" id="b2M-zF-vYi"/>
                                         <constraint firstItem="eV7-ZK-GCv" firstAttribute="leading" secondItem="Ep6-W6-wdO" secondAttribute="leadingMargin" id="dJN-vx-B50"/>
                                         <constraint firstItem="gTg-YD-BbK" firstAttribute="leading" secondItem="3t0-c3-Jvv" secondAttribute="leading" id="iZE-OC-En6"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="3t0-c3-Jvv" secondAttribute="trailing" id="u8z-8G-bU8"/>
                                         <constraint firstItem="eV7-ZK-GCv" firstAttribute="centerY" secondItem="Ep6-W6-wdO" secondAttribute="centerY" id="xKN-At-iF5"/>
                                     </constraints>
                                 </tableViewCellContentView>

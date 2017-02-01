@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[SlowPlayViewController setupButtons]:SlowPlayViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.topLayoutGuide">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[TLYShyNavBarManager dealloc]:TLYShyNavBarManager.m">
          <PersistentStrings>
             <PersistentString
@@ -13,6 +21,14 @@
             </PersistentString>
             <PersistentString
                value = "_scrollView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[CBLService allPlayers]:CBLService.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[[NSLocale preferredLanguages] objectAtIndex:0]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

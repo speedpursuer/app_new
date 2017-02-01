@@ -12,8 +12,10 @@
 #import "MRProgress.h"
 #import "CacheSettingViewController.h"
 #import "AutoRotateNavController.h"
+#import "ListTableViewCell.h"
 
-#define kFavoriteTitle "我的最爱"
+#define kFavoriteTitle NSLocalizedString(@"My Favorite", @"Collection")
+#define kTextPic NSLocalizedString(@"pics", @"Collection")
 
 @interface AlbumTableViewController ()
 @property CBLService *service;
@@ -54,6 +56,8 @@
 //	self.liveQuery = [_service queryAllAlbums].asLiveQuery;
 //	[self.liveQuery addObserver:self forKeyPath:@"rows" options:0 context:nil];
 //	[self.favorite addObserver:self forKeyPath:@"clips" options:0 context:nil];
+	
+	[self.tableView registerNib: [UINib nibWithNibName:@"ListTableViewCell" bundle:nil] forCellReuseIdentifier:@"listCell"];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateAlumbList:)
@@ -341,18 +345,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 //	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"album_favorite"];
 	
-	AlbumListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"favorite"];
+	ListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"listCell"];
 	
 	if(indexPath.section == 0) {
-		cell.title.text = @kFavoriteTitle;
-		cell.badge.text = [NSString stringWithFormat: @"%ld", _favorite.clips.count];
+		cell.title.text = kFavoriteTitle;
+		cell.desc.text = [NSString stringWithFormat: @"%ld %@", _favorite.clips.count, kTextPic];
 		[cell.thumb setImage:_deFaultFavoriteThumb];
 //		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	else {
 		Album *album = [self getAlbumWithIndex:indexPath];
 		cell.title.text = album.title;
-		cell.badge.text = [NSString stringWithFormat: @"%ld", album.clips.count];
+		cell.desc.text = [NSString stringWithFormat: @"%ld %@", album.clips.count, kTextPic];
 		UIImage *thumb = [album getThumb];
 		if(thumb == nil) {
 			thumb =	_deFaultAlbumThumb;
@@ -377,7 +381,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	ClipController *vc = [ClipController new];
 	if(indexPath.section == 0) {
-		vc.header = @kFavoriteTitle;
+		vc.header = kFavoriteTitle;
 		vc.pureURLs = _favorite.clips;
 	}else {
 		Album *album = [self getAlbumWithIndex:indexPath];

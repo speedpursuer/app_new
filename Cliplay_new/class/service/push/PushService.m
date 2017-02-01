@@ -171,18 +171,15 @@
 }
 
 - (void)fetchData {
-//	__weak typeof(self) _self = self;
-//	[Helper performBlock:^{
-//		[_self showPushFeed];
-//	} afterDelay:0.5];
-	[self showPushFeed];
+	__weak typeof(self) _self = self;
+	[Helper performBlock:^{
+		[_self showPushFeed];
+	} afterDelay:0.5];
 }
 
 - (void)showPushFeed {
 	
-//	if(!_pushID) return;
-	_pushID = @"post_player_kobe_bryant_move_dunk";
-	_header = @"Title";
+	if(!_pushID) return;
 	
 	UIViewController *currentVC = [UIViewController currentViewController];
 	

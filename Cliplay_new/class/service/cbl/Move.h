@@ -10,7 +10,9 @@
 
 @interface Move : CBLBaseModel
 @property NSString *move_name;
+@property NSString *move_name_en;
 @property NSString *desc;
+@property NSString *desc_en;
 @property NSString *image;
 @property NSInteger count;
 @end

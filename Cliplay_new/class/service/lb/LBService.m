@@ -351,7 +351,7 @@ static NSInteger const pageSize = 11;
 }
 
 - (void)showProgressView {
-	[self progressViewWithText:@"Sending..." withAnimation:YES];
+	[self progressViewWithText:NSLocalizedString(@"Sending...", @"Sharing image to weibo") withAnimation:YES];
 }
 
 - (void)hideProgressView {

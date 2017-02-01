@@ -11,14 +11,15 @@
 #import "EBCommentCell.h"
 #import "EBCommentsView.h"
 #import "EBCommentsTableView.h"
-#import "FRDLivelyButton.h"
+#import <FontAwesomeKit/FAKIonIcons.h>
 #import "UIGestureRecognizer+YYAdd.h"
 #import "EBShadedView.h"
 
 @interface EBCommentsViewController() {
 	LBService *lbService;
 }
-@property (nonatomic, strong) FRDLivelyButton *closeButton;
+//@property (nonatomic, strong) FRDLivelyButton *closeButton;
+@property (nonatomic, strong) UIButton *closeButton;
 @property (weak, readwrite) UIView *activityIndicator;
 @property (nonatomic, strong) UILabel *cancelButton;
 @property (nonatomic, strong) EBShadedView *commentShadedView;
@@ -118,12 +119,24 @@
 }
 
 - (void)loadCloseButton {
-	_closeButton = [[FRDLivelyButton alloc] initWithFrame:CGRectMake(6,30,36,28)];
-	[_closeButton setStyle:kFRDLivelyButtonStyleClose animated:NO];
-	[_closeButton addTarget:self action:@selector(closeCommentsView) forControlEvents:UIControlEventTouchUpInside];
-	[_closeButton setOptions:@{ kFRDLivelyButtonLineWidth: @(2.0f),
-								kFRDLivelyButtonColor: [UIColor whiteColor]}];
+	CGSize size = CGSizeMake(40, 40);
+	_closeButton = [[UIButton alloc] initWithFrame:CGRectMake(6,20,size.width, size.height)];
 	
+	FAKIonIcons *icon = [FAKIonIcons iosCloseEmptyIconWithSize:70];
+	[icon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+//	[_closeButton setBackgroundColor:[UIColor whiteColor]];
+//	[_closeButton setTintColor:[UIColor whiteColor]];
+	[_closeButton setImage:[icon imageWithSize:size] forState:UIControlStateNormal];
+	[icon addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]];
+	[_closeButton setImage:[icon imageWithSize:size] forState:UIControlStateHighlighted];
+	[_closeButton addTarget:self action:@selector(closeCommentsView) forControlEvents:UIControlEventTouchUpInside];
+
+	
+//	[_closeButton setStyle:kFRDLivelyButtonStyleClose animated:NO];
+//	[_closeButton addTarget:self action:@selector(closeCommentsView) forControlEvents:UIControlEventTouchUpInside];
+//	[_closeButton setOptions:@{ kFRDLivelyButtonLineWidth: @(2.0f),
+//								kFRDLivelyButtonColor: [UIColor whiteColor]}];
+//	
 	[self.view addSubview:_closeButton];
 }
 

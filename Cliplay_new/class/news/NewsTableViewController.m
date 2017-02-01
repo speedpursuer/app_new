@@ -96,6 +96,7 @@
 }
 
 - (void)reload {
+	[self allNews];
 	[self.tableView reloadData];
 }
 

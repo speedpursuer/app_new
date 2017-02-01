@@ -8,6 +8,7 @@
 
 #import "AutoRotateNavController.h"
 #import "ClipPlayController.h"
+#import "SlowPlayViewController.h"
 
 @interface AutoRotateNavController ()
 
@@ -42,7 +43,7 @@
 }
 
 - (BOOL)isInSlowPlayMode {
-	return [self.visibleViewController isKindOfClass:[ClipPlayController class]];
+	return [self.visibleViewController isKindOfClass:[SlowPlayViewController class]];
 }
 
 /*

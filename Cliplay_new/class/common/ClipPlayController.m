@@ -15,7 +15,6 @@
 #import "FRDLivelyButton.h"
 #import "DOFavoriteButton.h"
 #import "UIGestureRecognizer+YYAdd.h"
-#import "PushService.h"
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -119,10 +118,6 @@
 }
 
 - (void)exitSlowPlay{
-	PushService *service = [PushService new];
-	[service fetchData];
-	return;
-
 	[self prepareToExit];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }

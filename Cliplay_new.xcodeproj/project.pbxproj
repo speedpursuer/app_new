@@ -44,7 +44,13 @@
 		762AE0F71E34E72900572B5E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 762AE0F91E34E72900572B5E /* Localizable.strings */; };
 		762AE0FD1E34E72C00572B5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 762AE0FF1E34E72C00572B5E /* InfoPlist.strings */; };
 		762AE1031E34E72F00572B5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 762AE1051E34E72F00572B5E /* InfoPlist.strings */; };
+		762AE1091E3588B800572B5E /* SlowPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 762AE1071E3588B800572B5E /* SlowPlayViewController.m */; };
+		762AE1101E35FA2400572B5E /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 762AE10E1E35FA2400572B5E /* ListTableViewCell.m */; };
+		762AE1111E35FA2400572B5E /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762AE10F1E35FA2400572B5E /* ListTableViewCell.xib */; };
+		762AE1151E360BE400572B5E /* BottomListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 762AE1131E360BE400572B5E /* BottomListTableViewCell.m */; };
+		762AE1161E360BE400572B5E /* BottomListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762AE1141E360BE400572B5E /* BottomListTableViewCell.xib */; };
 		76335EDA1E2E37C500664761 /* CacheSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76335ED91E2E37C500664761 /* CacheSettingViewController.m */; };
+		764100491E421B0000DE69D8 /* cliplay_content.cblite2 in Resources */ = {isa = PBXBuildFile; fileRef = 764100481E421B0000DE69D8 /* cliplay_content.cblite2 */; };
 		7649E42A1E2F91C8006E91C4 /* AutoRotateNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7649E4291E2F91C8006E91C4 /* AutoRotateNavController.m */; };
 		7653DA571E2264820057D178 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA561E2264810057D178 /* main.m */; };
 		7653DA5A1E2264820057D178 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA591E2264820057D178 /* AppDelegate.m */; };
@@ -104,7 +110,6 @@
 		7653DB6B1E233FE30057D178 /* YYImageExampleHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB691E233FE30057D178 /* YYImageExampleHelper.m */; };
 		7653DB701E2340160057D178 /* MBCircularProgressBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB6C1E2340160057D178 /* MBCircularProgressBarView.m */; };
 		7653DB741E2340CC0057D178 /* MBCircularProgressBarLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB731E2340CC0057D178 /* MBCircularProgressBarLayer.m */; };
-		7653DB761E237BD80057D178 /* cliplay_content.cblite2 in Resources */ = {isa = PBXBuildFile; fileRef = 7653DB751E237BD80057D178 /* cliplay_content.cblite2 */; };
 		7653DB791E23826D0057D178 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB781E23826D0057D178 /* News.m */; };
 		7653DB7C1E238D570057D178 /* news.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7653DB7B1E238D570057D178 /* news.storyboard */; };
 		7653DB7F1E238E8E0057D178 /* NewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DB7E1E238E8E0057D178 /* NewsTableViewController.m */; };
@@ -195,12 +200,21 @@
 		762AE0EB1E34B27A00572B5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = class/common/Base.lproj/NoContent.xib; sourceTree = "<group>"; };
 		762AE0EE1E34B28800572B5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "class/common/zh-Hans.lproj/NoContent.strings"; sourceTree = "<group>"; };
 		762AE0F81E34E72900572B5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		762AE0FA1E34E72A00572B5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		762AE0FE1E34E72C00572B5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		762AE1001E34E72D00572B5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		762AE1041E34E72F00572B5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		762AE1061E3588B800572B5E /* SlowPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SlowPlayViewController.h; path = class/common/SlowPlayViewController.h; sourceTree = "<group>"; };
+		762AE1071E3588B800572B5E /* SlowPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SlowPlayViewController.m; path = class/common/SlowPlayViewController.m; sourceTree = "<group>"; };
+		762AE10B1E35CA1300572B5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		762AE10C1E35CA1400572B5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		762AE10D1E35FA2400572B5E /* ListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListTableViewCell.h; path = class/common/ListTableViewCell.h; sourceTree = "<group>"; };
+		762AE10E1E35FA2400572B5E /* ListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListTableViewCell.m; path = class/common/ListTableViewCell.m; sourceTree = "<group>"; };
+		762AE10F1E35FA2400572B5E /* ListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListTableViewCell.xib; path = class/common/ListTableViewCell.xib; sourceTree = "<group>"; };
+		762AE1121E360BE400572B5E /* BottomListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BottomListTableViewCell.h; path = class/favorite/BottomListTableViewCell.h; sourceTree = "<group>"; };
+		762AE1131E360BE400572B5E /* BottomListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BottomListTableViewCell.m; path = class/favorite/BottomListTableViewCell.m; sourceTree = "<group>"; };
+		762AE1141E360BE400572B5E /* BottomListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BottomListTableViewCell.xib; path = class/favorite/BottomListTableViewCell.xib; sourceTree = "<group>"; };
 		76335ED81E2E37C500664761 /* CacheSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CacheSettingViewController.h; path = class/common/CacheSettingViewController.h; sourceTree = "<group>"; };
 		76335ED91E2E37C500664761 /* CacheSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CacheSettingViewController.m; path = class/common/CacheSettingViewController.m; sourceTree = "<group>"; };
+		764100481E421B0000DE69D8 /* cliplay_content.cblite2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cliplay_content.cblite2; path = database/cliplay_content.cblite2; sourceTree = "<group>"; };
 		7641188B1E30A0F200F6844B /* Cliplay_new.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cliplay_new.entitlements; sourceTree = "<group>"; };
 		7649E4281E2F91C8006E91C4 /* AutoRotateNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoRotateNavController.h; path = class/common/AutoRotateNavController.h; sourceTree = "<group>"; };
 		7649E4291E2F91C8006E91C4 /* AutoRotateNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoRotateNavController.m; path = class/common/AutoRotateNavController.m; sourceTree = "<group>"; };
@@ -315,7 +329,6 @@
 		7653DB6D1E2340160057D178 /* MBCircularProgressBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBCircularProgressBarView.h; path = class/common/lib/MBCircularProgressBarView.h; sourceTree = "<group>"; };
 		7653DB721E2340CC0057D178 /* MBCircularProgressBarLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBCircularProgressBarLayer.h; path = class/common/lib/MBCircularProgressBarLayer.h; sourceTree = "<group>"; };
 		7653DB731E2340CC0057D178 /* MBCircularProgressBarLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBCircularProgressBarLayer.m; path = class/common/lib/MBCircularProgressBarLayer.m; sourceTree = "<group>"; };
-		7653DB751E237BD80057D178 /* cliplay_content.cblite2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cliplay_content.cblite2; path = database/cliplay_content.cblite2; sourceTree = "<group>"; };
 		7653DB771E23826D0057D178 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = class/service/cbl/News.h; sourceTree = "<group>"; };
 		7653DB781E23826D0057D178 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = News.m; path = class/service/cbl/News.m; sourceTree = "<group>"; };
 		7653DB7B1E238D570057D178 /* news.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = news.storyboard; path = class/news/news.storyboard; sourceTree = "<group>"; };
@@ -468,6 +481,9 @@
 				7653DAC71E2330960057D178 /* AlbumListTableViewCell.m */,
 				7653DAC81E2330960057D178 /* AlbumListTableViewCell.h */,
 				761701431E2CFA4F00C6F692 /* TitleView.xib */,
+				762AE1121E360BE400572B5E /* BottomListTableViewCell.h */,
+				762AE1131E360BE400572B5E /* BottomListTableViewCell.m */,
+				762AE1141E360BE400572B5E /* BottomListTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -487,7 +503,7 @@
 			name = ARSegmentPager;
 			sourceTree = "<group>";
 		};
-		762681C61E2A4CC800B535E8 /* Swipe DIsmiss */ = {
+		762681C61E2A4CC800B535E8 /* SwipeDIsmiss */ = {
 			isa = PBXGroup;
 			children = (
 				762681C71E2A4CFF00B535E8 /* DismissAnimation.h */,
@@ -497,7 +513,7 @@
 				762681CB1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.h */,
 				762681CC1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m */,
 			);
-			name = "Swipe DIsmiss";
+			name = SwipeDIsmiss;
 			sourceTree = "<group>";
 		};
 		7653DA491E2264810057D178 = {
@@ -600,7 +616,7 @@
 		7653DA871E23242E0057D178 /* CBL */ = {
 			isa = PBXGroup;
 			children = (
-				7653DB751E237BD80057D178 /* cliplay_content.cblite2 */,
+				764100481E421B0000DE69D8 /* cliplay_content.cblite2 */,
 				7653DA901E23243E0057D178 /* CBLBaseModel.h */,
 				7653DA911E23243E0057D178 /* CBLBaseModel.m */,
 				7653DA8A1E23243E0057D178 /* CBLBaseModelConflict.m */,
@@ -675,6 +691,8 @@
 				76BC49901E335C4200DBA6AA /* ClipDescViewController.m */,
 				760938101E30E70800ECBB3D /* UIViewController+Utils.h */,
 				760938111E30E70800ECBB3D /* UIViewController+Utils.m */,
+				762AE1061E3588B800572B5E /* SlowPlayViewController.h */,
+				762AE1071E3588B800572B5E /* SlowPlayViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -688,6 +706,9 @@
 				762681C31E2A43B300B535E8 /* NoContent.h */,
 				762681C41E2A43B300B535E8 /* NoContent.m */,
 				76BC498D1E335BC300DBA6AA /* common.storyboard */,
+				762AE10D1E35FA2400572B5E /* ListTableViewCell.h */,
+				762AE10E1E35FA2400572B5E /* ListTableViewCell.m */,
+				762AE10F1E35FA2400572B5E /* ListTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -697,7 +718,7 @@
 			children = (
 				760938061E30C5BF00ECBB3D /* Push */,
 				760937F91E30AC3900ECBB3D /* AAShareBubbles */,
-				762681C61E2A4CC800B535E8 /* Swipe DIsmiss */,
+				762681C61E2A4CC800B535E8 /* SwipeDIsmiss */,
 				762681B51E2A25A700B535E8 /* ARSegmentPager */,
 				76FE94D61E2794AE006A1B31 /* UIImage+ImageEffects.h */,
 				76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */,
@@ -939,16 +960,18 @@
 				7653DA681E2264820057D178 /* LaunchScreen.storyboard in Resources */,
 				76BC498E1E335BC400DBA6AA /* common.storyboard in Resources */,
 				760937FE1E30AC5200ECBB3D /* AAShareBubbles.bundle in Resources */,
+				764100491E421B0000DE69D8 /* cliplay_content.cblite2 in Resources */,
 				761EB5691E24E75E0086D990 /* players.storyboard in Resources */,
 				7653DB7C1E238D570057D178 /* news.storyboard in Resources */,
 				762AE1031E34E72F00572B5E /* InfoPlist.strings in Resources */,
 				762AE0EC1E34B27A00572B5E /* NoContent.xib in Resources */,
 				7653DA651E2264820057D178 /* Assets.xcassets in Resources */,
+				762AE1161E360BE400572B5E /* BottomListTableViewCell.xib in Resources */,
 				762681A61E28F7CA00B535E8 /* blank.jpg in Resources */,
 				76BC49951E343E9700DBA6AA /* favorite.storyboard in Resources */,
 				7653DB891E23B79A0057D178 /* heart@2x.png in Resources */,
-				7653DB761E237BD80057D178 /* cliplay_content.cblite2 in Resources */,
 				7653DA631E2264820057D178 /* Main.storyboard in Resources */,
+				762AE1111E35FA2400572B5E /* ListTableViewCell.xib in Resources */,
 				762681B11E2A1A2400B535E8 /* PlayerBanner.xib in Resources */,
 				762AE0F71E34E72900572B5E /* Localizable.strings in Resources */,
 				761701441E2CFA4F00C6F692 /* TitleView.xib in Resources */,
@@ -1022,6 +1045,7 @@
 				7653DB701E2340160057D178 /* MBCircularProgressBarView.m in Sources */,
 				7653DB201E2336AC0057D178 /* UIView+YYAdd.m in Sources */,
 				7653DAD91E2331B40057D178 /* ClipCell.m in Sources */,
+				762AE1151E360BE400572B5E /* BottomListTableViewCell.m in Sources */,
 				7653DA9A1E23243E0057D178 /* CBLBaseModelConflict.m in Sources */,
 				761EB56F1E2634240086D990 /* MovesTableViewController.m in Sources */,
 				7653DB1D1E2336AC0057D178 /* Reachability.m in Sources */,
@@ -1046,7 +1070,9 @@
 				7653DA9C1E23243E0057D178 /* Album.m in Sources */,
 				761EB5721E263C2F0086D990 /* MovesTableViewCell.m in Sources */,
 				7653DAE01E2333070057D178 /* LBService.m in Sources */,
+				762AE1091E3588B800572B5E /* SlowPlayViewController.m in Sources */,
 				7609380F1E30DDC300ECBB3D /* PushFeed.m in Sources */,
+				762AE1101E35FA2400572B5E /* ListTableViewCell.m in Sources */,
 				7653DB621E233EF40057D178 /* EBShadedView.m in Sources */,
 				7653DB791E23826D0057D178 /* News.m in Sources */,
 				761EB57B1E2662490086D990 /* RoundUIImageView.m in Sources */,
@@ -1156,7 +1182,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7653DA621E2264820057D178 /* Base */,
-				762AE1001E34E72D00572B5E /* zh-Hans */,
+				762AE10C1E35CA1400572B5E /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1165,7 +1191,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7653DA671E2264820057D178 /* Base */,
-				762AE0FA1E34E72A00572B5E /* zh-Hans */,
+				762AE10B1E35CA1300572B5E /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1300,6 +1326,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.cliplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1328,6 +1355,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.cliplay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

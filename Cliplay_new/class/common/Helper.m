@@ -13,4 +13,17 @@
 	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
 	dispatch_after(popTime, dispatch_get_main_queue(), block);
 }
+
++ (UIImage *)createImageWithColor: (UIColor *) color {
+	CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+	UIGraphicsBeginImageContext(rect.size);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextSetFillColorWithColor(context, [color CGColor]);
+	CGContextFillRect(context, rect);
+	
+	UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return theImage;
+}
+
 @end

@@ -20,7 +20,6 @@
 - (void)requestGIFWithURL:(NSString *)url;
 - (void)performBackgroundDownload;
 - (UIImage *)cachedGIFWith:(NSString *)url;
-- (UIImage *)createImageWithColor: (UIColor *) color;
 - (NSInteger)totalCached;
 - (int)getCacheLimit;
 - (void)setCacheLimit:(int)limit;

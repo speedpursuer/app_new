@@ -20,7 +20,7 @@
 #define kDBFileType @"cblite2"
 //#define cbserverURL   @"http://localhost:4984/cliplay_user_data"
 #define cbserverURL @"http://121.40.197.226:8000/cliplay_user_data"
-#define cbContentServerURL @"http://121.40.197.226:8000/cliplay_staging"
+#define cbContentServerURL @"http://121.40.197.226:8000/cliplay_prod_new"
 #define cbContentUserName  @"app_viewer"
 #define cbContentPassword  @"Cliplay1234"
 //#define kDidSynced @"didSynced"
@@ -105,11 +105,13 @@
 											error:&error];
 		if (ok) {
 			database = [dbManager existingDatabaseNamed:publicDBName error: &error];
-		}
-		if (error) {
-			NSLog(@"Cannot create database with an error : %@", [error description]);
+		}else {
+			database = [[CBLManager sharedInstance] openDatabaseNamed:publicDBName
+														  withOptions:option
+																error:&error];
 		}
 	}
+	
 	_contentDatabase = database;
 }
 
@@ -188,11 +190,21 @@
 	
 	NSError *error;
 	NSMutableDictionary *dict = [NSMutableDictionary new];
+	NSString *languageID = [[NSBundle mainBundle] preferredLocalizations].firstObject;
 	CBLQueryEnumerator* result = [query run: &error];
 	for (CBLQueryRow* row in result) {
-		[dict setObject:[Move modelForDocument:row.document] forKey:row.document.documentID];
+		Move *move = [Move modelForDocument:row.document];
+		[self configMove:move byLangID:languageID];
+		[dict setObject:move forKey:row.document.documentID];
 	}
 	_moves = [dict copy];
+}
+
+- (void)configMove:(Move *)move byLangID:(NSString *)lang{
+	if(![lang hasPrefix:@"zh"]) {
+		move.move_name = move.move_name_en;
+		move.desc = move.desc_en;
+	}
 }
 
 - (void)loadNews {
@@ -258,16 +270,26 @@
 	NSError *error;
 	NSMutableArray *allPlayers = [NSMutableArray new];
 	CBLQueryEnumerator* result = [query run: &error];
+	NSString *languageID = [[NSBundle mainBundle] preferredLocalizations].firstObject;
 	for (CBLQueryRow* row in result) {
 		NSInteger total = [[row.document propertyForKey:@"clip_total"] integerValue];
-		if(total > 0) {
+		if(total > 2) {
 			Player *player = [Player modelForDocument:row.document];
-			NSArray *fullName = [player.name componentsSeparatedByString: @"·"];
-			player.lastName = fullName.count == 2? [fullName objectAtIndex: 1]: player.name;
+			[self configPlayer:player byLangID:languageID];
 			[allPlayers addObject:player];
 		}
 	}
 	return [allPlayers copy];
+}
+
+- (void)configPlayer:(Player *)player byLangID:(NSString *)lang{
+	if([lang hasPrefix:@"zh"]) {
+		NSArray *fullName = [player.name componentsSeparatedByString: @"·"];
+		player.lastName = fullName.count == 2? [fullName objectAtIndex: 1]: player.name;
+	}else{
+		player.name = player.name_en;
+		player.lastName = player.name_en;
+	}
 }
 
 - (CBLQuery *)queryAllPlayers {
@@ -509,7 +531,7 @@
 #pragma mark - Favorite
 - (void)loadFavorite {
 	_uuid = [FCUUID uuidForDevice];
-//	_uuid = @"fd5f1034aacc4a608ef6678357012f99";
+//	_uuid = @"cd196ad39362410c81490f9a6545f766";
 	_favorite = [Favorite getFavoriteInDatabase:_database withUUID:_uuid];
 }
 

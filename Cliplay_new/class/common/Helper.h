@@ -10,4 +10,5 @@
 
 @interface Helper : NSObject
 + (void)performBlock:(void(^)())block afterDelay:(NSTimeInterval)delay;
++ (UIImage *)createImageWithColor: (UIColor *) color;
 @end

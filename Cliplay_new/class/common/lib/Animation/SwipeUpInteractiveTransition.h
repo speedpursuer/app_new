@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "ClipPlayController.h"
+//#import "ClipPlayController.h"
+#import "SlowPlayViewController.h"
 
 @interface SwipeUpInteractiveTransition : UIPercentDrivenInteractiveTransition
-@property (nonatomic, strong) ClipPlayController *vc;
+@property (nonatomic, strong) SlowPlayViewController *vc;
 @property (nonatomic, assign) BOOL isInteracting;
 @property (nonatomic, assign) BOOL shouldComplete;
 @property (nonatomic, assign) BOOL previousIsPlaying;

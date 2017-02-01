@@ -31,18 +31,16 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0CR-yg-pCG">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="200" id="yyl-Sw-OQg"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="0CR-yg-pCG" firstAttribute="leading" secondItem="Dor-R8-eif" secondAttribute="trailing" constant="30" id="5vd-XU-tZt"/>
+                                        <constraint firstItem="0CR-yg-pCG" firstAttribute="leading" secondItem="Dor-R8-eif" secondAttribute="trailing" constant="20" id="5vd-XU-tZt"/>
                                         <constraint firstItem="0CR-yg-pCG" firstAttribute="centerY" secondItem="Q0Z-dk-oX4" secondAttribute="centerY" id="APJ-gV-V2r"/>
                                         <constraint firstItem="Dor-R8-eif" firstAttribute="leading" secondItem="Q0Z-dk-oX4" secondAttribute="leadingMargin" id="B1p-Rm-xJk"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="0CR-yg-pCG" secondAttribute="trailing" id="S8C-b6-XTc"/>
                                         <constraint firstItem="Dor-R8-eif" firstAttribute="centerY" secondItem="Q0Z-dk-oX4" secondAttribute="centerY" id="YFQ-ph-oFt"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -99,11 +97,11 @@
                                         <constraint firstItem="nYv-rw-ejA" firstAttribute="centerY" secondItem="HAh-D4-cxN" secondAttribute="centerY" id="63M-yl-n1g"/>
                                         <constraint firstItem="nDb-oM-oQs" firstAttribute="trailing" secondItem="h15-tj-MFM" secondAttribute="trailing" id="9BE-JB-hdT"/>
                                         <constraint firstItem="h15-tj-MFM" firstAttribute="leading" secondItem="nDb-oM-oQs" secondAttribute="leading" id="9Z4-Uq-j4d"/>
-                                        <constraint firstItem="nDb-oM-oQs" firstAttribute="leading" secondItem="nYv-rw-ejA" secondAttribute="trailing" constant="15" id="Dd2-vM-tMy"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="h15-tj-MFM" secondAttribute="trailing" constant="30" id="Dtm-ig-Sfv"/>
+                                        <constraint firstItem="nDb-oM-oQs" firstAttribute="leading" secondItem="nYv-rw-ejA" secondAttribute="trailing" constant="10" id="Dd2-vM-tMy"/>
                                         <constraint firstItem="nYv-rw-ejA" firstAttribute="leading" secondItem="HAh-D4-cxN" secondAttribute="leadingMargin" id="GcP-2B-d2t"/>
                                         <constraint firstItem="h15-tj-MFM" firstAttribute="top" secondItem="nDb-oM-oQs" secondAttribute="bottom" constant="5.5" id="adb-B9-pS7"/>
                                         <constraint firstAttribute="topMargin" secondItem="nDb-oM-oQs" secondAttribute="top" id="eXb-Oj-Cgu"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="nDb-oM-oQs" secondAttribute="trailing" id="lOl-NM-8W2"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -122,7 +120,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edA-0t-ogi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-466" y="14"/>
+            <point key="canvasLocation" x="-551" y="14"/>
         </scene>
         <!--Post Table View Controller-->
         <scene sceneID="VOc-3T-de4">
@@ -147,17 +145,11 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC0-xm-KkX">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="200" id="yee-gf-4IU"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQi-Qw-4xh">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="200" id="akr-XQ-V3a"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -166,8 +158,10 @@
                                     <constraints>
                                         <constraint firstItem="vQi-Qw-4xh" firstAttribute="top" secondItem="bC0-xm-KkX" secondAttribute="bottom" constant="8" id="8Wo-Ds-Nyl"/>
                                         <constraint firstItem="bC0-xm-KkX" firstAttribute="top" secondItem="b6G-Gp-suX" secondAttribute="topMargin" constant="13" id="Bwf-eU-lnt"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="vQi-Qw-4xh" secondAttribute="trailing" id="D3X-9L-WLk"/>
                                         <constraint firstItem="74b-vQ-Byn" firstAttribute="leading" secondItem="b6G-Gp-suX" secondAttribute="leadingMargin" id="MhY-nM-7ap"/>
                                         <constraint firstItem="vQi-Qw-4xh" firstAttribute="leading" secondItem="bC0-xm-KkX" secondAttribute="leading" id="WqD-mp-OTu"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bC0-xm-KkX" secondAttribute="trailing" id="hz3-sn-MeJ"/>
                                         <constraint firstItem="bC0-xm-KkX" firstAttribute="leading" secondItem="74b-vQ-Byn" secondAttribute="trailing" constant="10" id="nlX-l6-Mu3"/>
                                         <constraint firstItem="74b-vQ-Byn" firstAttribute="centerY" secondItem="b6G-Gp-suX" secondAttribute="centerY" id="yXx-wb-Lpw"/>
                                     </constraints>

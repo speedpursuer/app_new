@@ -65,7 +65,7 @@
 	}else {
 		goodLookingValue = [NSString stringWithFormat:@"%.1fG", (float)rawNumber/1000];;
 	}
-	_limitLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Auto cleanup to keep space below: %@", @"Cache setup"), goodLookingValue];
+	_limitLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Auto-cleanup to use disk below: %@", @"Cache setup"), goodLookingValue];
 	
 	[_limitLabel sizeToFit];
 }

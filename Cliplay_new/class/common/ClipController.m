@@ -21,6 +21,7 @@
 #import "PresentedAnimation.h"
 #import "SwipeUpInteractiveTransition.h"
 #import "AutoRotateNavController.h"
+#import "SlowPlayViewController.h"
 
 
 #define cellMargin 10
@@ -128,6 +129,10 @@
 	self.shyNavBarManager.scrollView = self.tableView;
 }
 
+- (void)stickNavBar:(BOOL)isSticky {
+	self.shyNavBarManager.stickyNavigationBar = isSticky;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[self setupDownload];
@@ -140,6 +145,11 @@
 	}else{
 		[self fetchPostComments:NO];
 	}
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[self searchBarPrepareForDisappear];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -176,23 +186,40 @@
 	searchBar.barTintColor = CLIPLAY_COLOR;
 	searchBar.delegate = self;
 	searchBar.showsCancelButton = YES;
-	searchBar.placeholder = NSLocalizedString(@"Search By Comment", @"Search bar placeholder");
+	searchBar.translucent = YES;
+	searchBar.placeholder = NSLocalizedString(@"Search Keywords", @"Search bar placeholder");
 	searchBar.barStyle = UISearchBarStyleMinimal;
+	searchBar.backgroundImage = [Helper createImageWithColor:CLIPLAY_COLOR];
+							
 	[self.navigationController.view insertSubview:searchBar aboveSubview:self.navigationController.navigationBar];
 	
 	[searchBar becomeFirstResponder];
 	
 	_searchBar = searchBar;
+	
+	[self stickNavBar:YES];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	[_searchBar resignFirstResponder];
+	[searchBar resignFirstResponder];
 	[self filterWithKeywords:searchBar.text];
+	[self setCancelButtonEnabledForSearchBar:searchBar];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
 	[self cancelSearch];
-	[_searchBar removeFromSuperview];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	if(searchText.length == 0) {
+		_searchKeywords = nil;
+		[self refreshScreen:YES];
+		[self resignFirstResponderWithCancelButtonEnabled];
+	}
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+	[self setCancelButtonColorForSearchBar:searchBar];
 }
 
 - (void)filterWithKeywords:(NSString *)keywords {
@@ -201,8 +228,47 @@
 }
 
 - (void)cancelSearch {
-	_searchKeywords = nil;
-	[self refreshScreen:YES];
+	[self stickNavBar:NO];
+	[_searchBar removeFromSuperview];
+	_searchBar = nil;
+	if(_searchKeywords) {
+		_searchKeywords = nil;
+		[self refreshScreen:YES];
+	}
+}
+
+- (void)searchBarPrepareForDisappear {
+	if(![self presentedViewController]){
+		[self cancelSearch];
+	}else{
+		[self resignFirstResponderWithCancelButtonEnabled];
+	}
+}
+
+- (void)resignFirstResponderWithCancelButtonEnabled {
+	if(_searchBar) {
+		__weak typeof(self) _self = self;
+		[Helper performBlock:^{
+			[_self.searchBar resignFirstResponder];
+			[_self setCancelButtonEnabledForSearchBar:_self.searchBar];
+		} afterDelay:0.1];
+	}
+}
+
+- (void)setCancelButtonColorForSearchBar:(UISearchBar *)searchBar {
+	for (UIView *searchbuttons in [[[searchBar subviews] lastObject] subviews]){
+		if ([searchbuttons isKindOfClass:[UIButton class]]) {
+			UIButton *cancelButton = (UIButton*)searchbuttons;
+			[cancelButton setTintColor:[UIColor whiteColor]];
+		}
+	}
+}
+
+- (void)setCancelButtonEnabledForSearchBar:(UISearchBar *)searchBar {
+	UIButton *cancelButton = [searchBar valueForKey:@"_cancelButton"];
+	if ([cancelButton respondsToSelector:@selector(setEnabled:)]) {
+		cancelButton.enabled = YES;
+	}
 }
 
 #pragma mark - Download
@@ -364,7 +430,7 @@
 	self.navigationItem.rightBarButtonItem = button;
 	
 	if(self.modalPresentationStyle == UIModalPresentationCurrentContext) {
-		button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissSelf)];
+		button = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", @"Close Push Page") style:UIBarButtonItemStyleBordered target:self action:@selector(dismissSelf)];		
 		self.navigationItem.leftBarButtonItem = button;
 	}
 }
@@ -409,6 +475,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (_data.count > 0) {
+		self.tableView.backgroundView = nil;
 		return 1;
 	} else {
 		UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -623,7 +690,7 @@
 
 - (void)shareClip{
 //	[_lbService shareWithClipID:clipID];
-	[self showClipDescPopupWithDesc:@"" descPlaceholder:NSLocalizedString(@"Comment", @"Comment to share to weibo") actionType:sendClip];
+	[self showClipDescPopupWithDesc:@"" descPlaceholder:NSLocalizedString(@"Thought", @"idea to share to weibo") actionType:sendClip];
 }
 
 -(void)sendClip:(NSString *)url desc:(NSString *)desc {
@@ -1011,14 +1078,13 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 - (void)slowPlayWithURL:(NSString *)url {
 	[self recordSlowPlayWithUrl:url];
 	
-	ClipPlayController *clipCtr = [ClipPlayController new];
-	clipCtr.clipURL = url;
-	clipCtr.modalPresentationStyle = UIModalPresentationCurrentContext;
-
-	_interactiveTransition = [[SwipeUpInteractiveTransition alloc]init:clipCtr];
-	clipCtr.transitioningDelegate = self;
+	SlowPlayViewController *ctr = [[UIStoryboard storyboardWithName:@"common" bundle:nil] instantiateViewControllerWithIdentifier:@"slowPlay"];
+	ctr.url = url;
+	ctr.modalPresentationStyle = UIModalPresentationCurrentContext;
 	
-	[self presentViewController:clipCtr animated:YES completion:nil];
+	_interactiveTransition = [[SwipeUpInteractiveTransition alloc]init:ctr];
+	ctr.transitioningDelegate = self;
+	[self presentViewController:ctr animated:YES completion:nil];
 }
 
 - (void)recordSlowPlayWithUrl:(NSString *)url {

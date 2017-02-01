@@ -84,5 +84,43 @@
             </objects>
             <point key="canvasLocation" x="2312.8000000000002" y="608.54572713643188"/>
         </scene>
+        <!--Slow Play View Controller-->
+        <scene sceneID="1ZH-gC-qJX">
+            <objects>
+                <viewController storyboardIdentifier="slowPlay" id="CcQ-Lr-aCC" customClass="SlowPlayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xut-7J-uqK"/>
+                        <viewControllerLayoutGuide type="bottom" id="hTf-1n-jib"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KhS-IG-LxR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jWQ-BL-iev" customClass="YYAnimatedImageView"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsw-B6-8aB">
+                                <connections>
+                                    <action selector="exitSlowPlay:" destination="CcQ-Lr-aCC" eventType="touchUpInside" id="pxK-pR-Niu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hTf-1n-jib" firstAttribute="top" secondItem="jWQ-BL-iev" secondAttribute="bottom" id="0dN-6N-mSW"/>
+                            <constraint firstItem="dsw-B6-8aB" firstAttribute="leading" secondItem="KhS-IG-LxR" secondAttribute="leading" id="1Ow-t0-CfV"/>
+                            <constraint firstItem="jWQ-BL-iev" firstAttribute="leading" secondItem="KhS-IG-LxR" secondAttribute="leading" id="H7j-MZ-iAE"/>
+                            <constraint firstItem="dsw-B6-8aB" firstAttribute="top" secondItem="Xut-7J-uqK" secondAttribute="bottom" id="SD9-Iu-kU1"/>
+                            <constraint firstItem="jWQ-BL-iev" firstAttribute="top" secondItem="Xut-7J-uqK" secondAttribute="bottom" id="ogH-B6-Oaw"/>
+                            <constraint firstAttribute="trailing" secondItem="jWQ-BL-iev" secondAttribute="trailing" id="zSu-p7-reC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="close" destination="dsw-B6-8aB" id="lQH-ga-l6r"/>
+                        <outlet property="imageView" destination="jWQ-BL-iev" id="BGG-Vb-7XM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w9s-Wn-eah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3934" y="609"/>
+        </scene>
     </scenes>
 </document>
