@@ -318,11 +318,6 @@
 	}
 }
 
-- (void)helloFromCell:(UITableViewCell *)cell {
-	NSInteger row = [self.tableView indexPathForCell:cell].row;
-	NSLog(@"get image from cell = %ld", row);
-}
-
 #pragma mark - Initialization
 
 -(void)registerReusableCell {

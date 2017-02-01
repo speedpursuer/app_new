@@ -45,7 +45,6 @@ typedef NS_ENUM(NSInteger, clipActionType) {
 - (void)slowPlayWithURL:(NSString *)url;
 - (void)formActionForCell:(UITableViewCell *)cell withActionType:(clipActionType)type;
 - (BOOL)isCollected:(NSString *)url;
-- (void)helloFromCell:(UITableViewCell *)cell;
 #pragma mark - Callback for comment view
 - (void)fetchPostComments:(BOOL)isRefresh;
 - (void)clipDescCallbackWithDesc:(NSString *)desc;

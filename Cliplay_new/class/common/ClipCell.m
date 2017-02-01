@@ -387,11 +387,6 @@
 	[self.albumBtn select];
 }
 
-- (void)sayHelloToFromCell {
-	ClipController* ctr = [self getViewCtr];
-	[ctr helloFromCell:self];
-}
-
 - (UIImage *)createCommentIconWithCount:(NSInteger)count {
 	
 	CGSize iconSize = CGSizeMake(25, 27);
