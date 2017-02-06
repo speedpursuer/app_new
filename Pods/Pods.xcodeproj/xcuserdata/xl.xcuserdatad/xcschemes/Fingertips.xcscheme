@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5733BF30261CB2B76D175C659997639F'
-               BlueprintName = 'YYWebImage'
+               BlueprintIdentifier = '7E46677B1A1E4633F8C92662D4B8DB2E'
+               BlueprintName = 'Fingertips'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libYYWebImage.a'>
+               BuildableName = 'libFingertips.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PushService.h"
+#import <Fingertips/MBFingerTipWindow.h>
 
 @interface AppDelegate ()
 @property LBService *service;
@@ -133,5 +134,17 @@
 		return UIInterfaceOrientationMaskPortrait;
 	}
 }
+
+#pragma mark - Finger for demo
+//- (UIWindow *)window {
+//	if (!_window) {
+//		MBFingerTipWindow *win = [[MBFingerTipWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//		[win setAlwaysShowTouches:YES];
+//		[win setTouchImage:[UIImage imageNamed:@"finger"]];
+//		[win setTouchAlpha:1.0];
+//		_window = win;
+//	}
+//	return _window;
+//}
 
 @end

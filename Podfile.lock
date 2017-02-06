@@ -3,6 +3,7 @@ PODS:
   - DGActivityIndicatorView (2.0)
   - FCUUID (1.2.0):
     - UICKeyChainStore (~> 2.1.0)
+  - Fingertips (0.4.0)
   - FontAwesomeKit/Core (2.2.0)
   - FontAwesomeKit/FontAwesome (2.2.0):
     - FontAwesomeKit/Core
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - AppSettings
   - DGActivityIndicatorView
   - FCUUID
+  - Fingertips
   - FontAwesomeKit/FontAwesome
   - FontAwesomeKit/IonIcons
   - JDStatusBarNotification
@@ -101,6 +103,7 @@ SPEC CHECKSUMS:
   AppSettings: 6478db0cf70d7bea0b02fe3a4f12a8b929c45a55
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
   FCUUID: 9bfe031d35b7c221a7c66156a0af45d4eb49c3b6
+  Fingertips: 09678a650eecad2c1733dfdd5cb4004600ce2899
   FontAwesomeKit: 025fd4dd1017fe4e3f8d47b03e024deedbb33cd4
   JDStatusBarNotification: 29413865af11c862c17180610b0f46a21118b412
   JTTableViewController: b264c7724c6ec66bc4c694e3080b9079702a371c
@@ -120,6 +123,6 @@ SPEC CHECKSUMS:
   YYImage: b41b45bc5f32bfcdf67bdfb9c09da9e9832357c0
   YYWebImage: 8da75a611fd0d2e0f58a273f9ca0bc731614cb0d
 
-PODFILE CHECKSUM: fbf0e7ddf18822f636e6f067a133107dbdc5917f
+PODFILE CHECKSUM: 179913dad473b73b91d208389d3b60a7ee18ef40
 
 COCOAPODS: 1.1.0.rc.2

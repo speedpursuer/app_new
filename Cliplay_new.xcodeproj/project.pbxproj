@@ -18,6 +18,8 @@
 		7609381A1E31AB4400ECBB3D /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 760938191E31AB4400ECBB3D /* Configuration.m */; };
 		7609381D1E31B09C00ECBB3D /* CliplayBaseSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7609381C1E31B09C00ECBB3D /* CliplayBaseSettings.m */; };
 		761701441E2CFA4F00C6F692 /* TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 761701431E2CFA4F00C6F692 /* TitleView.xib */; };
+		761BAF3B1E481F5B00755B69 /* ClipCellNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 761BAF381E481F5B00755B69 /* ClipCellNew.m */; };
+		761BAF3C1E481F5B00755B69 /* ClipControllerNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 761BAF391E481F5B00755B69 /* ClipControllerNew.m */; };
 		761EB5641E24E7450086D990 /* PlayersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB5631E24E7450086D990 /* PlayersTableViewCell.m */; };
 		761EB5671E24E7520086D990 /* PlayersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 761EB5651E24E7520086D990 /* PlayersTableViewController.m */; };
 		761EB5691E24E75E0086D990 /* players.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 761EB5681E24E75E0086D990 /* players.storyboard */; };
@@ -118,6 +120,7 @@
 		76BC498E1E335BC400DBA6AA /* common.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76BC498D1E335BC300DBA6AA /* common.storyboard */; };
 		76BC49911E335C4200DBA6AA /* ClipDescViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76BC49901E335C4200DBA6AA /* ClipDescViewController.m */; };
 		76BC49951E343E9700DBA6AA /* favorite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76BC49971E343E9700DBA6AA /* favorite.storyboard */; };
+		76C45D6D1E4567B900BEDB8A /* finger.png in Resources */ = {isa = PBXBuildFile; fileRef = 76C45D6C1E4567B900BEDB8A /* finger.png */; };
 		76FE94D81E2794AE006A1B31 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */; };
 		C532DFA5CB9D196A6662A61E /* libPods-Cliplay_new.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9A1EF7DF9BB2D15285E8B1 /* libPods-Cliplay_new.a */; };
 /* End PBXBuildFile section */
@@ -153,6 +156,10 @@
 		7609381B1E31B09C00ECBB3D /* CliplayBaseSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CliplayBaseSettings.h; path = class/common/CliplayBaseSettings.h; sourceTree = "<group>"; };
 		7609381C1E31B09C00ECBB3D /* CliplayBaseSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CliplayBaseSettings.m; path = class/common/CliplayBaseSettings.m; sourceTree = "<group>"; };
 		761701431E2CFA4F00C6F692 /* TitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TitleView.xib; path = class/favorite/TitleView.xib; sourceTree = "<group>"; };
+		761BAF371E481F5B00755B69 /* ClipCellNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClipCellNew.h; path = class/common/Test/ClipCellNew.h; sourceTree = "<group>"; };
+		761BAF381E481F5B00755B69 /* ClipCellNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClipCellNew.m; path = class/common/Test/ClipCellNew.m; sourceTree = "<group>"; };
+		761BAF391E481F5B00755B69 /* ClipControllerNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClipControllerNew.m; path = class/common/Test/ClipControllerNew.m; sourceTree = "<group>"; };
+		761BAF3A1E481F5B00755B69 /* ClipControllerNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClipControllerNew.h; path = class/common/Test/ClipControllerNew.h; sourceTree = "<group>"; };
 		761EB5621E24E7450086D990 /* PlayersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayersTableViewCell.h; path = class/players/PlayersTableViewCell.h; sourceTree = "<group>"; };
 		761EB5631E24E7450086D990 /* PlayersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayersTableViewCell.m; path = class/players/PlayersTableViewCell.m; sourceTree = "<group>"; };
 		761EB5651E24E7520086D990 /* PlayersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayersTableViewController.m; path = class/players/PlayersTableViewController.m; sourceTree = "<group>"; };
@@ -341,6 +348,7 @@
 		76BC498F1E335C4200DBA6AA /* ClipDescViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClipDescViewController.h; path = class/common/ClipDescViewController.h; sourceTree = "<group>"; };
 		76BC49901E335C4200DBA6AA /* ClipDescViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClipDescViewController.m; path = class/common/ClipDescViewController.m; sourceTree = "<group>"; };
 		76BC49981E343F5600DBA6AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/favorite.storyboard; sourceTree = "<group>"; };
+		76C45D6C1E4567B900BEDB8A /* finger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = finger.png; path = Cliplay_new/Resources/finger.png; sourceTree = "<group>"; };
 		76FE94D01E2766E4006A1B31 /* Cliplay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cliplay-Prefix.pch"; sourceTree = "<group>"; };
 		76FE94D61E2794AE006A1B31 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "class/common/lib/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		76FE94D71E2794AE006A1B31 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "class/common/lib/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
@@ -422,6 +430,17 @@
 				760938151E30F13300ECBB3D /* Helper.m */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		761BAF361E481EB600755B69 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				761BAF371E481F5B00755B69 /* ClipCellNew.h */,
+				761BAF381E481F5B00755B69 /* ClipCellNew.m */,
+				761BAF3A1E481F5B00755B69 /* ClipControllerNew.h */,
+				761BAF391E481F5B00755B69 /* ClipControllerNew.m */,
+			);
+			name = Test;
 			sourceTree = "<group>";
 		};
 		761EB5571E24E4F50086D990 /* Players */ = {
@@ -646,6 +665,7 @@
 		7653DAB41E232B0B0057D178 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				761BAF361E481EB600755B69 /* Test */,
 				760938131E30F11600ECBB3D /* Helper */,
 				7653DAEA1E2335630057D178 /* Components */,
 				7653DAD31E2331520057D178 /* Lib */,
@@ -782,13 +802,13 @@
 				7653DB2F1E233A960057D178 /* RECommonFunctions.m */,
 				7653DB301E233A960057D178 /* RECommonFunctions.h */,
 				7653DB311E233A960057D178 /* DEComposeTextView.m */,
+				7653DB381E233A960057D178 /* EBCommentsViewController.h */,
 				7653DB321E233A960057D178 /* EBCommentsViewController.m */,
 				7653DB331E233A960057D178 /* DEComposeTextView.h */,
 				7653DB341E233A960057D178 /* REComposeViewController.m */,
 				7653DB351E233A960057D178 /* REComposeViewController.h */,
 				7653DB361E233A960057D178 /* REComposeSheetView.m */,
 				7653DB371E233A960057D178 /* REComposeSheetView.h */,
-				7653DB381E233A960057D178 /* EBCommentsViewController.h */,
 				7653DB391E233A960057D178 /* EBCommentsViewDelegate.h */,
 				7653DB3A1E233A960057D178 /* ModelComment.m */,
 				7653DB3B1E233A960057D178 /* EBPhotoCommentProtocol.h */,
@@ -822,6 +842,7 @@
 		7653DB811E239FA60057D178 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				76C45D6C1E4567B900BEDB8A /* finger.png */,
 				762681A51E28F7CA00B535E8 /* blank.jpg */,
 				7653DB881E23B79A0057D178 /* heart@2x.png */,
 			);
@@ -969,6 +990,7 @@
 				762AE1161E360BE400572B5E /* BottomListTableViewCell.xib in Resources */,
 				762681A61E28F7CA00B535E8 /* blank.jpg in Resources */,
 				76BC49951E343E9700DBA6AA /* favorite.storyboard in Resources */,
+				76C45D6D1E4567B900BEDB8A /* finger.png in Resources */,
 				7653DB891E23B79A0057D178 /* heart@2x.png in Resources */,
 				7653DA631E2264820057D178 /* Main.storyboard in Resources */,
 				762AE1111E35FA2400572B5E /* ListTableViewCell.xib in Resources */,
@@ -1101,9 +1123,11 @@
 				7653DACC1E2330960057D178 /* AlbumAddClipDescViewController.m in Sources */,
 				7653DA571E2264820057D178 /* main.m in Sources */,
 				7653DAB81E232B6D0057D178 /* ImageEntity.m in Sources */,
+				761BAF3C1E481F5B00755B69 /* ClipControllerNew.m in Sources */,
 				7653DB461E233A960057D178 /* ModelComment.m in Sources */,
 				762681C01E2A25C100B535E8 /* ARSegmentView.m in Sources */,
 				7653DA981E23243E0057D178 /* CBLService.m in Sources */,
+				761BAF3B1E481F5B00755B69 /* ClipCellNew.m in Sources */,
 				76335EDA1E2E37C500664761 /* CacheSettingViewController.m in Sources */,
 				762681BF1E2A25C100B535E8 /* ARSegmentPageHeader.m in Sources */,
 				762681AC1E2903EC00B535E8 /* PostTableViewController.m in Sources */,

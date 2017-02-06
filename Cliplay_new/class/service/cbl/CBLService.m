@@ -21,6 +21,7 @@
 //#define cbserverURL   @"http://localhost:4984/cliplay_user_data"
 #define cbserverURL @"http://121.40.197.226:8000/cliplay_user_data"
 #define cbContentServerURL @"http://121.40.197.226:8000/cliplay_prod_new"
+//#define cbContentServerURL @"http://121.40.197.226:8000/cliplay_staging"
 #define cbContentUserName  @"app_viewer"
 #define cbContentPassword  @"Cliplay1234"
 //#define kDidSynced @"didSynced"
