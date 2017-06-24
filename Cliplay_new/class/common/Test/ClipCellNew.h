@@ -12,6 +12,8 @@
 #import "UIGestureRecognizer+YYAdd.h"
 #import "DOFavoriteButton.h"
 #import "TTTAttributedLabel.h"
+#import "VoteView.h"
+#import "ClipControllerNew.h"
 
 #define TitleCellIdentifier @"titleCell"
 #define ClipCellIdentifier  @"clipCell"
@@ -27,7 +29,7 @@
 @property (nonatomic, strong) UIButton *commentBtn;
 @property (nonatomic, strong) UIButton *shareBtn;
 @property (nonatomic, strong) DOFavoriteButton *albumBtn;
-@property (nonatomic, weak) ClipController *delegate;
+@property (nonatomic, weak) ClipControllerNew *delegate;
 @property (nonatomic, assign) CGFloat cellHeight;
 - (void)setCellData:(ImageEntity*) entity isForHeight:(BOOL)isForHeight;
 - (void)updateCommentQty;
@@ -38,5 +40,6 @@
 
 @interface TitleCellNew : UITableViewCell
 @property (nonatomic, strong) TTTAttributedLabel *imageLabel;
+@property VoteView *voteView;
 - (void)setCellData:(ImageEntity*) entity isForHeight:(BOOL)isForHeight;
 @end

@@ -8,6 +8,7 @@
 
 #import "NewsTableViewController.h"
 #import "NewsTableViewCell.h"
+#import "ClipControllerNew.h"
 
 
 @interface NewsTableViewController ()
@@ -120,13 +121,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	ClipController *vc = [ClipController new];
 	News *news = _newsList[indexPath.row];
-	vc.header = news.name;
-	vc.summary = news.summary;
-	vc.postID = news.docID;
-	vc.content = news;
-	[self.navigationController pushViewController:vc animated:YES];
+	//if([news.type isEqualToString:@"activity"]) {
+	if(NO) {
+		ClipControllerNew *vc = [ClipControllerNew new];
+		vc.header = news.name;
+		vc.summary = news.summary;
+		vc.postID = news.docID;
+		vc.content = news;
+		[self.navigationController pushViewController:vc animated:YES];
+	}else {
+		ClipController *vc = [ClipController new];
+		vc.header = news.name;
+		vc.summary = news.summary;
+		vc.postID = news.docID;
+		vc.content = news;
+		[self.navigationController pushViewController:vc animated:YES];
+	}
 }
 
 /*

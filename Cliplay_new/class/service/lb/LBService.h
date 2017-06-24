@@ -78,6 +78,10 @@ NS_ENUM(NSInteger)
 							success:(void(^)(NSArray*, NSString*))success
 							failure:(void(^)())failure;
 
+- (void)getActivitiesWithPostID:(NSString *)postID
+						success:(void(^)(NSArray*))success
+						failure:(void(^)())failure;
+
 @end
 
 @interface LBPersistedModel (Cliplay)

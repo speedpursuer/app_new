@@ -19,4 +19,7 @@
 -(NSString *)headline {
 	return self.summary;
 }
+-(void)setImages:(NSArray *)image {
+	self.image = image;
+}
 @end

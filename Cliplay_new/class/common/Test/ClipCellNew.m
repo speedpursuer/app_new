@@ -13,6 +13,7 @@
 #define cellMargin 10
 //#define kCellHeight ceil((kScreenWidth) * 10.0 / 16.0)
 #define kScreenWidth ((UIWindow *)[UIApplication sharedApplication].windows.firstObject).width - cellMargin * 2
+#define screenWidthWithNoMargin ((UIWindow *)[UIApplication sharedApplication].windows.firstObject).width
 #define sHeight [UIScreen mainScreen].bounds.size.height
 
 
@@ -22,40 +23,49 @@
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 	self.backgroundColor = [UIColor whiteColor];
 	self.contentView.backgroundColor = [UIColor whiteColor];
-	self.contentView.bounds = [UIScreen mainScreen].bounds;
-	self.size = CGSizeMake(kScreenWidth, 0);
-	self.contentView.size = self.size;
-	
-	_imageLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
-	_imageLabel = [TTTAttributedLabel new];
-	_imageLabel.textAlignment = NSTextAlignmentLeft;
-	_imageLabel.numberOfLines = 0;
-	[_imageLabel setTextColor:[UIColor darkGrayColor]];
-	[self.contentView addSubview:_imageLabel];
+	CGSize size = CGSizeMake(screenWidthWithNoMargin, 0);
+//	self.size = size;
+	self.contentView.size = size;
+
+//	_imageLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
+//	_imageLabel = [TTTAttributedLabel new];
+//	_imageLabel.textAlignment = NSTextAlignmentLeft;
+//	_imageLabel.numberOfLines = 0;
+//	[_imageLabel setTextColor:[UIColor darkGrayColor]];
+//	[self.contentView addSubview:_imageLabel];
+//	_voteView = [[VoteView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 0)];
+	_voteView = [[[NSBundle mainBundle] loadNibNamed:@"VoteView" owner:nil options:nil] lastObject];
+	_voteView.frame = CGRectMake(0, 0, size.width, 0);
+	[self.contentView addSubview:_voteView];
 	
 	return self;
 }
 
-- (CGSize)sizeThatFits:(CGSize)size {
-	return CGSizeMake(kScreenWidth, self.imageLabel.size.height + cellMargin * 2);
-}
+//- (CGSize)sizeThatFits:(CGSize)size {
+////	return CGSizeMake(kScreenWidth, self.imageLabel.size.height + cellMargin * 2);
+//	return CGSizeMake(kScreenWidth + cellMargin * 2, _voteView.size.height);
+//}
 
 - (void)setCellData:(ImageEntity*) entity isForHeight:(BOOL)isForHeight {
 	
-	NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
-	style.lineSpacing = 10;
-	style.paragraphSpacing = 11;
+//	NSMutableParagraphStyle *style = [NSMutableParagraphStyle new];
+//	style.lineSpacing = 10;
+//	style.paragraphSpacing = 11;
+//	
+//	NSAttributedString *attString = [[NSAttributedString alloc] initWithString:entity.desc
+//																	attributes:@{
+//																				 (id)kCTForegroundColorAttributeName : (id)[UIColor darkGrayColor].CGColor,
+//																				 NSFontAttributeName : [UIFont systemFontOfSize:16],
+//																				 (id)kCTParagraphStyleAttributeName : style,
+//																				 }];
+//	
+//	self.imageLabel.text = attString;
+//	self.imageLabel.frame = CGRectMake(cellMargin, cellMargin, kScreenWidth, 0);
+//	[self.imageLabel sizeToFit];
 	
-	NSAttributedString *attString = [[NSAttributedString alloc] initWithString:entity.desc
-																	attributes:@{
-																				 (id)kCTForegroundColorAttributeName : (id)[UIColor darkGrayColor].CGColor,
-																				 NSFontAttributeName : [UIFont systemFontOfSize:16],
-																				 (id)kCTParagraphStyleAttributeName : style,
-																				 }];
-	
-	self.imageLabel.text = attString;
-	self.imageLabel.frame = CGRectMake(cellMargin, cellMargin, kScreenWidth, 0);
-	[self.imageLabel sizeToFit];
+//	_voteView.desc.text = entity.desc;
+	[_voteView setDescText:entity.desc];
+//	[self sizeToFit];
 }
 @end
 

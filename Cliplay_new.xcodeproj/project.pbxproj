@@ -52,6 +52,12 @@
 		762AE1151E360BE400572B5E /* BottomListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 762AE1131E360BE400572B5E /* BottomListTableViewCell.m */; };
 		762AE1161E360BE400572B5E /* BottomListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 762AE1141E360BE400572B5E /* BottomListTableViewCell.xib */; };
 		76335EDA1E2E37C500664761 /* CacheSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76335ED91E2E37C500664761 /* CacheSettingViewController.m */; };
+		764038501E4AB26000A119C3 /* VoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7640384E1E4AB26000A119C3 /* VoteCell.m */; };
+		764038511E4AB26000A119C3 /* VoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7640384F1E4AB26000A119C3 /* VoteCell.xib */; };
+		764038541E4ACEF200A119C3 /* VoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 764038531E4ACEF200A119C3 /* VoteView.m */; };
+		764038561E4ACF0C00A119C3 /* VoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 764038551E4ACF0C00A119C3 /* VoteView.xib */; };
+		764038591E52A01B00A119C3 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 764038581E52A01B00A119C3 /* Activity.m */; };
+		7640385C1E52FE8800A119C3 /* ActivityEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7640385B1E52FE8800A119C3 /* ActivityEntity.m */; };
 		764100491E421B0000DE69D8 /* cliplay_content.cblite2 in Resources */ = {isa = PBXBuildFile; fileRef = 764100481E421B0000DE69D8 /* cliplay_content.cblite2 */; };
 		7649E42A1E2F91C8006E91C4 /* AutoRotateNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7649E4291E2F91C8006E91C4 /* AutoRotateNavController.m */; };
 		7653DA571E2264820057D178 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7653DA561E2264810057D178 /* main.m */; };
@@ -221,6 +227,16 @@
 		762AE1141E360BE400572B5E /* BottomListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BottomListTableViewCell.xib; path = class/favorite/BottomListTableViewCell.xib; sourceTree = "<group>"; };
 		76335ED81E2E37C500664761 /* CacheSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CacheSettingViewController.h; path = class/common/CacheSettingViewController.h; sourceTree = "<group>"; };
 		76335ED91E2E37C500664761 /* CacheSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CacheSettingViewController.m; path = class/common/CacheSettingViewController.m; sourceTree = "<group>"; };
+		7640384D1E4AB26000A119C3 /* VoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoteCell.h; path = class/common/Test/VoteCell.h; sourceTree = "<group>"; };
+		7640384E1E4AB26000A119C3 /* VoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VoteCell.m; path = class/common/Test/VoteCell.m; sourceTree = "<group>"; };
+		7640384F1E4AB26000A119C3 /* VoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VoteCell.xib; path = class/common/Test/VoteCell.xib; sourceTree = "<group>"; };
+		764038521E4ACEF200A119C3 /* VoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoteView.h; path = class/common/Test/VoteView.h; sourceTree = "<group>"; };
+		764038531E4ACEF200A119C3 /* VoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VoteView.m; path = class/common/Test/VoteView.m; sourceTree = "<group>"; };
+		764038551E4ACF0C00A119C3 /* VoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VoteView.xib; path = class/common/Test/VoteView.xib; sourceTree = "<group>"; };
+		764038571E52A01B00A119C3 /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Activity.h; path = class/service/cbl/Activity.h; sourceTree = "<group>"; };
+		764038581E52A01B00A119C3 /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Activity.m; path = class/service/cbl/Activity.m; sourceTree = "<group>"; };
+		7640385A1E52FE8800A119C3 /* ActivityEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityEntity.h; path = class/common/ActivityEntity.h; sourceTree = "<group>"; };
+		7640385B1E52FE8800A119C3 /* ActivityEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityEntity.m; path = class/common/ActivityEntity.m; sourceTree = "<group>"; };
 		764100481E421B0000DE69D8 /* cliplay_content.cblite2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cliplay_content.cblite2; path = database/cliplay_content.cblite2; sourceTree = "<group>"; };
 		7641188B1E30A0F200F6844B /* Cliplay_new.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cliplay_new.entitlements; sourceTree = "<group>"; };
 		7649E4281E2F91C8006E91C4 /* AutoRotateNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AutoRotateNavController.h; path = class/common/AutoRotateNavController.h; sourceTree = "<group>"; };
@@ -439,6 +455,12 @@
 				761BAF381E481F5B00755B69 /* ClipCellNew.m */,
 				761BAF3A1E481F5B00755B69 /* ClipControllerNew.h */,
 				761BAF391E481F5B00755B69 /* ClipControllerNew.m */,
+				7640384D1E4AB26000A119C3 /* VoteCell.h */,
+				7640384E1E4AB26000A119C3 /* VoteCell.m */,
+				7640384F1E4AB26000A119C3 /* VoteCell.xib */,
+				764038521E4ACEF200A119C3 /* VoteView.h */,
+				764038531E4ACEF200A119C3 /* VoteView.m */,
+				764038551E4ACF0C00A119C3 /* VoteView.xib */,
 			);
 			name = Test;
 			sourceTree = "<group>";
@@ -658,6 +680,8 @@
 				762681A01E28CB8400B535E8 /* Move.m */,
 				7653DA921E23243E0057D178 /* CBLService.h */,
 				7653DA881E23243E0057D178 /* CBLService.m */,
+				764038571E52A01B00A119C3 /* Activity.h */,
+				764038581E52A01B00A119C3 /* Activity.m */,
 			);
 			name = CBL;
 			sourceTree = "<group>";
@@ -690,6 +714,8 @@
 				7653DB521E233C1F0057D178 /* User.m */,
 				760938181E31AB4400ECBB3D /* Configuration.h */,
 				760938191E31AB4400ECBB3D /* Configuration.m */,
+				7640385A1E52FE8800A119C3 /* ActivityEntity.h */,
+				7640385B1E52FE8800A119C3 /* ActivityEntity.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -978,6 +1004,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				764038561E4ACF0C00A119C3 /* VoteView.xib in Resources */,
 				7653DA681E2264820057D178 /* LaunchScreen.storyboard in Resources */,
 				76BC498E1E335BC400DBA6AA /* common.storyboard in Resources */,
 				760937FE1E30AC5200ECBB3D /* AAShareBubbles.bundle in Resources */,
@@ -987,6 +1014,7 @@
 				762AE1031E34E72F00572B5E /* InfoPlist.strings in Resources */,
 				762AE0EC1E34B27A00572B5E /* NoContent.xib in Resources */,
 				7653DA651E2264820057D178 /* Assets.xcassets in Resources */,
+				764038511E4AB26000A119C3 /* VoteCell.xib in Resources */,
 				762AE1161E360BE400572B5E /* BottomListTableViewCell.xib in Resources */,
 				762681A61E28F7CA00B535E8 /* blank.jpg in Resources */,
 				76BC49951E343E9700DBA6AA /* favorite.storyboard in Resources */,
@@ -1071,6 +1099,7 @@
 				7653DA9A1E23243E0057D178 /* CBLBaseModelConflict.m in Sources */,
 				761EB56F1E2634240086D990 /* MovesTableViewController.m in Sources */,
 				7653DB1D1E2336AC0057D178 /* Reachability.m in Sources */,
+				7640385C1E52FE8800A119C3 /* ActivityEntity.m in Sources */,
 				7653DB2E1E233A460057D178 /* MyLBAdapter.m in Sources */,
 				761EB5671E24E7520086D990 /* PlayersTableViewController.m in Sources */,
 				762681BE1E2A25C100B535E8 /* ARSegmentPageController.m in Sources */,
@@ -1082,6 +1111,7 @@
 				762681CF1E2A4CFF00B535E8 /* SwipeUpInteractiveTransition.m in Sources */,
 				7653DB531E233C1F0057D178 /* User.m in Sources */,
 				761EB56C1E24F6520086D990 /* Player.m in Sources */,
+				764038591E52A01B00A119C3 /* Activity.m in Sources */,
 				7653DAD61E2331A70057D178 /* ClipController.m in Sources */,
 				762681CE1E2A4CFF00B535E8 /* PresentedAnimation.m in Sources */,
 				761EB57F1E2717160086D990 /* CacheManager.m in Sources */,
@@ -1101,6 +1131,7 @@
 				762681CD1E2A4CFF00B535E8 /* DismissAnimation.m in Sources */,
 				7653DB411E233A960057D178 /* RECommonFunctions.m in Sources */,
 				762681A91E28FE6600B535E8 /* Post.m in Sources */,
+				764038541E4ACEF200A119C3 /* VoteView.m in Sources */,
 				761EB5641E24E7450086D990 /* PlayersTableViewCell.m in Sources */,
 				7653DB421E233A960057D178 /* DEComposeTextView.m in Sources */,
 				7653DB441E233A960057D178 /* REComposeViewController.m in Sources */,
@@ -1115,6 +1146,7 @@
 				7653DACE1E2330960057D178 /* AlbumListTableViewCell.m in Sources */,
 				7653DB5F1E233EA70057D178 /* EBCommentsTableView.m in Sources */,
 				760938031E30B39500ECBB3D /* PushService.m in Sources */,
+				764038501E4AB26000A119C3 /* VoteCell.m in Sources */,
 				7653DB451E233A960057D178 /* REComposeSheetView.m in Sources */,
 				7653DA9B1E23243E0057D178 /* Favorite.m in Sources */,
 				7653DAD11E2330BB0057D178 /* CliplayTabBarViewController.m in Sources */,

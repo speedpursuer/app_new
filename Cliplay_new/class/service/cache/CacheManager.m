@@ -83,7 +83,7 @@ dispatch_semaphore_t _lock;
 }
 
 - (YYImageCache *)sImageCache {
-	NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
+	NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory,
 															   NSUserDomainMask, YES) firstObject];
 	cachePath = [cachePath stringByAppendingPathComponent:@"com.lee.cliplay"];
 	cachePath = [cachePath stringByAppendingPathComponent:@"sImages"];

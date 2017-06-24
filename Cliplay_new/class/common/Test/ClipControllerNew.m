@@ -7,11 +7,12 @@
 
 #import "ClipControllerNew.h"
 #import "ClipPlayController.h"
-#import "UITableView+FDTemplateLayoutCell.h"
+//#import "UITableView+FDTemplateLayoutCell.h"
 #import "AppDelegate.h"
 #import "EBCommentsViewController.h"
 #import "ModelComment.h"
-#import "ClipCell.h"
+#import "ClipCellNew.h"
+#import "VoteCell.h"
 #import "AlbumAddClipDescViewController.h"
 #import "AlbumSelectBottomSheetViewController.h"
 #import "AlbumInfoViewController.h"
@@ -22,9 +23,10 @@
 #import "SwipeUpInteractiveTransition.h"
 #import "AutoRotateNavController.h"
 #import "SlowPlayViewController.h"
+#import "ActivityEntity.h"
 
 
-#define cellMargin 10
+#define cellMargin 8
 //#define kCellHeight ceil((kScreenWidth) * 10.0 / 16.0)
 #define screenWidth ((UIWindow *)[UIApplication sharedApplication].windows.firstObject).width
 #define kScreenWidth ((UIWindow *)[UIApplication sharedApplication].windows.firstObject).width - cellMargin * 2
@@ -83,7 +85,7 @@
 	
 	[self setTitle: _header];
 	
-	self.tableView.fd_debugLogEnabled = NO;
+//	self.tableView.fd_debugLogEnabled = NO;
 	
 	[self registerReusableCell];
 	
@@ -91,11 +93,11 @@
 	
 	[self setupNavItem];
 	
-	[self initData];
+	[self initActivityData];
 	
 	[self initHeader];
 	
-	[self.tableView reloadData];
+//	[self.tableView reloadData];
 }
 
 - (void)initValues {
@@ -118,6 +120,8 @@
 	[self.tableView setDelegate:self];
 	[self.tableView setDataSource:self];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	self.tableView.rowHeight = UITableViewAutomaticDimension;
+	self.tableView.estimatedRowHeight = 400;
 	[self setupNavAutoHide];
 }
 
@@ -125,7 +129,7 @@
 	UIView *view = view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 1.f)];
 	view.backgroundColor = [UIColor clearColor];
 	[self.shyNavBarManager setExtensionView:view];
-	self.tableView.contentInset = UIEdgeInsetsMake(64,0,0,0);
+	self.tableView.contentInset = UIEdgeInsetsMake(66,0,0,0);
 	self.shyNavBarManager.scrollView = self.tableView;
 }
 
@@ -322,11 +326,24 @@
 
 -(void)registerReusableCell {
 	
-	[self.tableView registerClass:[TitleCell class] forCellReuseIdentifier:TitleCellIdentifier];
+//	[self.tableView registerClass:[TitleCellNew class] forCellReuseIdentifier:TitleCellIdentifier];
+	
+	[self.tableView registerNib: [UINib nibWithNibName:@"VoteCell" bundle:nil] forCellReuseIdentifier:@"vote"];
 	
 	_clipCellType = [self isInAlbum]? AlbumCellIdentifier: ClipCellIdentifier;
 	
-	[self.tableView registerClass:[ClipCell class] forCellReuseIdentifier:_clipCellType];
+	[self.tableView registerClass:[ClipCellNew class] forCellReuseIdentifier:_clipCellType];
+}
+
+- (void)initActivityData {
+	__weak typeof(self) _self = self;
+	[_lbService getActivitiesWithPostID:_postID success:^(NSArray *data) {
+		[_self.content setImages:data];
+		[_self initData];
+		[_self.tableView reloadData];
+	} failure:^{
+		
+	}];
 }
 
 - (void)initData {
@@ -364,11 +381,26 @@
 	_pureURLs = [pureURL copy];
 }
 
+- (void)converActivities:(NSArray *)clips toData:(NSMutableArray *)entities {
+	NSMutableArray *pureURL = @[].mutableCopy;
+	[clips enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		NSDictionary *dict = obj;
+		NSString *desc = [dict objectForKey:@"desc"];
+		NSString *url = [dict objectForKey:@"url"];
+		if(desc && desc.length != 0) {
+			[entities addObject:[[ImageEntity alloc] initWithData:@"" desc:desc]];
+		}
+		[entities addObject:[[ImageEntity alloc] initWithData:url desc:@"" tag:idx]];
+		[pureURL addObject:url];
+	}];
+	_pureURLs = [pureURL copy];
+}
+
 - (void)initHeader {
 	
-	if (_data.count == 0) {
-		return;
-	}
+//	if (_data.count == 0) {
+//		return;
+//	}
 	
 	UIView *header = [UIView new];
 	
@@ -497,43 +529,48 @@
 	ImageEntity *entity = _data[indexPath.row];
 	
 	if([entity.url length] == 0) {
-		TitleCell *cell = [tableView dequeueReusableCellWithIdentifier:TitleCellIdentifier];
+		VoteCell *cell = [tableView dequeueReusableCellWithIdentifier:@"vote"];
 		[self configureTitleCell:cell atIndexPath:indexPath isForHeight:false];
 		return cell;
 	}else {
-		ClipCell *cell = [tableView dequeueReusableCellWithIdentifier:_clipCellType];
+		ClipCellNew *cell = [tableView dequeueReusableCellWithIdentifier:_clipCellType];
 		[self configureCell:cell atIndexPath:indexPath isForHeight:false];
 		return cell;
 	}
 }
 
-- (void)configureCell:(ClipCell *)cell atIndexPath:(NSIndexPath *)indexPath isForHeight:(BOOL)isForHeight {
-	cell.fd_enforceFrameLayout = YES; // Enable to use "-sizeThatFits:"
+- (void)configureCell:(ClipCellNew *)cell atIndexPath:(NSIndexPath *)indexPath isForHeight:(BOOL)isForHeight {
+//	cell.fd_enforceFrameLayout = YES; // Enable to use "-sizeThatFits:"
 	cell.delegate = self;
 	cell.cellHeight = _cellHeight;
 	[cell setCellData: _data[indexPath.row] isForHeight:isForHeight];
 }
 
-- (void)configureTitleCell:(TitleCell *)cell atIndexPath:(NSIndexPath *)indexPath isForHeight:(BOOL)isForHeight {
-	cell.fd_enforceFrameLayout = YES; // Enable to use "-sizeThatFits:"
-	[cell setCellData: _data[indexPath.row] isForHeight:isForHeight];
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+- (void)configureTitleCell:(VoteCell *)cell atIndexPath:(NSIndexPath *)indexPath isForHeight:(BOOL)isForHeight {
+//	cell.fd_enforceFrameLayout = YES; // Enable to use "-sizeThatFits:"
+//	[cell setCellData: _data[indexPath.row] isForHeight:isForHeight];
 	ImageEntity *entity = _data[indexPath.row];
-	
-	if([entity.url length] == 0) {
-		return [tableView fd_heightForCellWithIdentifier:TitleCellIdentifier cacheByIndexPath:indexPath configuration:^(id cell) {
-			[self configureTitleCell:cell atIndexPath:indexPath isForHeight:true];
-		}];
-	}else{
-		return [tableView fd_heightForCellWithIdentifier:_clipCellType cacheByIndexPath:indexPath configuration:^(id cell) {
-			[self configureCell:cell atIndexPath:indexPath isForHeight:true];
-		}];
-	}
+	[cell setCellData:@"http://q.qlogo.cn/qqapp/1105320149/44BC003E5565C102A0842474BC16694F/100"
+				 name:@"*Оo糖oОo糖oО*"
+				 desc:entity.desc
+				 time:@"2016-10-12 03:26:15"
+	];
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//	ImageEntity *entity = _data[indexPath.row];
+//	
+//	if([entity.url length] == 0) {
+//		return [tableView fd_heightForCellWithIdentifier:TitleCellIdentifier cacheByIndexPath:indexPath configuration:^(id cell) {
+//			[self configureTitleCell:cell atIndexPath:indexPath isForHeight:true];
+//		}];
+//	}else{
+//		return [tableView fd_heightForCellWithIdentifier:_clipCellType cacheByIndexPath:indexPath configuration:^(id cell) {
+//			[self configureCell:cell atIndexPath:indexPath isForHeight:true];
+//		}];
+//	}
+//}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	
@@ -584,8 +621,8 @@
 - (void)autoPlayFullyVisibleImages {
 	_playStopped = NO;
 	for (UITableViewCell *cell in [self.tableView visibleCells]) {
-		if([cell isKindOfClass:[ClipCell class]]) {
-			ClipCell *_cell = (ClipCell *) cell;
+		if([cell isKindOfClass:[ClipCellNew class]]) {
+			ClipCellNew *_cell = (ClipCellNew *) cell;
 			if([self needToPlay: _cell]) {
 				[_cell.webImageView startAnimating];
 				[_cell setBorder];
@@ -600,8 +637,8 @@
 - (void)stopPlayingAllImages {
 	_playStopped = YES;
 	for (UITableViewCell *cell in [self.tableView visibleCells]) {
-		if([cell isKindOfClass:[ClipCell class]]) {
-			ClipCell *_cell = (ClipCell *) cell;
+		if([cell isKindOfClass:[ClipCellNew class]]) {
+			ClipCellNew *_cell = (ClipCellNew *) cell;
 			if(_cell.webImageView.isAnimating) [_cell.webImageView stopAnimating];
 		}
 	}
@@ -653,8 +690,8 @@
 - (void)updateCellQty {
 	
 	for (UITableViewCell *cell in [self.tableView visibleCells]) {
-		if([cell isKindOfClass:[ClipCell class]]) {
-			ClipCell *_cell = (ClipCell *) cell;
+		if([cell isKindOfClass:[ClipCellNew class]]) {
+			ClipCellNew *_cell = (ClipCellNew *) cell;
 			[_cell updateCommentQty];
 		}
 	}
@@ -727,7 +764,7 @@
 - (void)saveClipToAlbumWithDesc:(NSString *)desc {
 	if([_cblService addClip:[self urlForSeletedClip] toAlum:_albumToAdd withDesc:desc]) {
 		[self setCollected:[self urlForSeletedClip]];
-		[((ClipCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_indexOfSelectedClip inSection:0]]) selectAlbumButton];
+		[((ClipCellNew *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_indexOfSelectedClip inSection:0]]) selectAlbumButton];
 	}
 }
 

@@ -10,5 +10,6 @@
 
 @protocol Content <NSObject>
 - (NSArray *)images;
+- (void) setImages: (NSArray *)image;
 - (NSString *)headline;
 @end

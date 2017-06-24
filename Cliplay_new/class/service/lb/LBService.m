@@ -23,6 +23,7 @@ static NSInteger const pageSize = 11;
 	LBModelRepository *postRep;
 	LBModelRepository *visitRep;
 	LBModelRepository *apiRep;
+	LBModelRepository *activityRep;
 	MyLBAdapter *adapter;
 	TencentOAuth *oauth;
 	NSString *newCommentText;
@@ -54,6 +55,7 @@ static NSInteger const pageSize = 11;
 		postRep = [adapter repositoryWithModelName:@"posts"];
 		visitRep = [adapter repositoryWithModelName:@"visits"];
 		apiRep = [adapter repositoryWithModelName:@"apis"];
+		activityRep = [adapter repositoryWithModelName:@"activities"];
 		
 		oauth = [[TencentOAuth alloc] initWithAppId:tencentAppID
 											 andDelegate:self];
@@ -179,7 +181,7 @@ static NSInteger const pageSize = 11;
 	newCommentClipID = clipID;
 	newCommentText = text;
 	
-	if([user.commentAccountID isEqual:@""]) {
+	if(user.commentAccountID.length == 0) {
 		[self socialButtonsForShare:NO];
 	}else {
 		[self performComment];
@@ -449,7 +451,7 @@ static NSInteger const pageSize = 11;
 	[self showProgressView];
 	
 //	if(user.wbRefreshToken == nil || user.wbAccessToken == nil) {
-	if([user.shareAccountID isEqual:@""]) {
+	if(user.shareAccountID.length == 0) {
 //		[self.shareDelegate didShowLoginSelection];
 		[self hideProgressView];
 		[self loginWeibo];
@@ -660,6 +662,23 @@ static NSInteger const pageSize = 11;
 			} afterDelay:0.8];
 		}
 	}];
+}
+
+#pragma mark - Activity
+- (void)getActivitiesWithPostID:(NSString *)postID
+						success:(void(^)(NSArray*))success
+						failure:(void(^)())failure
+{
+	[activityRep invokeStaticMethod:@"getActivitiesByPostID"
+						 parameters:@{@"id_post": postID}
+							success:^(id value) {
+								id object = [value objectForKey:@"data"];
+								success([object objectForKey:@"activityList"]);
+							}
+							failure:^(NSError *error) {
+								failure();
+							}
+	];
 }
 
 #pragma mark - Tencent

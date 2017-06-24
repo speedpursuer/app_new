@@ -16,5 +16,6 @@
 	_shareAccountID = @"";
 	_shareWBRefreshToken = @"";
 	_shareWBAccessToken = @"";
+	_postAccountID = @"";
 }
 @end

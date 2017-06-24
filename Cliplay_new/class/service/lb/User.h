@@ -15,4 +15,5 @@
 @property (nonatomic, copy) NSString *shareAccountID;
 @property (nonatomic, copy) NSString *shareWBAccessToken;
 @property (nonatomic, copy) NSString *shareWBRefreshToken;
+@property (nonatomic, copy) NSString *postAccountID;
 @end
